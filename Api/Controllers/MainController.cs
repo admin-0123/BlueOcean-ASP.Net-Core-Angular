@@ -52,7 +52,7 @@ namespace VirtaApi.Controllers
                 return Ok("True");
             }
 
-            return Ok("False");
+            return Ok(result.Errors.First().Description);
         }
 
         [HttpGet("login")]
