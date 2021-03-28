@@ -33,6 +33,8 @@ namespace VirtaApi.Helpers
                         src => src.Email
                     )
                 );
+
+            CreateMap<Category, CategoryDTO>();
         }
     }
 }

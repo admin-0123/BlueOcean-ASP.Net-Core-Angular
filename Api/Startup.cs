@@ -1,20 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using VirtaApi.Data;
-using Microsoft.EntityFrameworkCore;
-using VirtaApi.Models;
-using Microsoft.AspNetCore.Identity;
 using VirtaApi.Extensions;
 
 namespace VirtaApi
@@ -31,21 +20,11 @@ namespace VirtaApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = _configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<DataContext>(
-                options => {
-                    options.UseLazyLoadingProxies();
-                    options.UseMySql(
-                        connectionString,
-                        ServerVersion.AutoDetect(connectionString)
-                    );
-                }
-            );
-
             services.AddAppServices(_configuration);
             services.AddIdentityServices(_configuration);
 
             services.AddControllers();
+            services.AddSignalR();
 
             services.AddSwaggerGen(c =>
             {

@@ -15,3 +15,8 @@ export interface ProductAttribute {
     name: string;
     value: string;
 }
+
+export interface Category {
+    value: string;
+    title: string;
+}

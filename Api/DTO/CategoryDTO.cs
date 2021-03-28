@@ -1,8 +1,8 @@
 namespace VirtaApi.DTO
 {
-    public class ProductAttributes
+    public class CategoryDTO
     {
-        public string Name { get; set; }
         public string Value { get; set; }
+        public string Title { get; set; }
     }
 }

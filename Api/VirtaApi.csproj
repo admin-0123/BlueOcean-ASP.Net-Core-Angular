@@ -14,5 +14,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.4"/>
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0"/>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4"/>
+    <PackageReference Include="MongoDB.Driver" Version="2.12.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0"/>
   </ItemGroup>
 </Project>

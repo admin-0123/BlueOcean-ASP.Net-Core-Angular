@@ -3,12 +3,26 @@
         <h1>Logo</h1>
     </div>
     <div class="search">
-        <input type="text" name="search" id="search">
+        <form #searchForm="ngForm" (ngSubmit)="search()">
+            <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="search"
+                [(ngModel)]="searchInput"
+                (input)="onSearchChange($event)"
+                autocomplete="off"
+            >
+            <div class="filtered" *ngIf="filteredCategories">
+                <div *ngFor="let category of filteredCategories" class="filtered-item" (click)="selectOption(category)">
+                    <span>{{ category.title }}</span>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="actions">
         <div (click)="authDialog()">
             <h1>Login</h1>
         </div>
-
     </div>
 </div>

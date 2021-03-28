@@ -25,7 +25,7 @@ namespace VirtaApi.Helpers
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
         }
 
-        public async Task<string> CreateToken(User user)
+        public string CreateToken(User user)
         {
             var claims = new List<Claim>
             {

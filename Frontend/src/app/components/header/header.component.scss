@@ -23,8 +23,21 @@
         flex-grow: 1;
         max-width: 700px;
         text-align: center;
+
         input {
             width: 100%;
+        }
+
+        .filtered {
+            text-align: left;
+            background-color: white;
+            position: absolute;
+            color: black;
+            width: 100%;
+
+            &-item {
+                cursor: pointer;
+            }
         }
     }
 

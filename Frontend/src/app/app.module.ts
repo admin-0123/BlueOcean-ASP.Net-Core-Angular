@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatAutocompleteModule } from  '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +18,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { EntryComponent } from './components/entry/entry.component';
+import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 
 
 @NgModule({
@@ -26,7 +30,8 @@ import { EntryComponent } from './components/entry/entry.component';
     HeaderComponent,
     FooterComponent,
     ProductPageComponent,
-    EntryComponent
+    EntryComponent,
+    ProductListPageComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,10 @@ import { EntryComponent } from './components/entry/entry.component';
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

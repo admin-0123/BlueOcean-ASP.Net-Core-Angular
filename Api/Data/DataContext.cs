@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using VirtaApi.Models;
 
@@ -11,6 +10,7 @@ namespace VirtaApi.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductAttributes> ProductAttributes { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,14 @@ namespace VirtaApi.Data
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
+
+            modelBuilder.Entity<Category>()
+                .HasIndex(u => u.Value)
+                .IsUnique();
+            
+            modelBuilder.Entity<Category>()
+                .HasIndex(u => u.Title)
+                .IsUnique();
         }
     }
 }

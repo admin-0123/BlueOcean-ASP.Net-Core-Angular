@@ -57,7 +57,7 @@ namespace VirtaApi.Controllers
                 );
 
             if (result.Succeeded)
-                return await GetToken(user);
+                return GetToken(user);
 
             return BadRequest(result.Errors);
         }
@@ -73,14 +73,14 @@ namespace VirtaApi.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, userToLogin.Password, false);
 
             if (result.Succeeded)
-                return await GetToken(user);
+                return GetToken(user);
 
             return BadRequest(INCORRECT_CREDENTIALS);
         }
 
-        private async Task<IActionResult> GetToken(User user)
+        private IActionResult GetToken(User user)
         {
-            string token = await _tokenService.CreateToken(user);
+            string token = _tokenService.CreateToken(user);
 
             Dictionary<string, string> response = new Dictionary<string, string>();
 

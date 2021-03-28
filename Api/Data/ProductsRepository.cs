@@ -11,8 +11,7 @@ namespace VirtaApi.Data
     {
         private readonly DataContext _context;
 
-        public ProductsRepository(DataContext context)
-            : base(context)
+        public ProductsRepository(DataContext context) : base(context)
         {
             _context = context;
 
