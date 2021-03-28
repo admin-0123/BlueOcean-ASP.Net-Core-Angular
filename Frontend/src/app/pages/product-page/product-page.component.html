@@ -1,0 +1,18 @@
+<div class="product">
+    <div class="main">
+        <div class="image">
+            <img src="{{ product.images[0] }}">
+        </div>
+        <div class="detail">
+            <p>{{ product.title }}</p>
+        </div>
+    </div>
+    <div class="secondary">
+        <div class="description">
+            <p>{{ product.description }}</p>
+        </div>
+        <div *ngIf="product.attributes" class="attributes">
+            <p>{{ product.attributes }}</p>
+        </div>
+    </div>
+</div>

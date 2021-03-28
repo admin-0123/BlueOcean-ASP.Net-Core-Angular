@@ -3,12 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/_models/product';
 
 @Component({
-  selector: 'app-products-list',
-  templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.scss']
+  selector: 'app-product-page',
+  templateUrl: './product-page.component.html',
+  styleUrls: ['./product-page.component.scss']
 })
-export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
+export class ProductPageComponent implements OnInit {
+  product!: Product;
 
   constructor(
     private route: ActivatedRoute
@@ -17,9 +17,11 @@ export class ProductsListComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(
       data => {
-        this.products = data.products;
+        console.log(data);
+        this.product = data.product;
       }
     )
+    console.log(this.product);
   }
 
 }

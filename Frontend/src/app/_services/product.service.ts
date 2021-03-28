@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = environment.apiUrl + 'products';
+  private baseUrl = environment.apiUrl + 'products/';
 
   constructor(private http: HttpClient) { }
 
@@ -23,6 +23,16 @@ export class ProductService {
             }
           )
           return response;
+        })
+      )
+  }
+
+  getProduct(id: string): Observable<Product> {
+    return this.http.get<Product>(this.baseUrl + id)
+      .pipe(
+        map(product => {
+          product.images = JSON.parse(product.images);
+          return product;
         })
       )
   }

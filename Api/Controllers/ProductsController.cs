@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VirtaApi.Data.Interfaces;
@@ -22,9 +23,9 @@ namespace VirtaApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProducts(string id)
+        public async Task<IActionResult> GetProducts(Guid id)
         {
-            return Ok(await _repo.GetProducts());
+            return Ok(await _repo.GetProduct(id));
         }
 
         [HttpPost]
