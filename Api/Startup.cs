@@ -1,7 +1,10 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using VirtaApi.Extensions;
@@ -20,6 +23,7 @@ namespace VirtaApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
             services.AddAppServices(_configuration);
             services.AddIdentityServices(_configuration);
 
@@ -51,11 +55,18 @@ namespace VirtaApi
                 .AllowCredentials()
                 .WithOrigins("http://localhost:4200"));
 
+            app.UseRouting();
+
             app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthorization(); 
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions() {
+                FileProvider =  new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Views/Static")),
+                RequestPath = new PathString("/admin")
+            });
 
             app.UseEndpoints(endpoints =>
             {
