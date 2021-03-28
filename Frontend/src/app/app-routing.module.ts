@@ -6,8 +6,8 @@ import { ProductListResolver } from './_resolvers/product-list.resolver';
 import { ProductResolver } from './_resolvers/product.resolver';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent, resolve: { products: ProductListResolver } },
-  { path: 'products/:id', component: ProductPageComponent, resolve: { product: ProductResolver}}
+  { path: '', component: HomePageComponent, resolve: { products: ProductListResolver }, data: {animation: 'HomePage'}},
+  { path: 'products/:id', component: ProductPageComponent, resolve: { product: ProductResolver}, data: {animation: 'PDP'}}
 ];
 
 @NgModule({

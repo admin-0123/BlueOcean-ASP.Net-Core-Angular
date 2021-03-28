@@ -1,0 +1,33 @@
+<div class="entry">
+    <button (click)="toggleForm()" class="button">{{ newUser ? 'Login' : 'Register' }}</button>
+    <div *ngIf="!newUser">
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
+            </div>
+            <div>
+                <input [disabled]="!loginForm.valid" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+    <div *ngIf="newUser">
+        <form #registerForm="ngForm" (ngSubmit)="register()">
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
+            </div>
+            <div>
+                <input [disabled]="!registerForm.valid" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</div>

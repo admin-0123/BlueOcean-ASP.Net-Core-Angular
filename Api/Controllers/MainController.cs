@@ -33,40 +33,5 @@ namespace VirtaApi.Controllers
         {
             return Ok("True");
         }
-
-        [HttpGet("register")]
-        public async Task<IActionResult> Register()
-        {
-            var result = await _userManager
-                .CreateAsync(
-                    new User()
-                    {
-                        UserName = "bob",
-                        Email = "bob@bob.com"
-                    },
-                    "Test123!"
-                );
-
-            if (result.Succeeded)
-            {
-                return Ok("True");
-            }
-
-            return Ok(result.Errors.First().Description);
-        }
-
-        [HttpGet("login")]
-        public async Task<IActionResult> Login()
-        {
-            var user = await _userManager.FindByNameAsync("bob");
-            var result = await _signInManager.CheckPasswordSignInAsync(user, "Test123!", false);
-
-            if (result.Succeeded)
-            {
-                return Ok("True");
-            }
-
-            return Ok("False");
-        }
     }
 }

@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { EntryComponent } from '../entry/entry.component';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
 
+  authDialog(): void {
+    const dialogRef = this.dialog.open(EntryComponent, {
+      height: '400px',
+      width: '600px',
+    });
+  }
 }

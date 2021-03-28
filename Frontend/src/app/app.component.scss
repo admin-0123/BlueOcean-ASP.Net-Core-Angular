@@ -1,10 +1,11 @@
 @import 'media';
 
 .page {
-    margin: 40px 20px;
+    min-height: 100vh;
+    margin: 0 20px;
 
     @include desktop {
-        max-width: 1440;
-        margin: 40px 40px;
+        max-width: 1440px;
+        margin: 0 40px;
     }
 }

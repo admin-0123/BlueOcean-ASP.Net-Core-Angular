@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using VirtaApi.Models;
 
 namespace VirtaApi.DTO
 {

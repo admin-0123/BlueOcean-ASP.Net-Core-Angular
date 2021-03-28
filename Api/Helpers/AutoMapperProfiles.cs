@@ -25,6 +25,14 @@ namespace VirtaApi.Helpers
                         src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
                     )
                 );
+
+            CreateMap<UserToRegister, User>()
+                .ForMember(
+                    dest => dest.UserName,
+                    opt => opt.MapFrom(
+                        src => src.Email
+                    )
+                );
         }
     }
 }

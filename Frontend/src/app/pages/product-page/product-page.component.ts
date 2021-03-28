@@ -9,6 +9,7 @@ import { ProductPDP } from 'src/app/_models/product';
 })
 export class ProductPageComponent implements OnInit {
   product!: ProductPDP;
+  columnsToDisplay = ['name', 'value'];
 
   constructor(
     private route: ActivatedRoute

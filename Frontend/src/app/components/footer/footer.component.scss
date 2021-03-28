@@ -1,9 +1,6 @@
 @import 'variables';
 
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
     width: 100%;
     min-height: 100px;
     background-color: $bg-secondary;
@@ -11,5 +8,4 @@
     padding: 20px;
     text-align: center;
     margin-top: 40px;
-    z-index: 5;
 }
