@@ -1,0 +1,32 @@
+@import 'variables';
+
+.header {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+    gap: 20px;
+    background-color: $bg-secondary;
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.8);
+
+    .logo,
+    .actions {
+        margin-top: 5px;
+    }
+
+    .logo {
+    }
+
+    .search {
+        flex-basis: 310px;
+        flex-grow: 1;
+        max-width: 700px;
+        text-align: center;
+        input {
+            width: 100%;
+        }
+    }
+
+    .actions {
+    }
+}

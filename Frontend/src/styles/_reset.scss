@@ -1,0 +1,51 @@
+* {
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font-family: inherit;
+    outline: 0;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .004);
+    // backface-visibility: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+label,
+summary {
+    display: block;
+}
+
+img {
+    width: 100%;
+}
+
+body {
+    color: $black;
+    scroll-behavior: smooth;
+    background-color: $bg-primary;
+    color: $white;
+}
+
+a {
+    color: $white;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

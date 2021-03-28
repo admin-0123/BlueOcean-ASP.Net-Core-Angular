@@ -1,0 +1,11 @@
+@import 'media';
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include mobile {
+        justify-content: center;
+    }
+}

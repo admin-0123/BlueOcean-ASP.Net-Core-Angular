@@ -1,0 +1,56 @@
+@mixin desktop {
+    @media (min-width: 811px) {
+        @content;
+    }
+}
+
+@mixin before-desktop {
+    @include mobile {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 811px)
+        and (max-width: 1024px)
+        and (-webkit-min-device-pixel-ratio: 1) {
+        @content;
+    }
+}
+
+@mixin tablet-portrait {
+    @media (min-width: 811px)
+        and (max-width: 1023px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin tablet-landscape {
+    @media(min-width: 811px)
+        and (max-width: 1023px)
+        and (-webkit-min-device-pixel-ratio: 1)
+        and (orientation: landscape) {
+        @content;
+    }
+}
+
+@mixin after-mobile {
+    @include desktop {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 810px) {
+        @content;
+    }
+}
+
+@mixin standalone {
+    /* stylelint-disable-next-line media-feature-name-no-unknown */
+    @media all and (display-mode: standalone) {
+        @content;
+    }
+}

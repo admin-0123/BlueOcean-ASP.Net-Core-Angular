@@ -9,6 +9,8 @@ namespace VirtaApi.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
 
+        public DbSet<Product> Products { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
