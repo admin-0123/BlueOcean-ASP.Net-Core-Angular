@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     ports:
-      - ${MYSQL_PORT}:3306
+      - 3306:3306
   adminer:
     image: adminer
     restart: always

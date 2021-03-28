@@ -6,6 +6,7 @@ namespace VirtaApi.Data.Interfaces
 {
     public interface ICategoriesRepository : IBaseRepository
     {
+        Task<Category> GetCategory(Category category);
         Task<List<Category>> GetCategoriesAC(string category);
         Task<List<Category>> GetCategoriesAC(string category, int amount);
     }

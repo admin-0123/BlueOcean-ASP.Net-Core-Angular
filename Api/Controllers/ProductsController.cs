@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,14 +17,17 @@ namespace VirtaApi.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductsRepository _repo;
+        private readonly ICategoriesRepository _categoriesRepository;
         private readonly IMapper _mapper;
         public ProductsController(
+            IMapper mapper,
             IProductsRepository repo,
-            IMapper mapper
+            ICategoriesRepository categoriesRepository
         )
         {
-            _repo = repo;
             _mapper = mapper;
+            _repo = repo;
+            _categoriesRepository = categoriesRepository;
         }
 
         [HttpGet]
@@ -72,22 +77,64 @@ namespace VirtaApi.Controllers
             if (products == null)
                 return Ok("Null");
 
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+            var productGuids = new List<Guid>();
+
             foreach (var product in products)
             {
+                var attributes = new List<ProductAttributes>();
+                product.Attributes.ForEach(
+                    a => attributes.Add(
+                        new ProductAttributes {
+                            Name = a.Name,
+                            Value = a.Value
+                        }
+                    )
+                );
+
+                var id = new Guid();
+                product.Id = id;
+
                 _repo.Add<Product>(
                     new Product{
-                        Id = new Guid(),
+                        Id = id,
                         Title = product.Title,
                         Price = decimal.Parse(product.Price),
                         Description = product.Description,
-                        Attributes = product.Attributes,
+                        Attributes = attributes,
                         Images = JsonSerializer.Serialize(product.Images)
                     }
                 );
             }
 
-            if(await _repo.SaveAll())
-                return Ok("True");
+            if(await _repo.SaveAll()) {
+                foreach (var product in products)
+                {
+                    var categories = new List<Category>();
+
+                    product.Categories.ForEach(
+                        c => categories.Add(
+                            new Category {
+                                Value = c.Value,
+                                Title = textInfo.ToTitleCase(c.Value)
+                            }
+                        )
+                    );
+
+                    var productFromDb = await _repo.GetProduct(product.Id);
+
+                    categories.ForEach(
+                        c => {
+                            c.Products.Add(productFromDb);
+                            _categoriesRepository.Update<Category>(c);
+                        }
+                    );
+                }
+
+                if(await _repo.SaveAll())
+                    return Ok("True");
+            }
 
             return Ok("False");
         }

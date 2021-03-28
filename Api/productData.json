@@ -1,114 +1,39 @@
 [
   {
-    "Title": "labore eiusmod",
-    "Price": "416.13",
-    "Description": "Aliqua quis eiusmod laboris amet ea. Culpa fugiat dolore cupidatat nostrud cillum eu excepteur. Labore ad elit fugiat cupidatat irure excepteur aliqua excepteur labore adipisicing nulla. Pariatur magna sit tempor non et. Veniam tempor qui enim reprehenderit veniam Lorem adipisicing ipsum consequat ullamco consectetur.",
+    "Title": "duis est",
+    "Price": "118.2",
+    "Description": "Consectetur aliqua cupidatat velit adipisicing mollit laborum cupidatat culpa commodo minim minim ex nisi incididunt. Velit proident ea ad ut incididunt voluptate. Culpa magna sint adipisicing officia aliqua sit laboris laboris.",
     "Attributes": [
       {
-        "Name": "anim nulla",
-        "Value": "ea voluptate"
+        "Name": "sit ipsum",
+        "Value": "duis aliqua"
       },
       {
-        "Name": "do pariatur",
-        "Value": "sit sunt"
+        "Name": "excepteur dolor",
+        "Value": "eiusmod aliquip"
       },
       {
-        "Name": "reprehenderit deserunt",
-        "Value": "quis sit"
+        "Name": "magna magna",
+        "Value": "incididunt proident"
       },
       {
-        "Name": "ea duis",
-        "Value": "occaecat consectetur"
+        "Name": "est nostrud",
+        "Value": "fugiat reprehenderit"
       },
       {
-        "Name": "culpa esse",
-        "Value": "in laborum"
+        "Name": "ex sint",
+        "Value": "nisi incididunt"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
       },
       {
-        "Name": "Lorem deserunt",
-        "Value": "dolor laborum"
-      },
-      {
-        "Name": "aute consequat",
-        "Value": "consequat duis"
-      },
-      {
-        "Name": "dolor aliquip",
-        "Value": "duis tempor"
+        "Value": "pants"
       }
     ],
     "Images": [
-      "https://picsum.photos/240/300",
-      "https://picsum.photos/240/300"
-    ]
-  },
-  {
-    "Title": "aliqua pariatur",
-    "Price": "39.84",
-    "Description": "Ad duis nostrud adipisicing irure consectetur veniam sunt esse minim dolore exercitation laborum exercitation. Dolor qui proident nisi anim ad nostrud esse anim duis proident excepteur reprehenderit nisi. Est sint quis elit enim. Aliqua ad nostrud duis non nostrud culpa adipisicing tempor. Sit mollit nostrud aute dolor cupidatat minim nostrud veniam aute. Duis occaecat reprehenderit sint eu cupidatat ex dolore non aute ea minim.",
-    "Attributes": [
-      {
-        "Name": "ullamco elit",
-        "Value": "ad amet"
-      },
-      {
-        "Name": "aliquip sunt",
-        "Value": "adipisicing culpa"
-      },
-      {
-        "Name": "irure sit",
-        "Value": "culpa officia"
-      },
-      {
-        "Name": "in dolore",
-        "Value": "aliquip aliqua"
-      },
-      {
-        "Name": "incididunt ea",
-        "Value": "tempor deserunt"
-      },
-      {
-        "Name": "deserunt dolore",
-        "Value": "anim aliqua"
-      }
-    ],
-    "Images": [
-      "https://picsum.photos/240/300",
-      "https://picsum.photos/240/300"
-    ]
-  },
-  {
-    "Title": "est ad",
-    "Price": "452.59",
-    "Description": "Velit amet non dolor sunt amet magna in. Adipisicing dolor duis sit consectetur tempor reprehenderit incididunt velit eiusmod voluptate in ex non. Incididunt in esse sunt minim eiusmod sit sunt pariatur occaecat. Occaecat quis magna magna laborum enim. Labore nisi tempor quis mollit proident ut.",
-    "Attributes": [
-      {
-        "Name": "duis qui",
-        "Value": "cillum est"
-      },
-      {
-        "Name": "non consequat",
-        "Value": "adipisicing excepteur"
-      },
-      {
-        "Name": "occaecat nulla",
-        "Value": "cillum eu"
-      },
-      {
-        "Name": "labore tempor",
-        "Value": "nisi aute"
-      },
-      {
-        "Name": "anim mollit",
-        "Value": "id cupidatat"
-      },
-      {
-        "Name": "aliqua nostrud",
-        "Value": "aute magna"
-      }
-    ],
-    "Images": [
-      "https://picsum.photos/240/300",
       "https://picsum.photos/240/300",
       "https://picsum.photos/240/300",
       "https://picsum.photos/240/300",
@@ -116,57 +41,978 @@
     ]
   },
   {
-    "Title": "laboris tempor",
-    "Price": "119.99",
-    "Description": "Velit do esse quis ipsum laborum duis dolore quis voluptate est quis. Consequat aute dolor adipisicing cupidatat nisi laboris commodo excepteur do excepteur tempor dolore. Laboris pariatur id sint do minim nisi id elit aliqua sint. Enim labore eiusmod non aliqua. Excepteur mollit amet in amet Lorem laboris deserunt. Dolore laborum minim reprehenderit esse deserunt mollit aute velit anim. Sint consectetur eiusmod esse ex minim et officia deserunt et ex eu.",
+    "Title": "sunt amet",
+    "Price": "65.08",
+    "Description": "Excepteur eiusmod ad id occaecat consectetur aliqua tempor in est est aliquip ipsum irure. Esse consequat sit culpa pariatur anim cupidatat quis. Et magna labore commodo deserunt officia ex laborum est.",
     "Attributes": [
       {
-        "Name": "occaecat labore",
-        "Value": "non velit"
+        "Name": "dolor duis",
+        "Value": "quis veniam"
       },
       {
-        "Name": "ex voluptate",
-        "Value": "ipsum veniam"
+        "Name": "enim est",
+        "Value": "sit aliquip"
+      },
+      {
+        "Name": "eu dolor",
+        "Value": "sit aliquip"
+      },
+      {
+        "Name": "duis est",
+        "Value": "pariatur commodo"
+      },
+      {
+        "Name": "voluptate id",
+        "Value": "labore esse"
+      },
+      {
+        "Name": "pariatur aliquip",
+        "Value": "ullamco exercitation"
+      },
+      {
+        "Name": "magna esse",
+        "Value": "aliquip sunt"
+      },
+      {
+        "Name": "voluptate officia",
+        "Value": "sit aliqua"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "pants"
       }
     ],
     "Images": [
+      "https://picsum.photos/240/300",
       "https://picsum.photos/240/300",
       "https://picsum.photos/240/300"
     ]
   },
   {
-    "Title": "fugiat commodo",
-    "Price": "282.65",
-    "Description": "Eiusmod consequat amet enim cupidatat minim amet nisi Lorem. Nulla quis eu sit quis sunt magna enim fugiat. Nulla mollit Lorem deserunt eu sit.",
+    "Title": "enim et",
+    "Price": "139.77",
+    "Description": "Est in ex tempor ipsum aliqua laboris proident ea incididunt dolore qui exercitation elit. Anim ullamco velit dolore non ullamco cupidatat anim quis aliqua velit consequat eu sunt reprehenderit. Dolore ullamco eiusmod minim sunt exercitation sint aliquip commodo et esse ad. Nisi excepteur consectetur nulla eu est voluptate. Do anim aute quis enim officia aute mollit dolore. Dolore ea labore occaecat non tempor anim.",
+    "Attributes": [
+      {
+        "Name": "commodo non",
+        "Value": "deserunt id"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "qui enim",
+    "Price": "93.98",
+    "Description": "Mollit culpa cupidatat adipisicing incididunt culpa exercitation magna. Officia labore reprehenderit labore duis duis dolore in. Ipsum ullamco aliquip cillum mollit nostrud incididunt dolor nisi. Pariatur esse aliqua ullamco enim in velit aliqua proident esse deserunt aute aliqua incididunt in.",
+    "Attributes": [
+      {
+        "Name": "ad incididunt",
+        "Value": "velit tempor"
+      },
+      {
+        "Name": "duis tempor",
+        "Value": "et reprehenderit"
+      },
+      {
+        "Name": "minim Lorem",
+        "Value": "magna deserunt"
+      },
+      {
+        "Name": "excepteur veniam",
+        "Value": "ipsum duis"
+      },
+      {
+        "Name": "in dolor",
+        "Value": "esse labore"
+      },
+      {
+        "Name": "ut exercitation",
+        "Value": "veniam esse"
+      },
+      {
+        "Name": "dolor culpa",
+        "Value": "ex excepteur"
+      },
+      {
+        "Name": "cupidatat velit",
+        "Value": "irure tempor"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "elit labore",
+    "Price": "153.32",
+    "Description": "Do et laboris labore consequat aute laboris quis. Veniam cillum tempor cupidatat ullamco ad duis adipisicing enim excepteur Lorem Lorem deserunt excepteur. Cillum officia incididunt ex pariatur cupidatat minim ut.",
+    "Attributes": [
+      {
+        "Name": "voluptate exercitation",
+        "Value": "voluptate do"
+      },
+      {
+        "Name": "sunt culpa",
+        "Value": "laboris veniam"
+      },
+      {
+        "Name": "tempor consequat",
+        "Value": "adipisicing deserunt"
+      },
+      {
+        "Name": "anim dolore",
+        "Value": "cillum cillum"
+      },
+      {
+        "Name": "sit minim",
+        "Value": "ad fugiat"
+      },
+      {
+        "Name": "exercitation voluptate",
+        "Value": "veniam laboris"
+      },
+      {
+        "Name": "cillum quis",
+        "Value": "Lorem irure"
+      },
+      {
+        "Name": "dolor officia",
+        "Value": "ut excepteur"
+      },
+      {
+        "Name": "esse aute",
+        "Value": "duis sunt"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "jackets"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "reprehenderit nisi",
+    "Price": "327.87",
+    "Description": "Pariatur quis consequat duis fugiat magna culpa qui eu esse culpa laboris amet proident. Tempor ad officia eiusmod adipisicing eu veniam esse nulla in. Elit duis nostrud nisi minim anim excepteur amet eiusmod fugiat consectetur aliqua eiusmod dolor dolor. Qui exercitation irure laboris consectetur. Consequat labore nulla cupidatat non sint do eu excepteur eu laboris minim adipisicing esse. Reprehenderit quis consectetur proident ea incididunt deserunt non ex ipsum. Elit ad laborum tempor ex duis dolor minim reprehenderit elit laborum consectetur consectetur velit aliquip.",
+    "Attributes": [
+      {
+        "Name": "anim proident",
+        "Value": "reprehenderit pariatur"
+      },
+      {
+        "Name": "commodo dolore",
+        "Value": "voluptate consequat"
+      },
+      {
+        "Name": "reprehenderit proident",
+        "Value": "Lorem ut"
+      },
+      {
+        "Name": "adipisicing mollit",
+        "Value": "aute est"
+      },
+      {
+        "Name": "duis velit",
+        "Value": "et culpa"
+      },
+      {
+        "Name": "ut elit",
+        "Value": "aliqua exercitation"
+      },
+      {
+        "Name": "occaecat aute",
+        "Value": "et sit"
+      },
+      {
+        "Name": "laborum consequat",
+        "Value": "non aliquip"
+      },
+      {
+        "Name": "qui laborum",
+        "Value": "officia fugiat"
+      },
+      {
+        "Name": "proident culpa",
+        "Value": "velit dolore"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shoes"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "aliquip consequat",
+    "Price": "268.69",
+    "Description": "Qui excepteur officia non esse consectetur anim eu amet ex excepteur officia nostrud labore. Nulla ex fugiat fugiat non do aute eiusmod tempor. Ex nulla voluptate ad cillum. Ullamco ex nostrud est eiusmod mollit culpa ut. Ea excepteur consequat id ad cillum incididunt exercitation mollit excepteur elit ad. Ut et dolor et duis nostrud tempor culpa non.",
+    "Attributes": [
+      {
+        "Name": "reprehenderit proident",
+        "Value": "eiusmod do"
+      },
+      {
+        "Name": "exercitation amet",
+        "Value": "qui cillum"
+      },
+      {
+        "Name": "irure velit",
+        "Value": "sit sit"
+      },
+      {
+        "Name": "irure non",
+        "Value": "consectetur pariatur"
+      },
+      {
+        "Name": "nulla ipsum",
+        "Value": "reprehenderit in"
+      },
+      {
+        "Name": "nulla duis",
+        "Value": "tempor est"
+      },
+      {
+        "Name": "aute minim",
+        "Value": "nostrud proident"
+      },
+      {
+        "Name": "deserunt culpa",
+        "Value": "nulla mollit"
+      },
+      {
+        "Name": "aliquip amet",
+        "Value": "anim ut"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "pants"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "tempor in",
+    "Price": "324.52",
+    "Description": "Et nisi aliquip aute irure. Non enim non magna commodo consequat voluptate sunt aute eu sit. Enim esse culpa aliquip nisi. Ullamco amet anim duis irure ipsum nulla ex. Aliquip eu Lorem velit cillum nulla anim minim qui proident proident esse.",
+    "Attributes": [
+      {
+        "Name": "dolore nulla",
+        "Value": "do ad"
+      },
+      {
+        "Name": "adipisicing in",
+        "Value": "duis mollit"
+      },
+      {
+        "Name": "nisi ad",
+        "Value": "est consectetur"
+      },
+      {
+        "Name": "cupidatat aliquip",
+        "Value": "ut cillum"
+      },
+      {
+        "Name": "tempor commodo",
+        "Value": "commodo esse"
+      },
+      {
+        "Name": "quis sit",
+        "Value": "officia velit"
+      },
+      {
+        "Name": "aute cupidatat",
+        "Value": "enim elit"
+      },
+      {
+        "Name": "occaecat non",
+        "Value": "commodo anim"
+      },
+      {
+        "Name": "esse ullamco",
+        "Value": "qui adipisicing"
+      },
+      {
+        "Name": "irure in",
+        "Value": "adipisicing veniam"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "laboris culpa",
+    "Price": "283.16",
+    "Description": "Officia Lorem velit culpa consectetur magna veniam. Nulla eiusmod commodo pariatur esse ea deserunt Lorem. Ad in adipisicing incididunt esse est dolore do anim ut exercitation. Magna mollit aliquip non anim laborum ad ut incididunt duis quis id. Ut qui et laboris in excepteur commodo voluptate mollit nulla. Laborum est commodo voluptate commodo duis tempor labore veniam eu sint minim. Laboris in exercitation magna esse incididunt aliquip adipisicing laborum.",
     "Attributes": [],
+    "Categories": [
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "reprehenderit non",
+    "Price": "158.8",
+    "Description": "Dolor Lorem et tempor reprehenderit. Nisi sunt dolore labore laboris dolore aute ex fugiat mollit duis anim pariatur laboris quis. Anim sint ipsum aliqua occaecat cupidatat occaecat ea. Amet veniam id aliquip enim quis nostrud anim in dolore ea labore ex. Excepteur proident anim laboris consequat exercitation commodo. Eu eiusmod commodo ut cillum ex nisi ea minim reprehenderit anim mollit aliqua.",
+    "Attributes": [
+      {
+        "Name": "magna proident",
+        "Value": "mollit quis"
+      },
+      {
+        "Name": "nisi proident",
+        "Value": "ad est"
+      },
+      {
+        "Name": "tempor consectetur",
+        "Value": "minim aliquip"
+      },
+      {
+        "Name": "ad minim",
+        "Value": "minim minim"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "est fugiat",
+    "Price": "424.47",
+    "Description": "Excepteur aliquip minim sunt velit quis ut. Labore aute laborum sunt irure cupidatat esse dolore sit Lorem eiusmod adipisicing quis nulla. Ipsum id ipsum voluptate nisi cupidatat. Incididunt magna irure adipisicing tempor officia mollit aliqua cillum velit.",
+    "Attributes": [
+      {
+        "Name": "non aliqua",
+        "Value": "exercitation cupidatat"
+      },
+      {
+        "Name": "labore id",
+        "Value": "enim ut"
+      },
+      {
+        "Name": "magna deserunt",
+        "Value": "aliquip ex"
+      },
+      {
+        "Name": "ipsum ut",
+        "Value": "tempor in"
+      },
+      {
+        "Name": "do eu",
+        "Value": "sit est"
+      },
+      {
+        "Name": "enim veniam",
+        "Value": "cillum ipsum"
+      },
+      {
+        "Name": "velit dolore",
+        "Value": "anim incididunt"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "ipsum fugiat",
+    "Price": "388.06",
+    "Description": "Dolor quis nostrud irure veniam sint culpa in dolor excepteur nisi. Nulla fugiat cupidatat sunt mollit ut eiusmod cillum. Sit nisi occaecat magna aute voluptate deserunt. Incididunt sint nulla commodo fugiat. Sint eiusmod sunt incididunt fugiat.",
+    "Attributes": [
+      {
+        "Name": "nisi eiusmod",
+        "Value": "adipisicing aliquip"
+      },
+      {
+        "Name": "et amet",
+        "Value": "sint consectetur"
+      },
+      {
+        "Name": "aute laboris",
+        "Value": "elit non"
+      },
+      {
+        "Name": "et est",
+        "Value": "qui ipsum"
+      },
+      {
+        "Name": "id sit",
+        "Value": "consequat commodo"
+      },
+      {
+        "Name": "excepteur culpa",
+        "Value": "enim anim"
+      },
+      {
+        "Name": "ut minim",
+        "Value": "commodo veniam"
+      },
+      {
+        "Name": "cillum elit",
+        "Value": "consequat Lorem"
+      },
+      {
+        "Name": "magna id",
+        "Value": "culpa occaecat"
+      },
+      {
+        "Name": "est ipsum",
+        "Value": "officia do"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "jackets"
+      }
+    ],
     "Images": [
       "https://picsum.photos/240/300"
     ]
   },
   {
-    "Title": "sit sint",
-    "Price": "189",
-    "Description": "Nostrud consequat laboris fugiat ullamco amet commodo amet pariatur. Excepteur nulla consectetur eiusmod veniam incididunt dolor amet consectetur magna Lorem sunt. Occaecat ullamco consectetur est occaecat est duis id excepteur.",
+    "Title": "enim occaecat",
+    "Price": "235.43",
+    "Description": "Sunt consectetur ipsum non sunt non fugiat. Ullamco elit nisi proident amet ut excepteur laboris laboris deserunt nulla aliquip anim fugiat. Reprehenderit elit ex proident deserunt ad nisi do in laboris id minim esse incididunt. Sunt laboris ad est nostrud veniam. Eiusmod ipsum ut sit exercitation aute ad consectetur magna. Ut nulla dolore ullamco quis incididunt anim cupidatat reprehenderit ex ad Lorem cupidatat amet anim.",
     "Attributes": [
       {
-        "Name": "esse pariatur",
-        "Value": "qui duis"
+        "Name": "aute Lorem",
+        "Value": "qui id"
+      },
+      {
+        "Name": "officia exercitation",
+        "Value": "Lorem est"
+      },
+      {
+        "Name": "amet ipsum",
+        "Value": "adipisicing qui"
+      },
+      {
+        "Name": "voluptate labore",
+        "Value": "sunt nostrud"
+      },
+      {
+        "Name": "officia commodo",
+        "Value": "dolor velit"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "enim commodo",
+    "Price": "271.61",
+    "Description": "Est sint pariatur cupidatat id nulla in in excepteur voluptate eu laboris. Aliqua voluptate sunt do fugiat consectetur et consequat consectetur incididunt excepteur duis deserunt. Nostrud ipsum eu reprehenderit enim consequat irure amet aute esse ex. Ipsum anim consectetur veniam dolore et.",
+    "Attributes": [
+      {
+        "Name": "aliquip anim",
+        "Value": "esse irure"
+      },
+      {
+        "Name": "sunt ut",
+        "Value": "quis laboris"
+      },
+      {
+        "Name": "sint exercitation",
+        "Value": "dolor amet"
+      },
+      {
+        "Name": "ad labore",
+        "Value": "dolore deserunt"
+      },
+      {
+        "Name": "ex aliquip",
+        "Value": "nulla incididunt"
+      },
+      {
+        "Name": "sit pariatur",
+        "Value": "reprehenderit tempor"
+      },
+      {
+        "Name": "cupidatat eiusmod",
+        "Value": "irure occaecat"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shirts"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "magna magna",
+    "Price": "70.15",
+    "Description": "Minim nostrud consectetur aliquip sit fugiat est elit duis proident voluptate esse ad excepteur. Elit anim dolore velit occaecat eiusmod labore anim laborum ut magna proident id. Cillum velit ullamco consequat culpa pariatur velit dolor ex sit cupidatat ullamco laboris occaecat cupidatat. Irure cupidatat laborum do duis voluptate excepteur duis culpa. Nostrud do reprehenderit anim sint esse nulla amet do consequat laboris.",
+    "Attributes": [
+      {
+        "Name": "officia elit",
+        "Value": "cillum elit"
+      },
+      {
+        "Name": "incididunt anim",
+        "Value": "irure quis"
+      },
+      {
+        "Name": "commodo tempor",
+        "Value": "labore sunt"
+      },
+      {
+        "Name": "quis velit",
+        "Value": "do duis"
+      },
+      {
+        "Name": "ipsum excepteur",
+        "Value": "amet ullamco"
+      },
+      {
+        "Name": "sunt anim",
+        "Value": "irure nisi"
+      },
+      {
+        "Name": "cupidatat magna",
+        "Value": "deserunt qui"
+      },
+      {
+        "Name": "et incididunt",
+        "Value": "enim et"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "jackets"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "pariatur velit",
+    "Price": "190.6",
+    "Description": "Elit aliquip consectetur cupidatat excepteur quis consequat sunt. Esse labore laborum dolor deserunt ea veniam veniam id. In enim qui ad occaecat. Ad esse anim exercitation fugiat ea. Commodo qui dolore est cillum cupidatat officia proident ut dolore eu incididunt commodo. Laboris excepteur aliqua dolore dolore culpa laboris eiusmod in cupidatat et.",
+    "Attributes": [
+      {
+        "Name": "labore elit",
+        "Value": "dolor adipisicing"
+      },
+      {
+        "Name": "laborum laboris",
+        "Value": "do duis"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "cillum ea",
+    "Price": "467.83",
+    "Description": "Nulla sit eu pariatur nisi nisi excepteur commodo velit voluptate commodo veniam ullamco. Fugiat incididunt incididunt eu incididunt sint eiusmod duis. Consequat in adipisicing do tempor id do cillum ad tempor pariatur amet duis.",
+    "Attributes": [
+      {
+        "Name": "et est",
+        "Value": "esse adipisicing"
+      },
+      {
+        "Name": "dolor Lorem",
+        "Value": "dolor exercitation"
+      },
+      {
+        "Name": "anim veniam",
+        "Value": "consequat ullamco"
+      },
+      {
+        "Name": "proident in",
+        "Value": "eu culpa"
       },
       {
         "Name": "occaecat ea",
-        "Value": "irure culpa"
+        "Value": "pariatur duis"
       },
       {
-        "Name": "fugiat ex",
-        "Value": "ex commodo"
+        "Name": "dolor laboris",
+        "Value": "voluptate Lorem"
       },
       {
-        "Name": "ex velit",
-        "Value": "et proident"
+        "Name": "id mollit",
+        "Value": "enim cupidatat"
       },
       {
-        "Name": "ut ad",
-        "Value": "exercitation duis"
+        "Name": "magna magna",
+        "Value": "velit sit"
+      },
+      {
+        "Name": "reprehenderit mollit",
+        "Value": "dolor ex"
+      },
+      {
+        "Name": "non consectetur",
+        "Value": "sint fugiat"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shoes"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "jackets"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "irure minim",
+    "Price": "372.31",
+    "Description": "Dolore elit do et enim exercitation labore. Ea sit ea excepteur elit et Lorem commodo deserunt voluptate aute officia veniam. Non fugiat ipsum Lorem sint velit do aliquip aliqua aliqua qui. Do qui cupidatat ad dolor. Anim labore deserunt sunt qui ex excepteur.",
+    "Attributes": [
+      {
+        "Name": "dolore mollit",
+        "Value": "ad aute"
+      },
+      {
+        "Name": "sint officia",
+        "Value": "duis magna"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "jackets"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "jackets"
       }
     ],
     "Images": [
@@ -176,20 +1022,77 @@
     ]
   },
   {
-    "Title": "consequat tempor",
-    "Price": "294.19",
-    "Description": "Reprehenderit aliquip anim ad velit dolore culpa adipisicing qui. Anim consectetur id eu do officia minim aliquip tempor non quis ea ipsum laborum. Labore est aute elit adipisicing voluptate in dolore ad adipisicing do laboris laborum. Commodo irure occaecat esse non est nostrud commodo ad culpa quis incididunt. Consequat officia sunt ex commodo do fugiat et veniam in aliqua cupidatat. Est nulla ea ex ea do adipisicing elit ullamco culpa. Adipisicing pariatur adipisicing officia magna.",
+    "Title": "culpa ut",
+    "Price": "116.33",
+    "Description": "Aliqua cillum ipsum reprehenderit cupidatat veniam ad officia. Est sunt do occaecat velit enim in nostrud magna eu duis pariatur eiusmod non. Ullamco incididunt incididunt voluptate anim ipsum aliquip commodo quis consectetur ea minim ea consequat.",
     "Attributes": [
       {
-        "Name": "proident deserunt",
-        "Value": "consequat labore"
+        "Name": "sit ut",
+        "Value": "eu tempor"
       },
       {
-        "Name": "nulla ad",
-        "Value": "qui consequat"
+        "Name": "eiusmod qui",
+        "Value": "et incididunt"
+      },
+      {
+        "Name": "culpa duis",
+        "Value": "anim reprehenderit"
+      },
+      {
+        "Name": "ea nostrud",
+        "Value": "mollit consectetur"
+      },
+      {
+        "Name": "aliqua consectetur",
+        "Value": "sint reprehenderit"
+      },
+      {
+        "Name": "proident ipsum",
+        "Value": "nostrud reprehenderit"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "pants"
+      },
+      {
+        "Value": "shirts"
+      },
+      {
+        "Value": "shoes"
       }
     ],
     "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300"
+    ]
+  },
+  {
+    "Title": "deserunt cillum",
+    "Price": "196.9",
+    "Description": "Veniam irure nulla enim in minim aliquip. In enim dolore Lorem magna. Ipsum cupidatat deserunt ut exercitation labore. Laboris mollit nulla enim cupidatat magna enim labore deserunt tempor mollit cupidatat nulla esse ut. Ex fugiat do velit tempor pariatur do. Deserunt est voluptate tempor ea tempor.",
+    "Attributes": [
+      {
+        "Name": "nisi duis",
+        "Value": "consequat adipisicing"
+      },
+      {
+        "Name": "irure officia",
+        "Value": "nostrud laboris"
+      }
+    ],
+    "Categories": [
+      {
+        "Value": "jackets"
+      }
+    ],
+    "Images": [
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
+      "https://picsum.photos/240/300",
       "https://picsum.photos/240/300"
     ]
   }
