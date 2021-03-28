@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Product } from '../_models/product';
+import { ProductPLP, ProductPDP } from '../_models/product';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,25 +13,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.baseUrl)
+  getProducts(): Observable<ProductPLP[]> {
+    return this.http.get<ProductPLP[]>(this.baseUrl)
       .pipe(
         map(response => {
-          response.forEach(
-            i => {
-              i.images = JSON.parse(i.images);
-            }
-          )
+          console.log(response);
           return response;
         })
       )
   }
 
-  getProduct(id: string): Observable<Product> {
-    return this.http.get<Product>(this.baseUrl + id)
+  getProduct(id: string): Observable<ProductPDP> {
+    return this.http.get<ProductPDP>(this.baseUrl + id)
       .pipe(
         map(product => {
-          product.images = JSON.parse(product.images);
           return product;
         })
       )

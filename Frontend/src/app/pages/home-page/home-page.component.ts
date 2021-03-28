@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/_models/product';
 
 @Component({
   selector: 'app-home-page',
@@ -8,8 +7,6 @@ import { Product } from 'src/app/_models/product';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  products: Product[] = [];
-
   constructor(
     private route: ActivatedRoute
   ) { }

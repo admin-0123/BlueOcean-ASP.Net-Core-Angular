@@ -3,16 +3,30 @@
         <div class="image">
             <img src="{{ product.images[0] }}">
         </div>
-        <div class="detail">
-            <p>{{ product.title }}</p>
+        <div class="details">
+            <div class="title">
+                <p>{{ product.title }}</p>
+                <hr>
+            </div>
+            <div class="points">
+
+            </div>
+            <div class="actions">
+                <p>{{ product.price }}$</p>
+            </div>
         </div>
     </div>
-    <div class="secondary">
+    <div class="additional">
         <div class="description">
             <p>{{ product.description }}</p>
         </div>
         <div *ngIf="product.attributes" class="attributes">
-            <p>{{ product.attributes }}</p>
+            <table>
+                <tr *ngFor="let attribute of product.attributes">
+                    <td>{{ attribute.name }}</td>
+                    <td>{{ attribute.value }}</td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
