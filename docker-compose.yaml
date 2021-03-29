@@ -3,24 +3,24 @@ version: '3.1'
 services:
   mysql:
     image: mysql
-    restart: always
+    restart: on-failure
     env_file:
       - .env
     ports:
       - 3306:3306
   adminer:
     image: adminer
-    restart: always
+    restart: on-failure
     ports:
       - 8080:8080
   mongo:
     image: mongo
-    restart: always
+    restart: on-failure
     env_file:
       - .env
   mongo-express:
     image: mongo-express
-    restart: always
+    restart: on-failure
     ports:
       - 8081:8081
     env_file:
