@@ -25,9 +25,9 @@ namespace VirtaApi.Data
             return await _context.Categories.Where(c => c.Title.StartsWith(category)).OrderBy(c => c.Title).Take(amount).ToListAsync();
         }
 
-        public async Task<Category> GetCategory(Category category)
+        public async Task<Category> GetCategory(string category)
         {
-            return await _context.Categories.FindAsync(category);
+            return await _context.Categories.FirstAsync(c => c.Value == category);
         }
     }
 }

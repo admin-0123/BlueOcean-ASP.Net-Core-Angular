@@ -7,7 +7,7 @@ namespace VirtaApi.Models
     public class Product
     {
         [Key]
-        public Guid Id { get; set; } = new Guid();
+        public Guid Id { get; set; } = Guid.NewGuid();
         [Required]
         public string Title { get; set; }
         public decimal Price { get; set; }

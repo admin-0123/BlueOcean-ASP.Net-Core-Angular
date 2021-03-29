@@ -31,7 +31,7 @@ namespace VirtaApi.Data
             modelBuilder.Entity<Category>()
                 .HasIndex(u => u.Value)
                 .IsUnique();
-            
+
             modelBuilder.Entity<Category>()
                 .HasIndex(u => u.Title)
                 .IsUnique();

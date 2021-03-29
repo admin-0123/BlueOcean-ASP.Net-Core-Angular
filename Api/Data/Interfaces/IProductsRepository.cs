@@ -9,5 +9,6 @@ namespace VirtaApi.Data.Interfaces
     {
         Task<Product> GetProduct(Guid id);
         Task<List<Product>> GetProducts();
+        Task<List<Product>> GetProducts(List<string> categories);
     }
 }

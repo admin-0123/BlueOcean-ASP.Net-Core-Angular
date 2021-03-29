@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VirtaApi.Data.Interfaces;
@@ -25,6 +26,11 @@ namespace VirtaApi.Data
         public async Task<List<Product>> GetProducts()
         {
             return await _context.Products.ToListAsync();
+        }
+
+        public async Task<List<Product>> GetProducts(List<string> categories)
+        {
+            return await _context.Products.Where(p => p.Categories.Where(c => categories.Contains(c.Value)).Any()).ToListAsync();
         }
     }
 }

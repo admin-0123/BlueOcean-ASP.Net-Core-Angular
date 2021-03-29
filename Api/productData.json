@@ -81,30 +81,6 @@
     "Categories": [
       {
         "Value": "shoes"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "pants"
       }
     ],
     "Images": [
@@ -126,30 +102,6 @@
     "Categories": [
       {
         "Value": "shirts"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shoes"
       }
     ],
     "Images": [
@@ -199,24 +151,6 @@
     "Categories": [
       {
         "Value": "shoes"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
       }
     ],
     "Images": [
@@ -335,15 +269,6 @@
     "Categories": [
       {
         "Value": "pants"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shoes"
       }
     ],
     "Images": [
@@ -460,18 +385,6 @@
     "Categories": [
       {
         "Value": "shirts"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "jackets"
       }
     ],
     "Images": [
@@ -489,18 +402,6 @@
     "Categories": [
       {
         "Value": "jackets"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "pants"
       }
     ],
     "Images": [
@@ -585,13 +486,7 @@
         "Value": "shirts"
       },
       {
-        "Value": "jackets"
-      },
-      {
         "Value": "shoes"
-      },
-      {
-        "Value": "pants"
       },
       {
         "Value": "pants"
@@ -695,21 +590,6 @@
       },
       {
         "Value": "jackets"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
       }
     ],
     "Images": [
@@ -760,24 +640,6 @@
       },
       {
         "Value": "pants"
-      },
-      {
-        "Value": "pants"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shirts"
       }
     ],
     "Images": [
@@ -831,18 +693,6 @@
       },
       {
         "Value": "jackets"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "jackets"
-      },
-      {
-        "Value": "jackets"
       }
     ],
     "Images": [
@@ -873,19 +723,7 @@
         "Value": "shirts"
       },
       {
-        "Value": "pants"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
         "Value": "jackets"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shirts"
       },
       {
         "Value": "shoes"
@@ -953,22 +791,7 @@
         "Value": "shoes"
       },
       {
-        "Value": "shirts"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
         "Value": "pants"
-      },
-      {
-        "Value": "shoes"
-      },
-      {
-        "Value": "shirts"
-      },
-      {
-        "Value": "jackets"
       },
       {
         "Value": "jackets"
@@ -1003,13 +826,7 @@
         "Value": "pants"
       },
       {
-        "Value": "pants"
-      },
-      {
         "Value": "shirts"
-      },
-      {
-        "Value": "pants"
       },
       {
         "Value": "jackets"

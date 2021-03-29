@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using AutoMapper;
 using Newtonsoft.Json;
 using VirtaApi.DTO;
@@ -18,6 +17,7 @@ namespace VirtaApi.Helpers
                     opt => opt.MapFrom(
                         src => JsonConvert.DeserializeObject<List<string>>(src.Images)
                     ));
+
             CreateMap<Product, ProductPLP>()
                 .ForMember(
                     dest => dest.Images,
@@ -25,6 +25,13 @@ namespace VirtaApi.Helpers
                         src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
                     )
                 );
+
+            CreateMap<ProductPDP, Product>()
+                .ForMember(
+                    dest => dest.Images,
+                    opt => opt.MapFrom(
+                        src => JsonConvert.SerializeObject(src.Images)
+                    ));
 
             CreateMap<UserToRegister, User>()
                 .ForMember(
@@ -35,7 +42,11 @@ namespace VirtaApi.Helpers
                 );
 
             CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryDTO, Category>();
+
             CreateMap<ProductAttributes, ProductAttributesDTO>();
+            CreateMap<ProductAttributesDTO, ProductAttributes>();
+
         }
     }
 }

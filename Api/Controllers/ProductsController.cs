@@ -17,23 +17,37 @@ namespace VirtaApi.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductsRepository _repo;
-        private readonly ICategoriesRepository _categoriesRepository;
+        private readonly ICategoriesRepository _categoriesRepo;
         private readonly IMapper _mapper;
         public ProductsController(
             IMapper mapper,
             IProductsRepository repo,
-            ICategoriesRepository categoriesRepository
+            ICategoriesRepository categoriesRepo
         )
         {
             _mapper = mapper;
             _repo = repo;
-            _categoriesRepository = categoriesRepository;
+            _categoriesRepo = categoriesRepo;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
             var products = await _repo.GetProducts();
+
+            if(products == null)
+                return Ok("False");
+
+            var response = _mapper.Map<IEnumerable<ProductPLP>>(products);
+
+            return Ok(response);
+
+        }
+
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetProducts([FromQuery(Name="category")] List<string> categories)
+        {
+            var products = await _repo.GetProducts(categories);
 
             if(products == null)
                 return Ok("False");
@@ -58,9 +72,13 @@ namespace VirtaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromForm] Product product)
+        public async Task<IActionResult> AddProduct([FromBody] ProductPDP product)
         {
-            _repo.Add<Product>(product);
+            var productToSave = _mapper.Map<Product>(product);
+
+            productToSave = await SetCategorise(productToSave);
+
+            _repo.Add<Product>(productToSave);
 
             if(await _repo.SaveAll())
                 return Ok("True");
@@ -78,8 +96,7 @@ namespace VirtaApi.Controllers
                 return Ok("Null");
 
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-
-            var productGuids = new List<Guid>();
+            var productsToSave = new List<Product>();
 
             foreach (var product in products)
             {
@@ -93,50 +110,75 @@ namespace VirtaApi.Controllers
                     )
                 );
 
-                var id = new Guid();
-                product.Id = id;
+                var categories = new List<Category>();
+                product.Categories.ForEach(
+                    c => categories.Add(
+                        new Category {
+                            Value = c.Value,
+                            Title = textInfo.ToTitleCase(c.Value)
+                        }
+                    )
+                );
 
-                _repo.Add<Product>(
+                product.Id = Guid.NewGuid();
+
+                productsToSave.Add(
                     new Product{
-                        Id = id,
+                        Id = product.Id,
                         Title = product.Title,
                         Price = decimal.Parse(product.Price),
                         Description = product.Description,
                         Attributes = attributes,
+                        Categories = categories,
                         Images = JsonSerializer.Serialize(product.Images)
                     }
                 );
             }
 
-            if(await _repo.SaveAll()) {
-                foreach (var product in products)
-                {
-                    var categories = new List<Category>();
+            var l = await GetCategoriseSeed(productsToSave);
+            l.ForEach(
+                p => _repo.Add<Product>(p)
+            );
 
-                    product.Categories.ForEach(
-                        c => categories.Add(
-                            new Category {
-                                Value = c.Value,
-                                Title = textInfo.ToTitleCase(c.Value)
-                            }
-                        )
-                    );
-
-                    var productFromDb = await _repo.GetProduct(product.Id);
-
-                    categories.ForEach(
-                        c => {
-                            c.Products.Add(productFromDb);
-                            _categoriesRepository.Update<Category>(c);
-                        }
-                    );
-                }
-
-                if(await _repo.SaveAll())
-                    return Ok("True");
-            }
+            if(await _repo.SaveAll())
+                return Ok("True");
 
             return Ok("False");
+        }
+
+        private async Task<List<Product>> GetCategoriseSeed(List<Product> products)
+        {
+            var newProducts = new List<Product>();
+
+            foreach (var product in products)
+            {
+                var newProduct = product;
+                var newCategories = new List<Category>();
+
+                foreach (var category in product.Categories)
+                {
+                    newCategories.Add(await _categoriesRepo.GetCategory(category.Value));
+                }
+
+                newProduct.Categories = newCategories;
+                newProducts.Add(newProduct);
+            }
+
+            return newProducts;
+        }
+
+        private async Task<Product> SetCategorise(Product product)
+        {
+            var newCategories = new List<Category>();
+
+            foreach (var category in product.Categories)
+            {
+                newCategories.Add(await _categoriesRepo.GetCategory(category.Value));
+            }
+
+            product.Categories = newCategories;
+
+            return product;
         }
     }
 }

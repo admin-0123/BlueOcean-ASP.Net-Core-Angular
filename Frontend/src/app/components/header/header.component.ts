@@ -5,6 +5,7 @@ import { Category } from 'src/app/_models/product';
 import { EntryComponent } from '../entry/entry.component';
 import { FormBuilder } from '@angular/forms';
 import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private autoCompleteService: AutoCompleteService
+    private autoCompleteService: AutoCompleteService,
+    private router: Router
   ) {
 
    }
@@ -53,6 +55,6 @@ export class HeaderComponent implements OnInit {
   }
 
   search() {
-    console.log(this.category);
+    this.router.navigate(['/products/' + this.category.value]);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  ActivatedRouteSnapshot,
   Resolve
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -17,8 +18,8 @@ export class ProductListResolver implements Resolve<ProductPLP[] | null> {
     private toastr: ToastrService
   ) {}
 
-  resolve(): Observable<ProductPLP[] | null> {
-    return this.productService.getProducts()
+  resolve(route: ActivatedRouteSnapshot): Observable<ProductPLP[] | null> {
+    return this.productService.getProducts(route.params?.category)
       .pipe(
         catchError(
           error => {
