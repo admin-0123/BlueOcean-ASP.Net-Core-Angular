@@ -8,9 +8,8 @@ import { ProductResolver } from './_resolvers/product.resolver';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent, resolve: { products: ProductListResolver }},
-  { path: 'products/:category[]', component: ProductListPageComponent, resolve: { products: ProductListResolver }},
-  { path: 'product/:id', component: ProductPageComponent, resolve: { product: ProductResolver}, data: {animation: 'PDP'}}
-
+  { path: 'product/:id', component: ProductPageComponent, resolve: { product: ProductResolver}, data: {animation: 'PDP'}},
+  { path: 'products/:category[]', component: ProductListPageComponent, resolve: { products: ProductListResolver }}
 ];
 
 @NgModule({

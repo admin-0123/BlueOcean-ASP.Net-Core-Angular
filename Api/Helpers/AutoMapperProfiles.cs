@@ -35,6 +35,7 @@ namespace VirtaApi.Helpers
                 );
 
             CreateMap<Category, CategoryDTO>();
+            CreateMap<ProductAttributes, ProductAttributesDTO>();
         }
     }
 }
