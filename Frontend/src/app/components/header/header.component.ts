@@ -6,6 +6,8 @@ import { EntryComponent } from '../entry/entry.component';
 import { FormBuilder } from '@angular/forms';
 import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartComponent } from '../cart/cart.component';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +19,7 @@ export class HeaderComponent implements OnInit {
   searchInput = '';
   category!: Category;
   isLoading = false;
+  faUser = faUser;
 
   constructor(
     private dialog: MatDialog,
@@ -45,6 +48,7 @@ export class HeaderComponent implements OnInit {
           this.filteredCategories = response;
       });
     }
+    this.filteredCategories = [];
   }
 
   selectOption(category: Category) {

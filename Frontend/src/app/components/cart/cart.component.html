@@ -1,0 +1,27 @@
+<div class="cart">
+    <div class="cart-button" (click)="cartToggle()">
+        <div class="icon">
+            <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
+        </div>
+    </div>
+    <div class="cart-overlay" *ngIf="cart">
+        <div class="item" *ngFor="let item of [1,2]">
+            <div class="image">
+                <img src="https://picsum.photos/240/300" alt="product image">
+            </div>
+            <div class="details">
+                <div class="title">Lorem ipsum dolor sit</div>
+                <div class="price">93.99$</div>
+                <div class="quantity">
+                    <fa-icon [icon]="faMinusCircle"></fa-icon>
+                    <span class="number">2</span>
+                    <fa-icon [icon]="faPlusCircle"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button class="button">See Cart</button>
+            <button class="button">Checkout</button>
+        </div>
+    </div>
+</div>

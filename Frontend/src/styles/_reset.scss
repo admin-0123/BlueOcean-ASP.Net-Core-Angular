@@ -40,6 +40,7 @@ body {
     scroll-behavior: smooth;
     background-color: $bg-primary;
     color: $white;
+    background-image: $noise;
 }
 
 a {
@@ -53,4 +54,11 @@ a {
 hr {
     height: 1px;
     background-color:$white;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    padding: 12px 20px;
+    box-sizing: border-box;
 }

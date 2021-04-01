@@ -1,6 +1,5 @@
 <div class="header">
-    <div class="logo" [routerLink]="['']">
-        <h1>Logo</h1>
+    <div [routerLink]="['']" class="logo" style="background-image: url('assets/logo.svg');">
     </div>
     <div class="search">
         <form #searchForm="ngForm" (ngSubmit)="search()">
@@ -13,16 +12,16 @@
                 (input)="onSearchChange($event)"
                 autocomplete="off"
             >
-            <div class="filtered" *ngIf="filteredCategories">
+            <div class="filtered" *ngIf="filteredCategories.length">
                 <div *ngFor="let category of filteredCategories" class="filtered-item" (click)="selectOption(category)">
                     <span>{{ category.title }}</span>
                 </div>
             </div>
         </form>
     </div>
-    <div class="actions">
+    <div class="entry">
         <div (click)="authDialog()">
-            <h1>Login</h1>
+            <fa-icon [icon]="faUser" size="lg"></fa-icon>
         </div>
     </div>
 </div>

@@ -19,6 +19,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { EntryComponent } from './components/entry/entry.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
+import { CartComponent } from './components/cart/cart.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
     FooterComponent,
     ProductPageComponent,
     EntryComponent,
-    ProductListPageComponent
+    ProductListPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,8 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
     MatDialogModule,
     MatInputModule,
     MatAutocompleteModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
