@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,15 @@ namespace VirtaApi
             services.AddAppServices(_configuration);
             services.AddIdentityServices(_configuration);
 
+            services.AddSession(options =>
+                {
+                    // Set a short timeout for easy testing.
+                    options.IdleTimeout = TimeSpan.FromSeconds(10);
+                    options.Cookie.HttpOnly = true;
+                    // Make the session cookie essential
+                    options.Cookie.IsEssential = true;
+                });
+
             services.AddControllers();
             services.AddSignalR();
 
@@ -55,13 +65,12 @@ namespace VirtaApi
                 .AllowCredentials()
                 .WithOrigins("http://localhost:4200"));
 
-            app.UseRouting();
-
             app.UseAuthentication();
-            app.UseAuthorization(); 
+            app.UseAuthorization();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseStaticFiles(new StaticFileOptions() {
                 FileProvider =  new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Views/Static")),

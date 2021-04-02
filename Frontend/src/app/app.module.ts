@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatAutocompleteModule } from  '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
@@ -21,7 +21,11 @@ import { EntryComponent } from './components/entry/entry.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JwtModule } from '@auth0/angular-jwt';
 
+export function tokenGetter(): string | null {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -48,7 +52,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatInputModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    JwtModule.forRoot({
+      config: {
+         tokenGetter,
+         allowedDomains: ['localhost:5001'],
+         disallowedRoutes: ['localhost:5001/api/auth']
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

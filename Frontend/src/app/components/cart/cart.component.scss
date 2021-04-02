@@ -3,7 +3,7 @@
 
 .cart {
     position: fixed;
-    top: 32px;
+    top: 24px;
     right: 15px;
     z-index: 10;
     text-align: end;
@@ -20,6 +20,7 @@
         margin-bottom: 10px;
         height: 40px;
         width: 40px;
+        cursor: pointer;
 
         .icon {
             top: 12px;

@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Category } from 'src/app/_models/product';
 import { EntryComponent } from '../entry/entry.component';
-import { FormBuilder } from '@angular/forms';
 import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CartComponent } from '../cart/cart.component';
+import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -39,26 +37,26 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  onSearchChange(event: any) : void {
+  onSearchChange(event: any): void {
     const category = event.target?.value;
-    if(category && category.trim()) {
+    if (category && category.trim()) {
       this.autoCompleteService.search(category)
         .subscribe(response => {
           console.log(response);
           this.filteredCategories = response;
-      });
+        });
     }
     this.filteredCategories = [];
   }
 
-  selectOption(category: Category) {
+  selectOption(category: Category): void{
     this.searchInput = category.title;
     this.category = category;
     this.filteredCategories = [];
     this.search();
   }
 
-  search() {
+  search(): void {
     this.router.navigate(['/products/' + this.category.value]);
   }
 }

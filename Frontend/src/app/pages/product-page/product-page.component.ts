@@ -20,7 +20,7 @@ export class ProductPageComponent implements OnInit {
       data => {
         this.product = data.product;
       }
-    )
+    );
   }
 
 }

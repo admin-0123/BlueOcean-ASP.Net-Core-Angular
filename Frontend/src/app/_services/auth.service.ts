@@ -3,31 +3,34 @@ import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
 import { of } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Authorized, User } from '../_models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   baseUrl = environment.apiUrl + 'auth/';
-  private currentUserSource = new ReplaySubject<User>(1);
-  currentUser$ = this.currentUserSource.asObservable();
+  jwtHelper = new JwtHelperService();
+  decodedToken: any;
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService
   ) { }
 
-  login(user: User) {
+  login(user: User): Observable<void | null> {
     return this.http.post<Authorized>(this.baseUrl + 'login', user)
       .pipe(
         map(
           response => {
-            this.toastr.success("Successful Authentication");
+            this.toastr.success('Successful Authentication');
             console.log(response);
-            localStorage.setItem('token', response.token)
+            localStorage.setItem('token', response.token);
+            this.decodedToken = this.jwtHelper.decodeToken(response.token);
           }
         ),
         catchError(error => {
@@ -35,17 +38,18 @@ export class AuthService {
           console.error(error);
           return of(null);
         })
-      )
+      );
   }
 
-  register(user: User) {
+  register(user: User): Observable<void | null> {
     return this.http.post<Authorized>(this.baseUrl + 'register', user)
       .pipe(
         map(
           response => {
-            this.toastr.success("Successful Registration");
+            this.toastr.success('Successful Registration');
             console.log(response);
-            localStorage.setItem('token', response['token'])
+            localStorage.setItem('token', response.token);
+            this.decodedToken = this.jwtHelper.decodeToken(response.token);
           }
         ),
         catchError(error => {
@@ -53,14 +57,15 @@ export class AuthService {
           console.error(error);
           return of(null);
         })
-      )
+      );
   }
 
-  isLoggedIn() : boolean {
-    return true;
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem('token') || '';
+    return !this.jwtHelper.isTokenExpired(token);
   }
 
-  logOut() : void {
+  logOut(): void {
     localStorage.removeItem('token');
   }
 }

@@ -10,5 +10,15 @@ namespace Virta.Controllers
         {
             return View("~/Views/Admin/Index.cshtml");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Login(string email,string password)
+        {
+            if (ModelState.IsValid)
+            {
+            }
+            return View("~/Views/Admin/Dashboard.cshtml");
+        }
     }
 }

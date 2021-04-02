@@ -4,7 +4,6 @@ import {
     animate,
     transition,
     query,
-    animateChild,
     group
 } from '@angular/animations';
 

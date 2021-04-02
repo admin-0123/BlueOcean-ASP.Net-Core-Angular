@@ -2,10 +2,10 @@
 
 .page {
     min-height: 100vh;
-    margin: 0 20px;
+    margin: 20px auto;
 
     @include desktop {
         max-width: 1440px;
-        margin: 0 40px;
+        margin: 40px auto;
     }
 }

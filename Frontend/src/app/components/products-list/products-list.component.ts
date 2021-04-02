@@ -19,7 +19,7 @@ export class ProductsListComponent implements OnInit {
       data => {
         this.products = data.products;
       }
-    )
+    );
   }
 
 }

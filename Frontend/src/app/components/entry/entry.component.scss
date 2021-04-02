@@ -2,6 +2,8 @@
 
 .entry {
     padding: 0 20px;
+    background-color: $bg-secondary;
+    background-image: $noise;
 
     &-toggle {
         background-color: $tertiary;

@@ -28,6 +28,6 @@ export class ProductListResolver implements Resolve<ProductPLP[] | null> {
             return of(null);
           }
         )
-      )
+      );
   }
 }

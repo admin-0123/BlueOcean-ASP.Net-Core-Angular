@@ -13,12 +13,11 @@ export class ProductListPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(this.route.params?.category);
     this.route.params.subscribe(
       data => {
-        console.log(data['category']);
+        console.log(data.category);
       }
-    )
+    );
   }
 
 }

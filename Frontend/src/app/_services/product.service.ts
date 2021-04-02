@@ -1,7 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductPLP, ProductPDP } from '../_models/product';
 
@@ -15,7 +14,7 @@ export class ProductService {
 
   getProducts(category?: string | null): Observable<ProductPLP[]> {
     if (category) {
-      return this.http.get<ProductPLP[]>(this.baseUrl + "categories?category=" + category);
+      return this.http.get<ProductPLP[]>(this.baseUrl + 'categories?category=' + category);
     }
     return this.http.get<ProductPLP[]>(this.baseUrl);
   }

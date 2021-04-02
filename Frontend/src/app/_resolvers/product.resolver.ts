@@ -19,7 +19,7 @@ export class ProductResolver implements Resolve<ProductPDP | null> {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<ProductPDP | null> {
-    return this.productService.getProduct(route.params['id'])
+    return this.productService.getProduct(route.params.id)
       .pipe(
         catchError(error => {
           this.toastr.error('Problem retrieving data');
