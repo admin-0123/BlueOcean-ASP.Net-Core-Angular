@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductPDP } from 'src/app/_models/product';
+import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
   selector: 'app-product-page',
@@ -9,10 +10,12 @@ import { ProductPDP } from 'src/app/_models/product';
 })
 export class ProductPageComponent implements OnInit {
   product!: ProductPDP;
+  quantity = 1;
   columnsToDisplay = ['name', 'value'];
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cart: CartService
   ) { }
 
   ngOnInit(): void {
@@ -23,4 +26,7 @@ export class ProductPageComponent implements OnInit {
     );
   }
 
+  addToCart() {
+    this.cart.addItem({...this.product, quantity: +this.quantity});
+  }
 }

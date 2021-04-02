@@ -12,6 +12,10 @@ export interface ProductPDP extends ProductPLP {
     attributes: ProductAttribute[];
 }
 
+export interface ProductInCart extends Product {
+    quantity: number;
+}
+
 export interface ProductAttribute {
     id: number;
     name: string;
