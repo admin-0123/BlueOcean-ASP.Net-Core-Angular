@@ -38,6 +38,8 @@ namespace Virta.Helpers
                     )
                 );
 
+            CreateMap<Product, ProductUpsertVM>();
+
             /* To User Entity */
             CreateMap<UserToRegister, User>()
                 .ForMember(
@@ -50,7 +52,6 @@ namespace Virta.Helpers
             /* From Category Entity */
             CreateMap<Category, CategoryDTO>();
             CreateMap<Category, Virta.MVC.ViewModels.CategoryVM>();
-
             CreateMap<Category, SelectListItem>()
                 .ForMember(
                     dest => dest.Text,
@@ -64,10 +65,14 @@ namespace Virta.Helpers
             CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
 
             /* TO Product Upsert */
+            //API
             CreateMap<ProductAttributesDTO, ProductUpsert.ProductAttributes>();
             CreateMap<CategoryDTO, ProductUpsert.Category>();
-
             CreateMap<ProductPDP, ProductUpsert>();
+            //MVC
+            CreateMap<ProductAttributesVM, ProductUpsert.ProductAttributes>();
+            CreateMap<SelectListItem, ProductUpsert.Category>();
+            CreateMap<ProductUpsertVM, ProductUpsert>();
 
             /* To Entity Product */
             CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();

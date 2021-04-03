@@ -33,13 +33,17 @@ namespace Virta.MVC.Controllers
             UserManager<Virta.Entities.User> userManager,
             SignInManager<Virta.Entities.User> signInManager,
             IMapper mapper,
+            IProductsRepository productRepo,
+            ICategoriesRepository categoriesRepo,
             IProductService productService
         )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
+            _productRepo = productRepo;
             _productService = productService;
+            _categoriesRepo = categoriesRepo;
         }
 
         [Authorize]
@@ -66,8 +70,10 @@ namespace Virta.MVC.Controllers
             {
                 var user = await _userManager.FindByNameAsync(data.Email);
 
-                if (user == null)
+                if (user == null){
                     ViewBag.error = INCORRECT_CREDENTIALS;
+                    return View("Index");
+                }
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, data.Password, false);
 
@@ -77,13 +83,14 @@ namespace Virta.MVC.Controllers
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                     await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme,
                         new ClaimsPrincipal(identity));
+
                     return RedirectToAction("Index");
                 }
 
                 ViewBag.error = INCORRECT_CREDENTIALS;
             }
 
-            return RedirectToAction("login");
+            return View("Index");
         }
 
         [Route("logout")]
@@ -107,15 +114,17 @@ namespace Virta.MVC.Controllers
             if(product == null)
                 return RedirectToAction("Index");
 
-            var res = _mapper.Map<ProductUpsert>(product);
+            var res = _mapper.Map<ProductUpsertVM>(product);
 
             return View("Product", res);
         }
 
         [Route("product/{id}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(ProductUpsert product)
+        public async Task<IActionResult> UpdateProduct(ProductUpsertVM productVM)
         {
+            var product = _mapper.Map<ProductUpsert>(productVM);
+
             if (await _productService.UpsertProduct(product))
                 return RedirectToAction("Index");
 
