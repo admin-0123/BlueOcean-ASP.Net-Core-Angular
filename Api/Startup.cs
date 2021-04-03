@@ -28,14 +28,12 @@ namespace VirtaApi
             services.AddAppServices(_configuration);
             services.AddIdentityServices(_configuration);
 
-            services.AddSession(options =>
-                {
-                    // Set a short timeout for easy testing.
-                    options.IdleTimeout = TimeSpan.FromSeconds(10);
-                    options.Cookie.HttpOnly = true;
-                    // Make the session cookie essential
-                    options.Cookie.IsEssential = true;
-                });
+            services.AddSession(Options =>
+            {
+                Options.IdleTimeout = TimeSpan.FromMinutes(10);
+                Options.Cookie.HttpOnly = true;
+                Options.Cookie.IsEssential = true;
+            });
 
             services.AddControllers();
             services.AddSignalR();

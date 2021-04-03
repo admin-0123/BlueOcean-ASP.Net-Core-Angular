@@ -1,0 +1,19 @@
+@model Product
+@{
+    ViewBag.Title = "Product";
+}
+
+<div class="container">
+    <form method="post" asp-action="UpdateProduct">
+        <div class="mb-3">
+            <label for="Title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="Title" asp-for="Title">
+        </div>
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="Description" asp-for="Description">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>

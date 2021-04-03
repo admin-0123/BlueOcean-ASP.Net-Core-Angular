@@ -1,6 +1,4 @@
-using System;
-
-namespace Virta.Models
+namespace Virta.ViewModels
 {
     public class ErrorViewModel
     {

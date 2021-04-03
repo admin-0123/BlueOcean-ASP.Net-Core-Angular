@@ -47,6 +47,10 @@ namespace VirtaApi.Helpers
             CreateMap<ProductAttributes, ProductAttributesDTO>();
             CreateMap<ProductAttributesDTO, ProductAttributes>();
 
+
+            CreateMap<Category, Virta.ViewModels.Category>();
+            CreateMap<ProductAttributes, Virta.ViewModels.ProductAttributes>();
+            CreateMap<Product, Virta.ViewModels.Product>();
         }
     }
 }
