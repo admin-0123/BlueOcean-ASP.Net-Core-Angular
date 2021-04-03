@@ -16,18 +16,21 @@ namespace Virta.Controllers
 
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
 
         public AuthController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
+            RoleManager<Role> roleManager,
             IMapper mapper,
             ITokenService tokenService
         )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _mapper = mapper;
             _tokenService = tokenService;
         }
@@ -80,6 +83,34 @@ namespace Virta.Controllers
             response.Add("token", token);
 
             return Ok(response);
+        }
+
+        [HttpGet("createAdmin")]
+        public async Task<IActionResult> CreateRolesandUsers()
+        {
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                await _roleManager.CreateAsync(
+                        new Role {
+                            Name = "Admin"
+                        }
+                    );
+
+                var admin = new User {
+                        UserName = "admin@admin.com",
+                        Email = "admin@admin.com"
+                    };
+
+                IdentityResult User = await _userManager.CreateAsync(admin, "password");
+
+                if (User.Succeeded)
+                {
+                    var result1 = await _userManager.AddToRoleAsync(admin, "Admin");
+                    return Ok();
+                }
+            }
+
+            return BadRequest();
         }
     }
 }

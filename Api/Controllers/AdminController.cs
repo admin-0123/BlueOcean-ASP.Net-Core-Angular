@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -46,7 +47,7 @@ namespace Virta.MVC.Controllers
             _categoriesRepo = categoriesRepo;
         }
 
-        [Authorize]
+        [Authorize(Roles="Admin")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -78,7 +79,14 @@ namespace Virta.MVC.Controllers
                 var result = await _signInManager.CheckPasswordSignInAsync(user, data.Password, false);
 
                 if (result.Succeeded) {
+                    var roles = await _userManager.GetRolesAsync(user);
                     var identity = new ClaimsIdentity(IdentityConstants.ApplicationScheme);
+                    if(roles.Count > 0) {
+                        foreach (var r in roles)
+                        {
+                            identity.AddClaim(new Claim(ClaimTypes.Role, r));
+                        }
+                    }
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id));
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                     await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme,

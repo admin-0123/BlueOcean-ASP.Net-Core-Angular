@@ -12,6 +12,7 @@ namespace Virta.Extensions
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddIdentity<User, Role>()
+                .AddRoles<Role>()
                 .AddEntityFrameworkStores<DataContext>();
 
             services.Configure<IdentityOptions>(options =>
