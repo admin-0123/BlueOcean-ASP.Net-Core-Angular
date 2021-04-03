@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using Virta.Models;
+using Virta.Entities;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;

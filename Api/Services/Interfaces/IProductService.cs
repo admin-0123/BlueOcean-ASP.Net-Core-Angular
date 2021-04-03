@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using Virta.MVC.ViewModels;
-using Virta.Api.DTO;
+using Virta.Models;
 
 namespace Virta.Services.Interfaces
 {
-    public interface IProductsService
+    public interface IProductService
     {
         Task<bool> UpsertProduct(ProductUpsert product);
     }

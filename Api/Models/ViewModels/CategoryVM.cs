@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 
-namespace Virta.Models
+namespace Virta.MVC.ViewModels
 {
-    public class Category
+    public class CategoryVM
     {
         public int Id { get; set; }
         public string Value { get; set; }
         public string Title { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
     }
 }

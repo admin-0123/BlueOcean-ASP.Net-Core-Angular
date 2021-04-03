@@ -8,7 +8,9 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Virta.Api.DTO;
 using Virta.Data.Interfaces;
+using Virta.Entities;
 using Virta.Models;
+using Virta.Services.Interfaces;
 
 namespace VirtaApi.Controllers
 {
@@ -18,16 +20,19 @@ namespace VirtaApi.Controllers
     {
         private readonly IProductsRepository _repo;
         private readonly ICategoriesRepository _categoriesRepo;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
         public ProductsController(
             IMapper mapper,
             IProductsRepository repo,
-            ICategoriesRepository categoriesRepo
+            ICategoriesRepository categoriesRepo,
+            IProductService productService
         )
         {
             _mapper = mapper;
             _repo = repo;
             _categoriesRepo = categoriesRepo;
+            _productService = productService;
         }
 
         [HttpGet]
@@ -72,18 +77,14 @@ namespace VirtaApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct([FromBody] ProductPDP product)
+        public async Task<IActionResult> AddProduct([FromBody] ProductPDP productPDP)
         {
-            var productToSave = _mapper.Map<Product>(product);
+            var product = _mapper.Map<ProductUpsert>(productPDP);
 
-            productToSave = await SetCategorise(productToSave);
+            if(await _productService.UpsertProduct(product))
+                return Ok();
 
-            _repo.Add<Product>(productToSave);
-
-            if(await _repo.SaveAll())
-                return Ok("True");
-
-            return Ok("False");
+            return BadRequest();
         }
 
         [HttpGet("seed")]
@@ -165,20 +166,6 @@ namespace VirtaApi.Controllers
             }
 
             return newProducts;
-        }
-
-        private async Task<Product> SetCategorise(Product product)
-        {
-            var newCategories = new List<Category>();
-
-            foreach (var category in product.Categories)
-            {
-                newCategories.Add(await _categoriesRepo.GetCategory(category.Value));
-            }
-
-            product.Categories = newCategories;
-
-            return product;
         }
     }
 }

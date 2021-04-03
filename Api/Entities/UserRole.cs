@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Virta.Models
+namespace Virta.Entities
 {
     public class UserRole : IdentityUserRole<string>
     {

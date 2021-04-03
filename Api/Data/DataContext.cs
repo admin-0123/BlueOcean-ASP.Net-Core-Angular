@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Virta.Models;
+using Virta.Entities;
 
 namespace Virta.Data
 {

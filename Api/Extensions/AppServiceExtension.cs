@@ -2,11 +2,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Virta.Data.Interfaces;
 using Virta.Data;
-using VirtaApi.Helpers;
+using Virta.Helpers;
 using MongoDB.Driver;
 using Microsoft.EntityFrameworkCore;
 using Virta.Api.Services.Interfaces;
 using Virta.Api.Services;
+using Virta.Services.Interfaces;
+using Virta.Services;
 
 namespace Virta.Extensions
 {
@@ -29,8 +31,9 @@ namespace Virta.Extensions
             );
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
-            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             return services;

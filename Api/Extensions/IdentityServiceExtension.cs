@@ -1,8 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using Virta.Data.Interfaces;
 using Virta.Data;
-using Virta.Models;
+using Virta.Entities;
 using System;
 using Microsoft.AspNetCore.Identity;
 

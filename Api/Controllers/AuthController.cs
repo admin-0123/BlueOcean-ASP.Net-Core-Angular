@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Virta.Api.DTO;
 using Virta.Api.Services.Interfaces;
-using Virta.Models;
+using Virta.Entities;
 namespace Virta.Controllers
 {
     [ApiController]

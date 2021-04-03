@@ -1,6 +1,6 @@
 namespace Virta.MVC.ViewModels
 {
-    public class ProductAttributes
+    public class ProductAttributesVM
     {
         public int Id { get; set; }
         public string Name { get; set; }

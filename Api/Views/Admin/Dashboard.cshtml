@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in ViewData["Products"] as IEnumerable<ProductPLP>)
+                @foreach (var item in ViewData["Products"] as IEnumerable<ProductPLPVM>)
                 {
                     <tr  onclick="window.location='admin/product/@item.Id';">
                         <th scope="row">@item.Id</th>
@@ -26,7 +26,7 @@
                         <td>@item.Title</td>
                         <td>@item.Description</td>
                         <td>
-                            @foreach (var c in item.Categories as IEnumerable<Category>)
+                            @foreach (var c in item.Categories as IEnumerable<CategoryVM>)
                             {
                                 <p>@c.Title</p>
                             }

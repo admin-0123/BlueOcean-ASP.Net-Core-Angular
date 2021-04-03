@@ -1,6 +1,6 @@
 namespace Virta.MVC.ViewModels
 {
-    public class ErrorViewModel
+    public class ErrorViewModelVM
     {
         public string RequestId { get; set; }
 

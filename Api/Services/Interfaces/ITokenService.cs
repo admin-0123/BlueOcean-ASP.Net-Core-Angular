@@ -1,4 +1,4 @@
-using Virta.Models;
+using Virta.Entities;
 
 namespace Virta.Api.Services.Interfaces
 {

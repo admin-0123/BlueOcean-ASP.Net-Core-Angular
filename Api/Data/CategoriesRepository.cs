@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Virta.Data.Interfaces;
-using Virta.Models;
+using Virta.Entities;
 
 namespace Virta.Data
 {

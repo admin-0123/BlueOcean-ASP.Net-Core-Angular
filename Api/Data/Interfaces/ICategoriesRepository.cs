@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Virta.Models;
+using Virta.Entities;
 
 namespace Virta.Data.Interfaces
 {

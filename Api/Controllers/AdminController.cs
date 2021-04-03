@@ -9,9 +9,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Virta.MVC.ViewModels;
 using Virta.Data.Interfaces;
-
+using Virta.Models;
+using Virta.MVC.ViewModels;
+using Virta.Services.Interfaces;
 
 namespace Virta.MVC.Controllers
 {
@@ -21,25 +22,24 @@ namespace Virta.MVC.Controllers
     {
         public const string INCORRECT_CREDENTIALS = "Email or Password is Incorrect.";
 
-        private readonly UserManager<Virta.Models.User> _userManager;
-        private readonly SignInManager<Virta.Models.User> _signInManager;
+        private readonly UserManager<Virta.Entities.User> _userManager;
+        private readonly SignInManager<Virta.Entities.User> _signInManager;
         private readonly IMapper _mapper;
         private readonly IProductsRepository _productRepo;
         private readonly ICategoriesRepository _categoriesRepo;
+        private readonly IProductService _productService;
 
         public AdminController(
-            UserManager<Virta.Models.User> userManager,
-            SignInManager<Virta.Models.User> signInManager,
+            UserManager<Virta.Entities.User> userManager,
+            SignInManager<Virta.Entities.User> signInManager,
             IMapper mapper,
-            IProductsRepository productRepo,
-            ICategoriesRepository categoriesRepo
+            IProductService productService
         )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
-            _productRepo = productRepo;
-            _categoriesRepo = categoriesRepo;
+            _productService = productService;
         }
 
         [Authorize]
@@ -60,7 +60,7 @@ namespace Virta.MVC.Controllers
         [Route("login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Admin data)
+        public async Task<IActionResult> Login(AdminVM data)
         {
             if (ModelState.IsValid)
             {
@@ -116,30 +116,20 @@ namespace Virta.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(ProductUpsert product)
         {
-            var productFromDb = await _productRepo.GetProduct(product.Id);
-
-            if(productFromDb == null)
-                return RedirectToAction("Index");
-
-            _mapper.Map<ProductUpsert, Virta.Models.Product>(product, productFromDb);
-            productFromDb.Categories = await _categoriesRepo.GetCategories(product.Categories);
-
-            _productRepo.Update<Virta.Models.Product>(productFromDb);
-
-            if (await _productRepo.SaveAll())
+            if (await _productService.UpsertProduct(product))
                 return RedirectToAction("Index");
 
             return RedirectToAction("GetProduct");
         }
 
-        private async Task<IEnumerable<ProductPLP>> GetProducts()
+        private async Task<IEnumerable<ProductPLPVM>> GetProducts()
         {
             var products = await _productRepo.GetProducts();
 
             if(products == null)
                 return null;
 
-            return _mapper.Map<IEnumerable<ProductPLP>>(products);
+            return _mapper.Map<IEnumerable<ProductPLPVM>>(products);
         }
     }
 }

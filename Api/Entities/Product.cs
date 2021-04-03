@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Virta.Models
+namespace Virta.Entities
 {
     public class Product
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         [Required]
         public string Title { get; set; }
         public decimal Price { get; set; }
