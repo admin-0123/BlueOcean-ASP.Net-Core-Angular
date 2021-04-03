@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
-using VirtaApi.Data.Interfaces;
+using Virta.Data.Interfaces;
 
-namespace VirtaApi.Data
+namespace Virta.Data
 {
     public abstract class BaseRepository : IBaseRepository
     {

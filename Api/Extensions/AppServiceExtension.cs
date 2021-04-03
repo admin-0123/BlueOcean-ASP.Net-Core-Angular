@@ -1,13 +1,14 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using VirtaApi.Data.Interfaces;
-using VirtaApi.Data;
+using Virta.Data.Interfaces;
+using Virta.Data;
 using VirtaApi.Helpers;
-using VirtaApi.Helpers.Interfaces;
 using MongoDB.Driver;
 using Microsoft.EntityFrameworkCore;
+using Virta.Api.Services.Interfaces;
+using Virta.Api.Services;
 
-namespace VirtaApi.Extensions
+namespace Virta.Extensions
 {
     public static class AppServiceExtension
     {

@@ -1,12 +1,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using VirtaApi.Data.Interfaces;
-using VirtaApi.Data;
-using VirtaApi.Models;
+using Virta.Data.Interfaces;
+using Virta.Data;
+using Virta.Models;
 using System;
 using Microsoft.AspNetCore.Identity;
 
-namespace VirtaApi.Extensions
+namespace Virta.Extensions
 {
     public static class IdentityServiceExtension
     {

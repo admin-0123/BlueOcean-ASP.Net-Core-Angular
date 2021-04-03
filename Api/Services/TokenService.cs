@@ -1,16 +1,15 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
-using VirtaApi.Models;
+using Virta.Models;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
-using VirtaApi.Helpers.Interfaces;
+using Virta.Api.Services.Interfaces;
 
-namespace VirtaApi.Helpers
+namespace Virta.Api.Services
 {
     public class TokenService : ITokenService
     {

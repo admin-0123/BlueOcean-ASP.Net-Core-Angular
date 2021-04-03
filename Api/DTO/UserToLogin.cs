@@ -1,4 +1,4 @@
-namespace VirtaApi.DTO
+namespace Virta.Api.DTO
 {
     public class UserToLogin
     {

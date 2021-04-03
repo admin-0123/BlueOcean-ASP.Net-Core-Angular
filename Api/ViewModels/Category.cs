@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Virta.ViewModels
+namespace Virta.MVC.ViewModels
 {
     public class Category
     {

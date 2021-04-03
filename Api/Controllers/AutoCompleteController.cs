@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using VirtaApi.Data.Interfaces;
-using VirtaApi.DTO;
-using VirtaApi.Models;
+using Virta.Api.DTO;
+using Virta.Data.Interfaces;
 
 namespace VirtaApi.Controllers
 {

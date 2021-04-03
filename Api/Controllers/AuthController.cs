@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using VirtaApi.DTO;
-using VirtaApi.Helpers.Interfaces;
-using VirtaApi.Models;
-
-namespace VirtaApi.Controllers
+using Virta.Api.DTO;
+using Virta.Api.Services.Interfaces;
+using Virta.Models;
+namespace Virta.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -18,21 +14,18 @@ namespace VirtaApi.Controllers
     {
         public const string INCORRECT_CREDENTIALS = "Email or Password is Incorrect.";
 
-        private readonly ILogger<MainController> _logger;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
 
         public AuthController(
-            ILogger<MainController> logger,
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IMapper mapper,
             ITokenService tokenService
         )
         {
-            _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;

@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using VirtaApi.Data.Interfaces;
-using VirtaApi.Models;
+using Virta.Data.Interfaces;
+using Virta.Models;
 
-namespace VirtaApi.Data
+namespace Virta.Data
 {
     public class CategoriesRepository : BaseRepository, ICategoriesRepository
     {

@@ -9,12 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using Virta.ViewModels;
-using VirtaApi.Data.Interfaces;
+using Virta.MVC.ViewModels;
+using Virta.Data.Interfaces;
 
 
-namespace Virta.Controllers
+namespace Virta.MVC.Controllers
 {
     [Route("Admin")]
     [ApiExplorerSettings(IgnoreApi=true)]
@@ -22,15 +21,15 @@ namespace Virta.Controllers
     {
         public const string INCORRECT_CREDENTIALS = "Email or Password is Incorrect.";
 
-        private readonly UserManager<VirtaApi.Models.User> _userManager;
-        private readonly SignInManager<VirtaApi.Models.User> _signInManager;
+        private readonly UserManager<Virta.Models.User> _userManager;
+        private readonly SignInManager<Virta.Models.User> _signInManager;
         private readonly IMapper _mapper;
         private readonly IProductsRepository _productRepo;
         private readonly ICategoriesRepository _categoriesRepo;
 
         public AdminController(
-            UserManager<VirtaApi.Models.User> userManager,
-            SignInManager<VirtaApi.Models.User> signInManager,
+            UserManager<Virta.Models.User> userManager,
+            SignInManager<Virta.Models.User> signInManager,
             IMapper mapper,
             IProductsRepository productRepo,
             ICategoriesRepository categoriesRepo
@@ -122,10 +121,10 @@ namespace Virta.Controllers
             if(productFromDb == null)
                 return RedirectToAction("Index");
 
-            _mapper.Map<ProductUpsert, VirtaApi.Models.Product>(product, productFromDb);
+            _mapper.Map<ProductUpsert, Virta.Models.Product>(product, productFromDb);
             productFromDb.Categories = await _categoriesRepo.GetCategories(product.Categories);
 
-            _productRepo.Update<VirtaApi.Models.Product>(productFromDb);
+            _productRepo.Update<Virta.Models.Product>(productFromDb);
 
             if (await _productRepo.SaveAll())
                 return RedirectToAction("Index");

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VirtaApi.DTO
+namespace Virta.Api.DTO
 {
     public class ProductPDP
     {

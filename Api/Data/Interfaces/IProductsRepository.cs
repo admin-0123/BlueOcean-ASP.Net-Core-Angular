@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VirtaApi.Models;
+using Virta.Models;
 
-namespace VirtaApi.Data.Interfaces
+namespace Virta.Data.Interfaces
 {
     public interface IProductsRepository : IBaseRepository
     {

@@ -6,9 +6,9 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using VirtaApi.Data.Interfaces;
-using VirtaApi.DTO;
-using VirtaApi.Models;
+using Virta.Api.DTO;
+using Virta.Data.Interfaces;
+using Virta.Models;
 
 namespace VirtaApi.Controllers
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace VirtaApi.Data.Interfaces
+namespace Virta.Data.Interfaces
 {
     public interface IBaseRepository
     {

@@ -1,4 +1,4 @@
-namespace VirtaApi.Models
+namespace Virta.Models
 {
     public class ProductAttributes
     {

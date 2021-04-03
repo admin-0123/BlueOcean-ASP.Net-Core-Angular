@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-using VirtaApi.Models;
+using Virta.Models;
 
-namespace VirtaApi.Helpers.Interfaces
+namespace Virta.Api.Services.Interfaces
 {
     public interface ITokenService
     {

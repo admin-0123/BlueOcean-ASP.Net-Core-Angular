@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Virta.ViewModels
+namespace Virta.MVC.ViewModels
 {
     public class ProductUpsert
     {

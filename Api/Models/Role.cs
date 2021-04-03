@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
-namespace VirtaApi.Models
+namespace Virta.Models
 {
     public class Role : IdentityRole
     {

@@ -1,4 +1,4 @@
-namespace Virta.ViewModels
+namespace Virta.MVC.ViewModels
 {
     public class Admin
     {

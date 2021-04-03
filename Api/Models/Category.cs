@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace VirtaApi.Models
+namespace Virta.Models
 {
     public class Category
     {

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using VirtaApi.Models;
+using Virta.Models;
 
-namespace VirtaApi.Data
+namespace Virta.Data
 {
     public class DataContext : IdentityDbContext<User, Role, string>
     {

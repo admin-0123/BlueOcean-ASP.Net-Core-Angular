@@ -3,8 +3,8 @@ using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
-using VirtaApi.DTO;
-using VirtaApi.Models;
+using Virta.Api.DTO;
+using Virta.Models;
 
 namespace VirtaApi.Helpers
 {
@@ -49,22 +49,22 @@ namespace VirtaApi.Helpers
             CreateMap<ProductAttributesDTO, ProductAttributes>();
 
 
-            CreateMap<Category, Virta.ViewModels.Category>();
-            CreateMap<ProductAttributes, Virta.ViewModels.ProductAttributes>();
-            CreateMap<Product, Virta.ViewModels.ProductPLP>()
+            CreateMap<Category, Virta.MVC.ViewModels.Category>();
+            CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributes>();
+            CreateMap<Product, Virta.MVC.ViewModels.ProductPLP>()
                 .ForMember(
                     dest => dest.Images,
                     opt => opt.MapFrom(
                         src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
                     )
                 );
-            CreateMap<Virta.ViewModels.ProductUpsert, Product>()
+            CreateMap<Virta.MVC.ViewModels.ProductUpsert, Product>()
                 .ForMember(
                     dest => dest.Categories,
                     opt => opt.Ignore()
                 );
 
-            CreateMap<Product, Virta.ViewModels.ProductUpsert>();
+            CreateMap<Product, Virta.MVC.ViewModels.ProductUpsert>();
 
             CreateMap<Category, SelectListItem>()
                 .ForMember(

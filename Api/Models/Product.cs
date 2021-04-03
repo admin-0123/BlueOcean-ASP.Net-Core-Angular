@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace VirtaApi.Models
+namespace Virta.Models
 {
     public class Product
     {
