@@ -6,24 +6,21 @@ using Microsoft.Extensions.Logging;
 using Virta.Api.DTO;
 using Virta.Data.Interfaces;
 
-namespace VirtaApi.Controllers
+namespace Virta.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     public class AutoCompleteController : ControllerBase
     {
-        private readonly ILogger<MainController> _logger;
         private readonly IMapper _mapper;
         private readonly ICategoriesRepository _categoriesRepository;
 
         public AutoCompleteController(
-            ILogger<MainController> logger,
             IMapper mapper,
             ICategoriesRepository categoriesRepository
         )
         {
             _categoriesRepository = categoriesRepository;
-            _logger = logger;
             _mapper = mapper;
         }
 

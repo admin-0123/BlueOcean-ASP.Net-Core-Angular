@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Virta.Entities;
 
-namespace VirtaApi.Controllers
+namespace Virta.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Virta.Api.DTO;
 using Virta.Api.Services.Interfaces;
 using Virta.Entities;
-namespace Virta.Controllers
+namespace Virta.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

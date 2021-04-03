@@ -12,7 +12,7 @@ using Virta.Entities;
 using Virta.Models;
 using Virta.Services.Interfaces;
 
-namespace VirtaApi.Controllers
+namespace Virta.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
