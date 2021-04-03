@@ -11,16 +11,18 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Last</th>
                     <th scope="col">Categories</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in ViewData["Products"] as IEnumerable<Product>)
+                @foreach (var item in ViewData["Products"] as IEnumerable<ProductPLP>)
                 {
-                    <tr>
+                    <tr  onclick="window.location='admin/product/@item.Id';">
                         <th scope="row">@item.Id</th>
+                        <td><img src="@item.Images[0]" alt="" height="200px"></td>
                         <td>@item.Title</td>
                         <td>@item.Description</td>
                         <td>

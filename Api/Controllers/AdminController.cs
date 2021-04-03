@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Virta.ViewModels;
 using VirtaApi.Data.Interfaces;
@@ -25,18 +26,21 @@ namespace Virta.Controllers
         private readonly SignInManager<VirtaApi.Models.User> _signInManager;
         private readonly IMapper _mapper;
         private readonly IProductsRepository _productRepo;
+        private readonly ICategoriesRepository _categoriesRepo;
 
         public AdminController(
             UserManager<VirtaApi.Models.User> userManager,
             SignInManager<VirtaApi.Models.User> signInManager,
             IMapper mapper,
-            IProductsRepository productRepo
+            IProductsRepository productRepo,
+            ICategoriesRepository categoriesRepo
         )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _productRepo = productRepo;
+            _categoriesRepo = categoriesRepo;
         }
 
         [Authorize]
@@ -97,37 +101,46 @@ namespace Virta.Controllers
         public async Task<IActionResult> GetProduct(Guid Id)
         {
             var product = await _productRepo.GetProduct(Id);
+            var categories = await _categoriesRepo.GetCategories();
+
+            ViewBag.Categories = _mapper.Map<IEnumerable<SelectListItem>>(categories);
 
             if(product == null)
                 return RedirectToAction("Index");
 
-            var response = _mapper.Map<Product>(product);
+            var res = _mapper.Map<ProductUpsert>(product);
 
-            return View("Product", response);
+            return View("Product", res);
         }
 
         [Route("product/{id}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateProduct(Product product)
+        public async Task<IActionResult> UpdateProduct(ProductUpsert product)
         {
-            var product2 = await _productRepo.GetProduct(product.Id);
+            var productFromDb = await _productRepo.GetProduct(product.Id);
 
-            if(product2 == null)
+            if(productFromDb == null)
                 return RedirectToAction("Index");
 
-            var response = _mapper.Map<Product>(product2);
+            _mapper.Map<ProductUpsert, VirtaApi.Models.Product>(product, productFromDb);
+            productFromDb.Categories = await _categoriesRepo.GetCategories(product.Categories);
 
-            return View("Product", response);
+            _productRepo.Update<VirtaApi.Models.Product>(productFromDb);
+
+            if (await _productRepo.SaveAll())
+                return RedirectToAction("Index");
+
+            return RedirectToAction("GetProduct");
         }
 
-        private async Task<IEnumerable<Product>> GetProducts()
+        private async Task<IEnumerable<ProductPLP>> GetProducts()
         {
             var products = await _productRepo.GetProducts();
 
             if(products == null)
                 return null;
 
-            return _mapper.Map<IEnumerable<Product>>(products);
+            return _mapper.Map<IEnumerable<ProductPLP>>(products);
         }
     }
 }

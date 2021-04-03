@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using VirtaApi.DTO;
 using VirtaApi.Models;
@@ -50,7 +51,28 @@ namespace VirtaApi.Helpers
 
             CreateMap<Category, Virta.ViewModels.Category>();
             CreateMap<ProductAttributes, Virta.ViewModels.ProductAttributes>();
-            CreateMap<Product, Virta.ViewModels.Product>();
+            CreateMap<Product, Virta.ViewModels.ProductPLP>()
+                .ForMember(
+                    dest => dest.Images,
+                    opt => opt.MapFrom(
+                        src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
+                    )
+                );
+            CreateMap<Virta.ViewModels.ProductUpsert, Product>()
+                .ForMember(
+                    dest => dest.Categories,
+                    opt => opt.Ignore()
+                );
+
+            CreateMap<Product, Virta.ViewModels.ProductUpsert>();
+
+            CreateMap<Category, SelectListItem>()
+                .ForMember(
+                    dest => dest.Text,
+                    opt => opt.MapFrom(
+                        src => src.Title
+                    )
+                );
         }
     }
 }

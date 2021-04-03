@@ -15,6 +15,16 @@ namespace VirtaApi.Data
             _context = context;
         }
 
+        public async Task<List<Category>> GetCategories()
+        {
+            return await _context.Categories.ToListAsync();
+        }
+
+        public async Task<List<Category>> GetCategories(string[] categoryTitles)
+        {
+             return await _context.Categories.Where(c => categoryTitles.Contains(c.Title)).ToListAsync();
+        }
+
         public async Task<List<Category>> GetCategoriesAC(string category = "")
         {
             return await GetCategoriesAC(category, 10);
