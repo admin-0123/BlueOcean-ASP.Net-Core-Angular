@@ -14,6 +14,17 @@ namespace Virta.Helpers
     {
         public AutoMapperProfiles()
         {
+            /* To User Entity */
+            CreateMap<UserToRegister, User>()
+                .ForMember(
+                    dest => dest.UserName,
+                    opt => opt.MapFrom(
+                        src => src.Email
+                    )
+                );
+
+
+
             /* From Product Entity */
             CreateMap<Product, ProductPDP>()
                 .ForMember(
@@ -40,14 +51,26 @@ namespace Virta.Helpers
 
             CreateMap<Product, ProductUpsertVM>();
 
-            /* To User Entity */
-            CreateMap<UserToRegister, User>()
-                .ForMember(
-                    dest => dest.UserName,
-                    opt => opt.MapFrom(
-                        src => src.Email
-                    )
-                );
+            /* To Product Entity*/
+            CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();
+            CreateMap<ProductUpsert.Category, Category>();
+            CreateMap<ProductUpsert, Product>();
+
+            /* TO Product Upsert */
+            //API
+            CreateMap<ProductAttributesDTO, ProductUpsert.ProductAttributes>();
+            CreateMap<CategoryDTO, ProductUpsert.Category>();
+            CreateMap<ProductPDP, ProductUpsert>();
+            //MVC
+            CreateMap<ProductAttributesVM, ProductUpsert.ProductAttributes>();
+            CreateMap<SelectListItem, ProductUpsert.Category>();
+            CreateMap<ProductUpsertVM, ProductUpsert>();
+
+            /* From Product Attributes Entity */
+            CreateMap<ProductAttributes, ProductAttributesDTO>();
+            CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
+
+
 
             /* From Category Entity */
             CreateMap<Category, CategoryDTO>();
@@ -60,25 +83,20 @@ namespace Virta.Helpers
                     )
                 );
 
-            /* From Product Attributes Entity */
-            CreateMap<ProductAttributes, ProductAttributesDTO>();
-            CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
+            /* To Category Entity */
+            CreateMap<CategoryDTO, Category>();
+            CreateMap<CategoryUpsert, Category>();
 
-            /* TO Product Upsert */
-            //API
-            CreateMap<ProductAttributesDTO, ProductUpsert.ProductAttributes>();
-            CreateMap<CategoryDTO, ProductUpsert.Category>();
-            CreateMap<ProductPDP, ProductUpsert>();
-            //MVC
-            CreateMap<ProductAttributesVM, ProductUpsert.ProductAttributes>();
-            CreateMap<SelectListItem, ProductUpsert.Category>();
-            CreateMap<ProductUpsertVM, ProductUpsert>();
+            /* To Category Upsert */
+            CreateMap<CategoryDTO, CategoryUpsert>();
 
-            /* To Entity Product */
-            CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();
-            CreateMap<ProductUpsert.Category, Category>();
-            CreateMap<ProductUpsert, Product>();
 
+
+            /* Self */
+            CreateMap<Product, Product>()
+                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Category, Category>()
+                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

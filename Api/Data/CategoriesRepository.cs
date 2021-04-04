@@ -39,5 +39,10 @@ namespace Virta.Data
         {
             return await _context.Categories.FirstAsync(c => c.Value == category);
         }
+
+        public async Task<Category> GetCategory(int id)
+        {
+            return await _context.Categories.FindAsync(id);
+        }
     }
 }

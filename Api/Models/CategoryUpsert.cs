@@ -1,6 +1,6 @@
-namespace Virta.Api.DTO
+namespace Virta.Models
 {
-    public class CategoryDTO
+    public class CategoryUpsert
     {
         public int Id { get; set; }
         public string Value { get; set; }

@@ -30,12 +30,15 @@ namespace Virta.Services
         {
             var productToSave = _mapper.Map<Product>(product);
 
-            productToSave = await SetCategorise(productToSave);
+            if(product.Categories.Count > 0)
+                productToSave = await SetCategorise(productToSave);
 
             if(product.Id == Guid.Empty) {
                 _repo.Add<Product>(productToSave);
             } else {
-                _repo.Update<Product>(productToSave);
+                var productFromDb = await _repo.GetProduct(productToSave.Id);
+                _mapper.Map<Product, Product>(productToSave, productFromDb);
+                _repo.Update<Product>(productFromDb);
             }
 
             if (await _repo.SaveAll())
