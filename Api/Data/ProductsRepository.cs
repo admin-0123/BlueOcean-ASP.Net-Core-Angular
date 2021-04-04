@@ -15,7 +15,6 @@ namespace Virta.Data
         public ProductsRepository(DataContext context) : base(context)
         {
             _context = context;
-
         }
 
         public async Task<Product> GetProduct(Guid id)
