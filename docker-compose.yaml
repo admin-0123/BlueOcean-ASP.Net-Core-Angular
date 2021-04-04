@@ -1,6 +1,19 @@
 version: '3.1'
 
 services:
+  webapp:
+    build: .
+    restart: on-failure
+    ports:
+      - 80
+      - 443
+    env_file:
+      - .env
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    depends_on:
+        - mysql
+
   mysql:
     image: mysql
     restart: on-failure
@@ -8,20 +21,21 @@ services:
       - .env
     ports:
       - 3306:3306
-  adminer:
-    image: adminer
-    restart: on-failure
-    ports:
-      - 8080:8080
-  mongo:
-    image: mongo
-    restart: on-failure
-    env_file:
-      - .env
-  mongo-express:
-    image: mongo-express
-    restart: on-failure
-    ports:
-      - 8081:8081
-    env_file:
-      - .env
+
+  # adminer:
+  #   image: adminer
+  #   restart: on-failure
+  #   ports:
+  #     - 8080:8080
+  # mongo:
+  #   image: mongo
+  #   restart: on-failure
+  #   env_file:
+  #     - .env
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: on-failure
+  #   ports:
+  #     - 8081:8081
+  #   env_file:
+  #     - .env

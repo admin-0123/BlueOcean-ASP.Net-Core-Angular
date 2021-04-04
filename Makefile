@@ -13,7 +13,15 @@ check:
 	docker-compose --version
 	git --version
 
+certs:
+	dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p ${ASPNETCORE_Kestrel__Certificates__Default__Password}
+
 #Setup
+setup: install build-fe docker
+
+docker:
+	docker-compose up --build --remove-orphans
+
 install:
 	cd ${BE} && dotnet build
 	cd ${FE} && npm install
