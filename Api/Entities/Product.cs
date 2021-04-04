@@ -8,7 +8,6 @@ namespace Virta.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        [Required]
         public string Title { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
@@ -17,5 +16,7 @@ namespace Virta.Entities
         public virtual ICollection<Category> Categories { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

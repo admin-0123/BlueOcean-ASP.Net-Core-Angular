@@ -11,30 +11,37 @@ namespace Virta.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductAttributes> ProductAttributes { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderProduct> OrderProduct { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(builder);
 
-            modelBuilder.Entity<User>()
+            builder.Entity<User>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.User)
                 .HasForeignKey(ur => ur.UserId)
                 .IsRequired();
 
-            modelBuilder.Entity<Role>()
+            builder.Entity<Role>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .IsRequired();
 
-            modelBuilder.Entity<Category>()
+            builder.Entity<Category>()
                 .HasIndex(u => u.Value)
                 .IsUnique();
 
-            modelBuilder.Entity<Category>()
+            builder.Entity<Category>()
                 .HasIndex(u => u.Title)
                 .IsUnique();
+
+            builder.Entity<OrderProduct>()
+                .HasKey(op =>
+                    new { op.OrderId, op.ProductId }
+                );
         }
     }
 }
