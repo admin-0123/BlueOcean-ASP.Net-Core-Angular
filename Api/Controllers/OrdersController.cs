@@ -63,7 +63,7 @@ namespace Virta.Api.Controllers
         {
             var order = _mapper.Map<OrderUpsert>(orderIncoming);
 
-            if(await _orderService.UpsertProduct(order))
+            if(await _orderService.UpsertOrder(order))
                 return Ok();
 
             return BadRequest();

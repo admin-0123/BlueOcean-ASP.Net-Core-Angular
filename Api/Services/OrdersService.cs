@@ -29,7 +29,7 @@ namespace Virta.Services
             _userManager = userManager;
         }
 
-        public async Task<bool> UpsertProduct(OrderUpsert order)
+        public async Task<bool> UpsertOrder(OrderUpsert order)
         {
             var orderProducts = new List<OrderProduct>();
 
@@ -46,7 +46,10 @@ namespace Virta.Services
                 );
             }
 
-            var user = await _userManager.FindByIdAsync(order.UserId);
+            var user = await _userManager.FindByNameAsync(order.UserEmail);
+
+            if(user == null)
+                return false;
 
             var orderToSave = new Order {
                 TotalPrice = order.TotalPrice,

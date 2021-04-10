@@ -1,0 +1,17 @@
+<div class="item" *ngFor="let item of cart">
+    <div class="image">
+        <img src="{{ item.images[0] }}" alt="product image">
+    </div>
+    <div class="details">
+        <div class="title">{{ item.title }}</div>
+        <div class="price">{{ item.price }}$</div>
+        <div class="quantity">
+            <fa-icon [icon]="faMinusCircle" (click)="decreaseQuality(item)"></fa-icon>
+            <span class="number">{{ item.quantity }}</span>
+            <fa-icon [icon]="faPlusCircle" (click)="increaseQuantity(item)"></fa-icon>
+        </div>
+    </div>
+</div>
+<hr>
+<p>{{ totalPrice }}$</p>
+<button (click)="submit()">Place Order</button>

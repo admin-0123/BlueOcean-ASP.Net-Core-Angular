@@ -8,6 +8,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,8 +22,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { EntryComponent } from './components/entry/entry.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { CartComponent } from './components/cart/cart.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { JwtModule } from '@auth0/angular-jwt';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
 export function tokenGetter(): string | null {
   return localStorage.getItem('token');
@@ -38,7 +39,8 @@ export function tokenGetter(): string | null {
     ProductPageComponent,
     EntryComponent,
     ProductListPageComponent,
-    CartComponent
+    CartComponent,
+    CheckoutPageComponent
   ],
   imports: [
     BrowserModule,

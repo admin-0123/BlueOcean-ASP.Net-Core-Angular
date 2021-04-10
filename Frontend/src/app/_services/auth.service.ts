@@ -68,4 +68,9 @@ export class AuthService {
   logOut(): void {
     localStorage.removeItem('token');
   }
+
+  getDecodedToken() {
+    const token = localStorage.getItem('token') || '';
+    return JSON.parse(atob(token.split('.')[1]));
+  }
 }

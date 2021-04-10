@@ -70,7 +70,7 @@ export class CartService {
     }
   }
 
-  getCart() : Array<ProductInCart> | [] {
+  getCart() : ProductInCart[] {
     return JSON.parse(localStorage.getItem('cart') || '[]');
   }
 

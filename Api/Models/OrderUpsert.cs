@@ -8,7 +8,7 @@ namespace Virta.Api.DTO
         public int Id { get; set; }
         public decimal TotalPrice { get; set; }
         public List<OrderProduct> Products { get; set; }
-        public string UserId { get; set; }
+        public string UserEmail { get; set; }
 
         public class OrderProduct
         {
