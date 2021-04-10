@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
+using Virta.Api.DTO;
 
 namespace Virta.Api.DTO
 {
-    public class OrderIncoming
+    public class OrderOutgoing
     {
         public int Id { get; set; }
         public decimal TotalPrice { get; set; }
@@ -12,8 +12,8 @@ namespace Virta.Api.DTO
 
         public class OrderProduct
         {
-            public Guid id { get; set; }
-            public decimal Price { get; set; }
+            public ProductPDP Product { get; set; }
+            public decimal OrderPrice { get; set; }
             public int Quantity { get; set; }
         }
     }

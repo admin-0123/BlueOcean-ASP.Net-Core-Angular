@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Virta.Api.DTO
 {
-    public class OrderIncoming
+    public class OrderUpsert
     {
         public int Id { get; set; }
         public decimal TotalPrice { get; set; }

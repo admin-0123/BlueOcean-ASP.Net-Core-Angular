@@ -92,11 +92,43 @@ namespace Virta.Helpers
 
 
 
+            /* From Order Entity */
+            CreateMap<Order, OrderOutgoing>()
+                .ForMember(
+                    dest => dest.UserId,
+                    opt => opt.MapFrom(
+                        src => src.User.Id
+                    )
+                )
+                .ForMember(
+                    dest => dest.Products,
+                    opt => opt.MapFrom(
+                        src => src.OrderProduct
+                    )
+                );
+
+            CreateMap<OrderProduct, OrderOutgoing.OrderProduct>()
+                .ForMember(
+                    dest => dest.OrderPrice,
+                    opt => opt.MapFrom(
+                        src => src.Price
+                    )
+                );
+
+            /* TO Product Upsert */
+            CreateMap<OrderIncoming, OrderUpsert>();
+            CreateMap<OrderIncoming.OrderProduct, OrderUpsert.OrderProduct>();
+
             /* Self */
             CreateMap<Product, Product>()
-                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Category, Category>()
-                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Order, Order>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }

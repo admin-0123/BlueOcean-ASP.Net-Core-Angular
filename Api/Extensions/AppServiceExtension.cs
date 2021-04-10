@@ -35,6 +35,7 @@ namespace Virta.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoriesService, CategoriesService>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             return services;
