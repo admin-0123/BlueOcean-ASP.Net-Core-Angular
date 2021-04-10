@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "VirtaApi": {
+    "Virta": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

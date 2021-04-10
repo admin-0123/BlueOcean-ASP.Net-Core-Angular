@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Virta.Extensions;
 
-namespace VirtaApi
+namespace Virta
 {
     public class Startup
     {

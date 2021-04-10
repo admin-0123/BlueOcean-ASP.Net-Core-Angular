@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace VirtaApi.Models.DTO
+namespace Virta.Api.Models.DTO
 {
     public class OrderPLP
     {
