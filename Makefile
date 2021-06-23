@@ -1,4 +1,4 @@
-BE:=./Api
+BE:=./Backend
 FE:=./Frontend
 
 include .env
@@ -16,17 +16,10 @@ check:
 certs:
 	dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p ${ASPNETCORE_Kestrel__Certificates__Default__Password}
 
-#Setup
-setup: install build-fe docker
-
-docker:
+#Docker main
+build:
 	docker-compose up --build --remove-orphans
 
-install:
-	cd ${BE} && dotnet build
-	cd ${FE} && npm install
-
-#Docker
 up:
 	docker-compose up -d
 
@@ -39,20 +32,15 @@ down:
 rebuild:
 	docker-compose up -d --force-recreate --renew-anon-volumes --build
 
-#Watch
-watch: ; ${MAKE} -j2 watch-be watch-fe
+#Docker elastic stack
+up-elastic:
+	docker-compose up -f docker-compose.elastic.yaml -d
 
-watch-be:
-	cd ${BE} && dotnet watch run
+stop-elastic:
+	docker-compose stop -f docker-compose.elastic.yaml
 
-watch-fe:
-	cd ${FE} && ng serve --watch
+down-elastic:
+	docker-compose down -f docker-compose.elastic.yaml --remove-orphans
 
-#Build
-build: build-be build-fe
-
-build-be:
-	cd ${BE} && dotnet build
-
-build-fe:
-	cd ${FE} && ng build
+rebuild-elastic:
+	docker-compose up -f docker-compose.elastic.yaml -d --force-recreate --renew-anon-volumes --build

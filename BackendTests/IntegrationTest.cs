@@ -11,6 +11,11 @@ namespace Virta.Tests
         {
             var appFactory = new WebApplicationFactory<Startup>();
 
+            // _factory = new WebApplicationFactory<Startup>()
+            //     .WithWebHostBuilder(builder =>
+            //         builder.UseSetting("https_port", "5001").UseEnvironment("Testing")
+            //     );
+
             _client = appFactory.CreateClient();
         }
     }

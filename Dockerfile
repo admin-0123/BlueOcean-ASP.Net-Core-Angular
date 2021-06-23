@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app
 
-COPY ./Api/*.csproj ./
+COPY ./Backend/*.csproj ./
 RUN dotnet restore
 
-COPY ./Api/. ./
+COPY ./Backend/. ./
 
 RUN dotnet publish -o out
 
