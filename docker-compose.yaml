@@ -38,7 +38,7 @@ services:
       - default
 
   adminer:
-    image: adminer
+    image: adminer:${ADMINER_VERSION}
     container_name: virta_adminer
     restart: on-failure:5
     ports:
@@ -62,7 +62,7 @@ services:
       - default
 
   mongo-express:
-    image: mongo-express
+    image: mongo-express:${MONGO_EXPRESS_VERSION}
     container_name: virta_mongo-express
     restart: on-failure:5
     env_file:
@@ -124,6 +124,18 @@ services:
       - ${RABBITMQ_MANAGMENT_PORT}
     networks:
       - default
+
+  node:
+    build:
+      context: ./
+      dockerfile: ./build/node/Dockerfile
+      args:
+        NODE_VERSION: ${NODE_VERSION}
+    container_name: virta_node
+    volumes:
+      - ./Node:/app
+    ports:
+      - ${NODE_PORT_HOST}:${NODE_PORT}
 
 volumes:
   app-data:
