@@ -114,7 +114,7 @@ namespace Virta.Api.Controllers
                 product.Categories.ForEach(
                     c => categories.Add(
                         new Category {
-                            Value = c.Value,
+                            Name = c.Value,
                             Title = textInfo.ToTitleCase(c.Value)
                         }
                     )
@@ -130,7 +130,7 @@ namespace Virta.Api.Controllers
                         Description = product.Description,
                         Attributes = attributes,
                         Categories = categories,
-                        Images = JsonSerializer.Serialize(product.Images)
+                        // Images = JsonSerializer.Serialize(product.Images)
                     }
                 );
             }
@@ -157,7 +157,7 @@ namespace Virta.Api.Controllers
 
                 foreach (var category in product.Categories)
                 {
-                    newCategories.Add(await _categoriesRepo.GetCategory(category.Value));
+                    newCategories.Add(await _categoriesRepo.GetCategory(category.Name));
                 }
 
                 newProduct.Categories = newCategories;

@@ -53,7 +53,7 @@ namespace Virta.Services
 
             foreach (var category in product.Categories)
             {
-                newCategories.Add(await _categoriesRepo.GetCategory(category.Value));
+                newCategories.Add(await _categoriesRepo.GetCategory(category.Name));
             }
 
             product.Categories = newCategories;

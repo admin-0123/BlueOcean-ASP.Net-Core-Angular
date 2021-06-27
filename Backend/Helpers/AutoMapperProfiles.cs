@@ -26,28 +26,28 @@ namespace Virta.Helpers
 
 
             /* From Product Entity */
-            CreateMap<Product, ProductPDP>()
-                .ForMember(
-                    dest => dest.Images,
-                    opt => opt.MapFrom(
-                        src => JsonConvert.DeserializeObject<List<string>>(src.Images)
-                    ));
+            // CreateMap<Product, ProductPDP>()
+            //     .ForMember(
+            //         dest => dest.Images,
+            //         opt => opt.MapFrom(
+            //             src => JsonConvert.DeserializeObject<List<string>>(src.Images)
+            //         ));
 
-            CreateMap<Product, ProductPLP>()
-                .ForMember(
-                    dest => dest.Images,
-                    opt => opt.MapFrom(
-                        src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
-                    )
-                );
+            // CreateMap<Product, ProductPLP>()
+            //     .ForMember(
+            //         dest => dest.Images,
+            //         opt => opt.MapFrom(
+            //             src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
+            //         )
+            //     );
 
-            CreateMap<Product, ProductPLPVM>()
-                .ForMember(
-                    dest => dest.Images,
-                    opt => opt.MapFrom(
-                        src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
-                    )
-                );
+            // CreateMap<Product, ProductPLPVM>()
+            //     .ForMember(
+            //         dest => dest.Images,
+            //         opt => opt.MapFrom(
+            //             src => JsonConvert.DeserializeObject<List<string>>(src.Images).Take(1)
+            //         )
+            //     );
 
             CreateMap<Product, ProductUpsertVM>();
 

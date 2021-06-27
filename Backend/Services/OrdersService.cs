@@ -52,7 +52,7 @@ namespace Virta.Services
                 return false;
 
             var orderToSave = new Order {
-                TotalPrice = order.TotalPrice,
+                ShippingCost = order.ShippingCost,
                 User = user,
                 OrderProduct = orderProducts
             };

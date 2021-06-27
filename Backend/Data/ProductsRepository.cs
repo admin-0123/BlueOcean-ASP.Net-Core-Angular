@@ -29,7 +29,7 @@ namespace Virta.Data
 
         public async Task<List<Product>> GetProducts(List<string> categories)
         {
-            return await _context.Products.Where(p => p.Categories.Where(c => categories.Contains(c.Value)).Any()).ToListAsync();
+            return await _context.Products.Where(p => p.Categories.Where(c => categories.Contains(c.Name)).Any()).ToListAsync();
         }
     }
 }

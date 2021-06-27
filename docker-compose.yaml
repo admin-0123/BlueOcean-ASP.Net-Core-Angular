@@ -22,27 +22,29 @@ services:
   #CONTROL PANEL
   #BACKEND
 
-  mysql:
-    image: mysql:${MYSQL_VERSION}
-    container_name: virta_mysql
+  postgres:
+    image: postgres:${POSTGRES_VERSION}
+    container_name: virta_postgres
     restart: on-failure:5
     env_file:
       - .env
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
     ports:
-      - ${MYSQL_PORT_HOST}:${MYSQL_PORT}
+      - ${POSTGRES_PORT_HOST}:${POSTGRES_PORT}
     expose:
-      - ${MYSQL_PORT}
+      - ${POSTGRES_PORT}
     networks:
       - default
 
-  adminer:
-    image: adminer:${ADMINER_VERSION}
-    container_name: virta_adminer
+  pgadmin:
+    image: dpage/pgadmin4:${PGADMIN_VERSION}
+    container_name: virta_pgadmin
     restart: on-failure:5
+    env_file:
+      - .env
     ports:
-      - ${ADMINER_PORT_HOST}:${ADMINER_PORT}
+      - ${PGADMIN_PORT_HOST}:${PGADMIN_PORT}
     networks:
       - default
 
@@ -140,7 +142,7 @@ services:
 volumes:
   app-data:
   media-data:
-  mysql-data:
+  postgres-data:
   mongo-data:
   redis-data:
 

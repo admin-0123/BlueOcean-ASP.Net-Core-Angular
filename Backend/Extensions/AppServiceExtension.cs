@@ -16,17 +16,12 @@ namespace Virta.Extensions
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString("MySql");
-
             services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("MongoDb")));
 
             services.AddDbContext<DataContext>(
                 options => {
                     options.UseLazyLoadingProxies();
-                    options.UseMySql(
-                        connectionString,
-                        ServerVersion.AutoDetect(connectionString)
-                    );
+                    options.UseNpgsql(configuration.GetConnectionString("PostgreSql"));
                 }
             );
 

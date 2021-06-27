@@ -37,7 +37,7 @@ namespace Virta.Data
 
         public async Task<Category> GetCategory(string category)
         {
-            return await _context.Categories.FirstAsync(c => c.Value == category);
+            return await _context.Categories.FirstAsync(c => c.Name == category);
         }
 
         public async Task<Category> GetCategory(int id)

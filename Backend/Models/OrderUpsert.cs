@@ -6,7 +6,7 @@ namespace Virta.Api.DTO
     public class OrderUpsert
     {
         public int Id { get; set; }
-        public decimal TotalPrice { get; set; }
+        public decimal ShippingCost { get; set; }
         public List<OrderProduct> Products { get; set; }
         public string UserEmail { get; set; }
 

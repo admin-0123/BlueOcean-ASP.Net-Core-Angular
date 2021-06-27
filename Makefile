@@ -30,17 +30,17 @@ down:
 	docker-compose down --remove-orphans
 
 rebuild:
-	docker-compose up -d --force-recreate --renew-anon-volumes --build
+	docker-compose up -d --force-recreate --build
 
-#Docker elastic stack
-up-elastic:
-	docker-compose up -f docker-compose.elastic.yaml -d
+# #Docker elastic stack
+# up-elastic:
+# 	docker-compose up -f docker-compose.elastic.yaml -d
 
-stop-elastic:
-	docker-compose stop -f docker-compose.elastic.yaml
+# stop-elastic:
+# 	docker-compose stop -f docker-compose.elastic.yaml
 
-down-elastic:
-	docker-compose down -f docker-compose.elastic.yaml --remove-orphans
+# down-elastic:
+# 	docker-compose down -f docker-compose.elastic.yaml --remove-orphans
 
-rebuild-elastic:
-	docker-compose up -f docker-compose.elastic.yaml -d --force-recreate --renew-anon-volumes --build
+# rebuild-elastic:
+# 	docker-compose up -f docker-compose.elastic.yaml -d --force-recreate --build
