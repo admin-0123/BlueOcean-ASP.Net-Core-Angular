@@ -70,7 +70,7 @@ services:
   #   container_name: virta_nginx
   #   restart: on-failure:30
   #   volumes:
-  #     - ./build/configs/nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #     - ./build/nginx/default.conf:/etc/nginx/conf.d/default.conf
   #     - app-data:/var/www/public
   #     - media-data:/var/www/public/pub/media
   #   env_file:
@@ -89,9 +89,8 @@ services:
     restart: on-failure:30
     hostname: my-rabbit
     volumes:
-      - ./build/configs/rabbitmq/etc/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
-      - ./build/configs/rabbitmq/data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
-      - ./build/configs/rabbitmq/logs:/var/log/rabbitmq/log
+      - ./build/rabbitmq/data:/var/lib/rabbitmq/mnesia/rabbit@my-rabbit
+      - ./build/rabbitmq/logs:/var/log/rabbitmq/log
     env_file:
       - .env
     ports:

@@ -19,7 +19,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      - elastic
+      - default
 
   es02:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.2
@@ -38,7 +38,7 @@ services:
     volumes:
       - data02:/usr/share/elasticsearch/data
     networks:
-      - elastic
+      - default
 
   es03:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.13.2
@@ -57,7 +57,7 @@ services:
     volumes:
       - data03:/usr/share/elasticsearch/data
     networks:
-      - elastic
+      - default
 
   kib01:
     image: docker.elastic.co/kibana/kibana:7.13.2
@@ -68,7 +68,7 @@ services:
       ELASTICSEARCH_URL: http://es01:9200
       ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
     networks:
-      - elastic
+      - default
 
 volumes:
   data01:
@@ -79,5 +79,5 @@ volumes:
     driver: local
 
 networks:
-  elastic:
+  default:
     driver: bridge

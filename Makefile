@@ -18,29 +18,16 @@ certs:
 
 #Docker main
 build:
-	docker-compose up --build --remove-orphans
+	docker-compose -f docker-compose.yml -f docker-compose.elastic.yml up --build --remove-orphans
 
 up:
-	docker-compose up -d
+	docker-compose -f docker-compose.yml -f docker-compose.elastic.yml up -d
 
 stop:
-	docker-compose stop
+	docker-compose -f docker-compose.yml -f docker-compose.elastic.yml stop
 
 down:
-	docker-compose down --remove-orphans
+	docker-compose -f docker-compose.yml -f docker-compose.elastic.yml down --remove-orphans
 
 rebuild:
-	docker-compose up -d --force-recreate --build
-
-# #Docker elastic stack
-# up-elastic:
-# 	docker-compose up -f docker-compose.elastic.yaml -d
-
-# stop-elastic:
-# 	docker-compose stop -f docker-compose.elastic.yaml
-
-# down-elastic:
-# 	docker-compose down -f docker-compose.elastic.yaml --remove-orphans
-
-# rebuild-elastic:
-# 	docker-compose up -f docker-compose.elastic.yaml -d --force-recreate --build
+	docker-compose -f docker-compose.yml -f docker-compose.elastic.yml up -d --force-recreate --build
