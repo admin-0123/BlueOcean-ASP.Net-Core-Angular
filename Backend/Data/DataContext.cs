@@ -66,11 +66,6 @@ namespace Virta.Data
 
             // Product Attributes
             builder.Entity<ProductAttributes>()
-                .HasOne(p => p.Product)
-                .WithMany(p => p.Attributes)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<ProductAttributes>()
                 .HasIndex(p => p.Name);
 
             builder.Entity<ProductAttributes>()

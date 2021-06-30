@@ -25,27 +25,25 @@ namespace Virta.Entities
         [Required]
         public bool Active { get; set; }
         public virtual ICollection<Product> AssociatedProducts { get; set; }
+        public virtual ICollection<ProductAttributes> Attributes { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
-        public virtual ICollection<ProductAttributes> Attributes { get; set; }
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
 
 
         public enum ProductTypes
         {
             Simple, // AssociatedProducts => NULL
             Bundle, // AssociatedProducts => Bundled products
-            Configurable , // AssociatedProducts => Product variations
+            Configurable  // AssociatedProducts => Product variations
         }
 
         public enum ProductVisibility
         {
             Invisible, // Invisible
             PDP, // Only PDP
-            PLP, // PDP & PLP
+            PLP // PDP & PLP
         }
     }
 }

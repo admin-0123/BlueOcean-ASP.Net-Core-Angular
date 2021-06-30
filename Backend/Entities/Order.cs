@@ -18,7 +18,6 @@ namespace Virta.Entities
         public virtual Address Address { get; set; }
 
         public DateTime CreatedAt { get; set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; set; }
     }
 }

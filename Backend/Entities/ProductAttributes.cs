@@ -14,8 +14,5 @@ namespace Virta.Entities
         public int Priority { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
-        [Required]
-        public virtual Product Product { get; set; }
     }
 }
