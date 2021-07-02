@@ -14,7 +14,7 @@ namespace Virta.Helpers
     {
         public AutoMapperProfiles()
         {
-            /* To User Entity */
+            /* User */
             CreateMap<UserToRegister, User>()
                 .ForMember(
                     dest => dest.UserName,
@@ -24,10 +24,31 @@ namespace Virta.Helpers
                 );
 
 
+
             /* Attribute */
-            CreateMap<AttributeUpsert, Attribute>();
-            CreateMap<AttributeDTO, AttributeUpsert>();
             CreateMap<Attribute, AttributeDTO>();
+            CreateMap<AttributeDTO, AttributeUpsert>();
+            CreateMap<AttributeUpsert, Attribute>();
+
+
+
+            /* Category */
+            CreateMap<Category, CategoryDTO>();
+            CreateMap<CategoryDTO, CategoryUpsert>();
+            CreateMap<CategoryUpsert, Category>();
+
+            CreateMap<Category, Virta.MVC.ViewModels.CategoryVM>();
+            CreateMap<Category, SelectListItem>()
+                .ForMember(
+                    dest => dest.Text,
+                    opt => opt.MapFrom(
+                        src => src.Title
+                    )
+                );
+
+
+
+
 
 
 
@@ -78,23 +99,7 @@ namespace Virta.Helpers
 
 
 
-            /* From Category Entity */
-            CreateMap<Category, CategoryDTO>();
-            CreateMap<Category, Virta.MVC.ViewModels.CategoryVM>();
-            CreateMap<Category, SelectListItem>()
-                .ForMember(
-                    dest => dest.Text,
-                    opt => opt.MapFrom(
-                        src => src.Title
-                    )
-                );
 
-            /* To Category Entity */
-            CreateMap<CategoryDTO, Category>();
-            CreateMap<CategoryUpsert, Category>();
-
-            /* To Category Upsert */
-            CreateMap<CategoryDTO, CategoryUpsert>();
 
 
 
@@ -124,6 +129,15 @@ namespace Virta.Helpers
             /* TO Product Upsert */
             CreateMap<OrderIncoming, OrderUpsert>();
             CreateMap<OrderIncoming.OrderProduct, OrderUpsert.OrderProduct>();
+
+
+
+
+
+
+
+
+
 
             /* Self */
             CreateMap<Product, Product>()

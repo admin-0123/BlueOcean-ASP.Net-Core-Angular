@@ -15,26 +15,6 @@ namespace Virta.Data
             _context = context;
         }
 
-        public async Task<List<Category>> GetCategories()
-        {
-            return await _context.Categories.ToListAsync();
-        }
-
-        public async Task<List<Category>> GetCategories(string[] categoryTitles)
-        {
-             return await _context.Categories.Where(c => categoryTitles.Contains(c.Title)).ToListAsync();
-        }
-
-        public async Task<List<Category>> GetCategoriesAC(string category = "")
-        {
-            return await GetCategoriesAC(category, 10);
-        }
-
-        public async Task<List<Category>> GetCategoriesAC(string category = "", int amount = 10)
-        {
-            return await _context.Categories.Where(c => c.Title.StartsWith(category)).OrderBy(c => c.Title).Take(amount).ToListAsync();
-        }
-
         public async Task<Category> GetCategory(string category)
         {
             return await _context.Categories.FirstAsync(c => c.Name == category);
@@ -43,6 +23,14 @@ namespace Virta.Data
         public async Task<Category> GetCategory(int id)
         {
             return await _context.Categories.FindAsync(id);
+        }
+
+        public async Task<List<Category>> GetCategories(string order = "ASC", int amount = 10)
+        {
+            if(order == "ASC")
+                return await _context.Categories.OrderBy(a => a.Name).Take(amount).ToListAsync();
+
+            return await _context.Categories.OrderByDescending(a => a.Name).Take(amount).ToListAsync();
         }
     }
 }

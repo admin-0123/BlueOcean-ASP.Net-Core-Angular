@@ -15,24 +15,31 @@ namespace Virta.Api.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ICategoriesRepository _categoriesRepo;
+        private readonly ICategoriesRepository _categoriesRepository;
         private readonly ICategoriesService _categoriesService;
 
         public CategoriesController(
             IMapper mapper,
-            ICategoriesRepository categoriesRepo,
+            ICategoriesRepository categoriesRepository,
             ICategoriesService categoriesService
         )
         {
-            _categoriesRepo = categoriesRepo;
+            _categoriesRepository = categoriesRepository;
             _categoriesService = categoriesService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Get()
         {
-            return Ok("Categories");
+            var categories = await _categoriesRepository.GetCategories();
+
+            if (categories == null)
+                return BadRequest();
+
+            var response = _mapper.Map<IEnumerable<CategoryDTO>>(categories);
+
+            return Ok(response);
         }
 
         [HttpPost]
@@ -46,18 +53,15 @@ namespace Virta.Api.Controllers
         }
 
         [HttpGet("seed")]
-        public async Task<IActionResult> SeedCategoriesFromJson()
+        public async Task<IActionResult> Seed()
         {
             var categoriesRaw = await System.IO.File.ReadAllTextAsync("bsData/categories.json");
-            var categories = JsonSerializer.Deserialize<List<CategoryUpsert>>(categoriesRaw);
-
-            if (categories == null)
-                return Ok("False");
+            var categories = JsonSerializer.Deserialize<IEnumerable<CategoryUpsert>>(categoriesRaw);
 
             foreach (var category in categories)
                 await _categoriesService.UpsertCategory(category);
 
-            return Ok("True");
+            return Ok();
         }
     }
 }

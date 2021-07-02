@@ -29,14 +29,14 @@ namespace Virta.Api.Controllers
             return Ok("True");
         }
 
-        [HttpGet("categories/{category}")]
-        public async Task<IActionResult> Get(string category)
-        {
-            var categories = await _categoriesRepository.GetCategoriesAC(category);
+        // [HttpGet("categories/{category}")]
+        // public async Task<IActionResult> Get(string category)
+        // {
+        //     var categories = await _categoriesRepository.GetCategoriesAC(category);
 
-            var response = _mapper.Map<List<CategoryDTO>>(categories);
+        //     var response = _mapper.Map<List<CategoryDTO>>(categories);
 
-            return Ok(response);
-        }
+        //     return Ok(response);
+        // }
     }
 }
