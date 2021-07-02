@@ -39,8 +39,8 @@ namespace Virta.Api.Controllers
         public async Task<IActionResult> Upset(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<CategoryUpsert>(categoryDTO);
-            if(await _categoriesService.UpsertCategory(category))
-                return Ok("Categories");
+            if (await _categoriesService.UpsertCategory(category))
+                return Ok();
 
             return BadRequest();
         }

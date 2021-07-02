@@ -24,8 +24,10 @@ namespace Virta.Helpers
                 );
 
 
-            /* To Attribute Entity */
+            /* Attribute */
             CreateMap<AttributeUpsert, Attribute>();
+            CreateMap<AttributeDTO, AttributeUpsert>();
+            CreateMap<Attribute, AttributeDTO>();
 
 
 

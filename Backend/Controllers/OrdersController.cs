@@ -37,7 +37,7 @@ namespace Virta.Api.Controllers
         {
             var ordersFromDb = await _ordersRepo.GetOrders();
 
-            if(ordersFromDb == null)
+            if (ordersFromDb == null)
                 return Ok("False");
 
             var response = _mapper.Map<IEnumerable<OrderOutgoing>>(ordersFromDb);
@@ -50,7 +50,7 @@ namespace Virta.Api.Controllers
         {
             var ordersFromDb = await _ordersRepo.GetOrder(id);
 
-            if(ordersFromDb == null)
+            if (ordersFromDb == null)
                 return Ok("False");
 
             var response = _mapper.Map<OrderOutgoing>(ordersFromDb);
@@ -63,7 +63,7 @@ namespace Virta.Api.Controllers
         {
             var order = _mapper.Map<OrderUpsert>(orderIncoming);
 
-            if(await _orderService.UpsertOrder(order))
+            if (await _orderService.UpsertOrder(order))
                 return Ok();
 
             return BadRequest();

@@ -91,15 +91,17 @@ namespace Virta.Api.Controllers
             if (!await _roleManager.RoleExistsAsync("Admin"))
             {
                 await _roleManager.CreateAsync(
-                        new Role {
+                        new Role
+                        {
                             Name = "Admin"
                         }
                     );
 
-                var admin = new User {
-                        UserName = "admin@admin.com",
-                        Email = "admin@admin.com"
-                    };
+                var admin = new User
+                {
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com"
+                };
 
                 IdentityResult User = await _userManager.CreateAsync(admin, "password");
 

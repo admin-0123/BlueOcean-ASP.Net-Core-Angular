@@ -39,7 +39,7 @@ namespace Virta.Api.Controllers
         {
             var products = await _repo.GetProducts();
 
-            if(products == null)
+            if (products == null)
                 return Ok("False");
 
             var response = _mapper.Map<IEnumerable<ProductPLP>>(products);
@@ -49,11 +49,11 @@ namespace Virta.Api.Controllers
         }
 
         [HttpGet("categories")]
-        public async Task<IActionResult> GetProducts([FromQuery(Name="category")] List<string> categories)
+        public async Task<IActionResult> GetProducts([FromQuery(Name = "category")] List<string> categories)
         {
             var products = await _repo.GetProducts(categories);
 
-            if(products == null)
+            if (products == null)
                 return Ok("False");
 
             var response = _mapper.Map<IEnumerable<ProductPLP>>(products);
@@ -67,7 +67,7 @@ namespace Virta.Api.Controllers
         {
             var product = await _repo.GetProduct(id);
 
-            if(product == null)
+            if (product == null)
                 return Ok("False");
 
             var response = _mapper.Map<ProductPDP>(product);
@@ -80,92 +80,92 @@ namespace Virta.Api.Controllers
         {
             var product = _mapper.Map<ProductUpsert>(productPDP);
 
-            if(await _productService.UpsertProduct(product))
+            if (await _productService.UpsertProduct(product))
                 return Ok();
 
             return BadRequest();
         }
 
-        [HttpGet("seed")]
-        public async Task<IActionResult> Seed()
-        {
-            var productData = await System.IO.File.ReadAllTextAsync("bsData/products.json");
-            var products = JsonSerializer.Deserialize<List<ProductJson>>(productData);
+        // [HttpGet("seed")]
+        // public async Task<IActionResult> Seed()
+        // {
+        //     var productData = await System.IO.File.ReadAllTextAsync("bsData/products.json");
+        //     var products = JsonSerializer.Deserialize<List<ProductJson>>(productData);
 
-            if (products == null)
-                return Ok("Null");
+        //     if (products == null)
+        //         return Ok("Null");
 
-            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-            var productsToSave = new List<Product>();
+        //     TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+        //     var productsToSave = new List<Product>();
 
-            foreach (var product in products)
-            {
-                // var attributes = new List<ProductAttributes>();
-                // product.Attributes.ForEach(
-                //     a => attributes.Add(
-                //         new ProductAttributes {
-                //             Name = a.Name,
-                //             Value = a.Value
-                //         }
-                //     )
-                // );
+        //     foreach (var product in products)
+        //     {
+        //         // var attributes = new List<ProductAttributes>();
+        //         // product.Attributes.ForEach(
+        //         //     a => attributes.Add(
+        //         //         new ProductAttributes {
+        //         //             Name = a.Name,
+        //         //             Value = a.Value
+        //         //         }
+        //         //     )
+        //         // );
 
-                var categories = new List<Category>();
-                product.Categories.ForEach(
-                    c => categories.Add(
-                        new Category {
-                            Name = c.Value,
-                            Title = textInfo.ToTitleCase(c.Value)
-                        }
-                    )
-                );
+        //         var categories = new List<Category>();
+        //         product.Categories.ForEach(
+        //             c => categories.Add(
+        //                 new Category {
+        //                     Name = c.Value,
+        //                     Title = textInfo.ToTitleCase(c.Value)
+        //                 }
+        //             )
+        //         );
 
-                product.Id = Guid.NewGuid();
+        //         product.Id = Guid.NewGuid();
 
-                productsToSave.Add(
-                    new Product{
-                        Id = product.Id,
-                        Title = product.Title,
-                        Price = decimal.Parse(product.Price),
-                        Description = product.Description,
-                        // Attributes = attributes,
-                        Categories = categories,
-                        // Images = JsonSerializer.Serialize(product.Images)
-                    }
-                );
-            }
+        //         productsToSave.Add(
+        //             new Product{
+        //                 Id = product.Id,
+        //                 Title = product.Title,
+        //                 Price = decimal.Parse(product.Price),
+        //                 Description = product.Description,
+        //                 // Attributes = attributes,
+        //                 Categories = categories,
+        //                 // Images = JsonSerializer.Serialize(product.Images)
+        //             }
+        //         );
+        //     }
 
-            var l = await GetCategoriseSeed(productsToSave);
-            l.ForEach(
-                p => _repo.Add<Product>(p)
-            );
+        //     var l = await GetCategoriseSeed(productsToSave);
+        //     l.ForEach(
+        //         p => _repo.Add<Product>(p)
+        //     );
 
-            if(await _repo.SaveAll())
-                return Ok("True");
+        //     if(await _repo.SaveAll())
+        //         return Ok("True");
 
-            return Ok("False");
-        }
+        //     return Ok("False");
+        // }
 
-        private async Task<List<Product>> GetCategoriseSeed(List<Product> products)
-        {
-            var newProducts = new List<Product>();
+        // private async Task<List<Product>> GetCategoriseSeed(List<Product> products)
+        // {
+        //     var newProducts = new List<Product>();
 
-            foreach (var product in products)
-            {
-                var newProduct = product;
-                var newCategories = new List<Category>();
+        //     foreach (var product in products)
+        //     {
+        //         var newProduct = product;
+        //         var newCategories = new List<Category>();
 
-                foreach (var category in product.Categories)
-                {
-                    newCategories.Add(await _categoriesRepo.GetCategory(category.Name));
-                }
+        //         foreach (var category in product.Categories)
+        //         {
+        //             newCategories.Add(await _categoriesRepo.GetCategory(category.Name));
+        //         }
 
-                newProduct.Categories = newCategories;
-                newProducts.Add(newProduct);
-            }
+        //         newProduct.Categories = newCategories;
+        //         newProducts.Add(newProduct);
+        //     }
 
-            return newProducts;
-        }
+        //     return newProducts;
+        // }
 
         // [HttpGet("seedAttributes")]
         // public async Task<IActionResult> SeedAttributes()

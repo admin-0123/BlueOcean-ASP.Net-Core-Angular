@@ -17,7 +17,7 @@ using Virta.Services.Interfaces;
 namespace Virta.MVC.Controllers
 {
     [Route("Admin")]
-    [ApiExplorerSettings(IgnoreApi=true)]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class AdminController : Controller
     {
         public const string INCORRECT_CREDENTIALS = "Email or Password is Incorrect.";
@@ -46,7 +46,7 @@ namespace Virta.MVC.Controllers
             _categoriesRepo = categoriesRepo;
         }
 
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -70,17 +70,20 @@ namespace Virta.MVC.Controllers
             {
                 var user = await _userManager.FindByNameAsync(data.Email);
 
-                if (user == null){
+                if (user == null)
+                {
                     ViewBag.error = INCORRECT_CREDENTIALS;
                     return View("Index");
                 }
 
                 var result = await _signInManager.CheckPasswordSignInAsync(user, data.Password, false);
 
-                if (result.Succeeded) {
+                if (result.Succeeded)
+                {
                     var roles = await _userManager.GetRolesAsync(user);
                     var identity = new ClaimsIdentity(IdentityConstants.ApplicationScheme);
-                    if(roles.Count > 0) {
+                    if (roles.Count > 0)
+                    {
                         foreach (var r in roles)
                         {
                             identity.AddClaim(new Claim(ClaimTypes.Role, r));
@@ -118,7 +121,7 @@ namespace Virta.MVC.Controllers
 
             ViewBag.Categories = _mapper.Map<IEnumerable<SelectListItem>>(categories);
 
-            if(product == null)
+            if (product == null)
                 return RedirectToAction("Index");
 
             var res = _mapper.Map<ProductUpsertVM>(product);
@@ -142,7 +145,7 @@ namespace Virta.MVC.Controllers
         {
             var products = await _productRepo.GetProducts();
 
-            if(products == null)
+            if (products == null)
                 return null;
 
             return _mapper.Map<IEnumerable<ProductPLPVM>>(products);

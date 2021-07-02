@@ -1,6 +1,6 @@
 namespace Virta.Api.DTO
 {
-    public class CategoryDTO
+    public class AttributeDTO
     {
         public int? Id { get; set; }
         public string Name { get; set; }

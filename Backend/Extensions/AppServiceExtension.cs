@@ -16,7 +16,9 @@ namespace Virta.Extensions
     {
         public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(configuration.GetConnectionString("MongoDb")));
+            services.AddSingleton<IMongoClient, MongoClient>(
+                sp => new MongoClient(configuration.GetConnectionString("MongoDb"))
+            );
 
             services.AddDbContext<DataContext>(
                 options => {
@@ -28,11 +30,13 @@ namespace Virta.Extensions
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IAttributesRepository, AttributesRepository>();
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<IAttributesService, AttributesService>();
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
