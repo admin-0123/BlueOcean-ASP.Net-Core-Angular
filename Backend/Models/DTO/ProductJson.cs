@@ -10,7 +10,7 @@ namespace Virta.Api.DTO
         public string Price { get; set; }
         public string Description { get; set; }
         public List<ProductAttributesDTO> Attributes { get; set; }
-        public List<string> Images { get; set; }
+        // public List<string> Images { get; set; }
         public List<CategoryDTOJson> Categories { get; set; }
     }
 

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.Serialization;
 
 namespace Virta.Entities
 {
@@ -24,13 +22,13 @@ namespace Virta.Entities
         public ProductVisibility Visible { get; set; }
         [Required]
         public bool Active { get; set; }
+
         public virtual ICollection<Product> AssociatedProducts { get; set; }
-        public virtual ICollection<ProductAttributes> Attributes { get; set; }
+        public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-
 
         public enum ProductTypes
         {

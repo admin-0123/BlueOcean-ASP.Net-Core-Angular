@@ -1,6 +1,6 @@
 namespace Virta.Models
 {
-    public class CategoryUpsert
+    public class AttributeUpsert
     {
         public int Id { get; set; }
         public string Name { get; set; }

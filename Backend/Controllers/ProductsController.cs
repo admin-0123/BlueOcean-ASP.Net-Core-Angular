@@ -89,7 +89,7 @@ namespace Virta.Api.Controllers
         [HttpGet("seed")]
         public async Task<IActionResult> Seed()
         {
-            var productData = await System.IO.File.ReadAllTextAsync("productData.json");
+            var productData = await System.IO.File.ReadAllTextAsync("bsData/products.json");
             var products = JsonSerializer.Deserialize<List<ProductJson>>(productData);
 
             if (products == null)
@@ -100,15 +100,15 @@ namespace Virta.Api.Controllers
 
             foreach (var product in products)
             {
-                var attributes = new List<ProductAttributes>();
-                product.Attributes.ForEach(
-                    a => attributes.Add(
-                        new ProductAttributes {
-                            Name = a.Name,
-                            Value = a.Value
-                        }
-                    )
-                );
+                // var attributes = new List<ProductAttributes>();
+                // product.Attributes.ForEach(
+                //     a => attributes.Add(
+                //         new ProductAttributes {
+                //             Name = a.Name,
+                //             Value = a.Value
+                //         }
+                //     )
+                // );
 
                 var categories = new List<Category>();
                 product.Categories.ForEach(
@@ -128,7 +128,7 @@ namespace Virta.Api.Controllers
                         Title = product.Title,
                         Price = decimal.Parse(product.Price),
                         Description = product.Description,
-                        Attributes = attributes,
+                        // Attributes = attributes,
                         Categories = categories,
                         // Images = JsonSerializer.Serialize(product.Images)
                     }
@@ -166,5 +166,20 @@ namespace Virta.Api.Controllers
 
             return newProducts;
         }
+
+        // [HttpGet("seedAttributes")]
+        // public async Task<IActionResult> SeedAttributes()
+        // {
+        //     var attributesRaw = await System.IO.File.ReadAllTextAsync("bsData/attributes.json");
+        //     var attributes = JsonSerializer.Deserialize<List<ProductAttributesDTO>>(attributesRaw);
+
+        //     if (attributes == null)
+        //         return Ok("False");
+
+        //     foreach (var category in attributes)
+        //         await _attributesService.UpsertCategory(category);
+
+        //     return Ok("True");
+        // }
     }
 }

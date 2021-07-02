@@ -9,7 +9,8 @@ namespace Virta.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
 
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductAttributes> ProductAttributes { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
+        public DbSet<ProductAttribute> ProductAttributes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
@@ -25,6 +26,7 @@ namespace Virta.Data
                 .WithOne(a => a.User)
                 .OnDelete(DeleteBehavior.SetNull);
 
+
             // Category
             builder.Entity<Category>()
                 .HasIndex(c => c.Name)
@@ -33,6 +35,7 @@ namespace Virta.Data
             builder.Entity<Category>()
                 .HasIndex(c => c.Title)
                 .IsUnique();
+
 
             // Product
             builder.Entity<Product>()
@@ -64,18 +67,46 @@ namespace Virta.Data
                 .WithOne()
                 .OnDelete(DeleteBehavior.SetNull);
 
-            // Product Attributes
-            builder.Entity<ProductAttributes>()
-                .HasIndex(p => p.Name);
+            builder.Entity<Product>()
+                .HasMany(p => p.ProductAttributes)
+                .WithOne(p => p.Product)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Entity<ProductAttributes>()
+
+            // Product Attributes
+            builder.Entity<ProductAttribute>()
                 .Property(pa => pa.Priority)
                 .HasDefaultValue(0);
 
-            builder.Entity<ProductAttributes>()
+            builder.Entity<ProductAttribute>()
                 .Property(o => o.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsConcurrencyToken();
+
+
+            // Attributes
+            builder.Entity<Attribute>()
+                .HasIndex(a => a.Name)
+                .IsUnique();
+
+            builder.Entity<Attribute>()
+                .HasIndex(a => a.Title)
+                .IsUnique();
+
+            builder.Entity<Attribute>()
+                .HasMany(a => a.ProductAttributes)
+                .WithOne(a => a.Attribute)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Attribute>()
+                .Property(a => a.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            builder.Entity<Attribute>()
+                .Property(a  => a.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsConcurrencyToken();
+
 
             // Order
             builder.Entity<Order>()
@@ -96,6 +127,7 @@ namespace Virta.Data
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsConcurrencyToken();
 
+
             // Order Product
             builder.Entity<OrderProduct>()
                 .HasKey(op =>
@@ -110,6 +142,7 @@ namespace Virta.Data
             builder.Entity<OrderProduct>()
                 .Property(op => op.Quantity)
                 .HasDefaultValue(0);
+
 
             // Addresses
             builder.Entity<Address>()

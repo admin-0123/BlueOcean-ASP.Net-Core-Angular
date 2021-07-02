@@ -24,6 +24,10 @@ namespace Virta.Helpers
                 );
 
 
+            /* To Attribute Entity */
+            CreateMap<AttributeUpsert, Attribute>();
+
+
 
             /* From Product Entity */
             // CreateMap<Product, ProductPDP>()
@@ -52,7 +56,7 @@ namespace Virta.Helpers
             CreateMap<Product, ProductUpsertVM>();
 
             /* To Product Entity*/
-            CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();
+            // CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();
             CreateMap<ProductUpsert.Category, Category>();
             CreateMap<ProductUpsert, Product>();
 
@@ -67,8 +71,8 @@ namespace Virta.Helpers
             CreateMap<ProductUpsertVM, ProductUpsert>();
 
             /* From Product Attributes Entity */
-            CreateMap<ProductAttributes, ProductAttributesDTO>();
-            CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
+            // CreateMap<ProductAttributes, ProductAttributesDTO>();
+            // CreateMap<ProductAttributes, Virta.MVC.ViewModels.ProductAttributesVM>();
 
 
 
@@ -121,6 +125,9 @@ namespace Virta.Helpers
 
             /* Self */
             CreateMap<Product, Product>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<Attribute, Attribute>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
             CreateMap<Category, Category>()

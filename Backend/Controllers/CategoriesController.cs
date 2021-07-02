@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Virta.Api.DTO;
 using Virta.Data.Interfaces;
 using Virta.Models;
+using System.Text.Json;
+using System.Collections.Generic;
 
 namespace Virta.Api.Controllers
 {
@@ -41,6 +43,21 @@ namespace Virta.Api.Controllers
                 return Ok("Categories");
 
             return BadRequest();
+        }
+
+        [HttpGet("seed")]
+        public async Task<IActionResult> SeedCategoriesFromJson()
+        {
+            var categoriesRaw = await System.IO.File.ReadAllTextAsync("bsData/categories.json");
+            var categories = JsonSerializer.Deserialize<List<CategoryUpsert>>(categoriesRaw);
+
+            if (categories == null)
+                return Ok("False");
+
+            foreach (var category in categories)
+                await _categoriesService.UpsertCategory(category);
+
+            return Ok("True");
         }
     }
 }
