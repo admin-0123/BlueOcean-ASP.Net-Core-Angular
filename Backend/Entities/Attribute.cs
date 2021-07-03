@@ -15,7 +15,7 @@ namespace Virta.Entities
         [JsonIgnore]
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

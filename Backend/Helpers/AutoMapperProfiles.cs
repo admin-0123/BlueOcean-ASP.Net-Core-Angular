@@ -29,6 +29,7 @@ namespace Virta.Helpers
             CreateMap<Attribute, AttributeDTO>();
             CreateMap<AttributeDTO, AttributeUpsert>();
             CreateMap<AttributeUpsert, Attribute>();
+            CreateMap<AttributeDTO, Attribute>();
 
 
 
@@ -36,6 +37,7 @@ namespace Virta.Helpers
             CreateMap<Category, CategoryDTO>();
             CreateMap<CategoryDTO, CategoryUpsert>();
             CreateMap<CategoryUpsert, Category>();
+            CreateMap<CategoryDTO, Category>();
 
             CreateMap<Category, Virta.MVC.ViewModels.CategoryVM>();
             CreateMap<Category, SelectListItem>()
@@ -69,6 +71,9 @@ namespace Virta.Helpers
             CreateMap<ProductAttributesDTO, ProductAttributeUpsert>();
             CreateMap<ProductAttributeUpsert, ProductAttribute>();
 
+            /* Product Images*/
+            CreateMap<ProductImageDTO, ProductImageUpsert>();
+            CreateMap<ProductImageUpsert, ProductImage>();
 
 
 

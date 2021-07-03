@@ -10,6 +10,7 @@ namespace Virta.Api.DTO
         public string? Description { get; set; }
         public string? SKU { get; set; }
         public virtual List<ProductAttributesDTO>? ProductAttributes { get; set; }
+        public virtual List<ProductImageDTO>? Images { get; set; }
         public List<Guid>? AssociatedProducts { get; set; }
 #nullable disable
         public string Title { get; set; }

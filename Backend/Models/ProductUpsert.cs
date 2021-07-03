@@ -10,6 +10,7 @@ namespace Virta.Models
         public string? Description { get; set; }
         public string? SKU { get; set; }
         public List<ProductAttributeUpsert>? ProductAttributes { get; set; }
+        public virtual List<ProductImageUpsert>? Images { get; set; }
         public List<Guid>? AssociatedProducts { get; set; }
 #nullable disable
         public string Title { get; set; }

@@ -26,6 +26,7 @@ namespace Virta.Entities
         public virtual ICollection<Product> AssociatedProducts { get; set; }
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<ProductImage> Images { get; set; }
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

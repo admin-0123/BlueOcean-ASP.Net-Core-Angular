@@ -17,7 +17,7 @@ namespace Virta.Entities
         public virtual User User { get; set; }
         public virtual Address Address { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

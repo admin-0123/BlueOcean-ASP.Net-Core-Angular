@@ -11,6 +11,7 @@ namespace Virta.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
@@ -73,6 +74,11 @@ namespace Virta.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Product>()
+                .HasMany(p => p.Images)
+                .WithOne(p => p.Product)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Product>()
                 .Property(p => p.CreatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired();
@@ -95,6 +101,18 @@ namespace Virta.Data
                 .IsRequired()
                 .IsConcurrencyToken();
 
+
+
+            // Product Images
+            builder.Entity<ProductImage>()
+                .Property(pi => pi.Primary)
+                .HasDefaultValue(false);
+
+            builder.Entity<ProductImage>()
+                .Property(o => o.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
+                .IsConcurrencyToken();
 
             // Attributes
             builder.Entity<Attribute>()
