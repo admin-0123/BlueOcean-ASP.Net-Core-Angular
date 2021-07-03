@@ -21,11 +21,11 @@ namespace Virta.Services
             _categoriesRepository = categoriesRepository;
         }
 
-        public async Task<bool> UpsertCategory(CategoryUpsert category)
+        public async Task<bool> Upsert(CategoryUpsert category)
         {
             var categoryToSave = _mapper.Map<Category>(category);
 
-            if(category.Id != 0) {
+            if(categoryToSave.Id != 0) {
                 var categoryFromDb = await _categoriesRepository.GetCategory(categoryToSave.Id);
                 _mapper.Map<Category, Category>(categoryToSave, categoryFromDb);
                 _categoriesRepository.Update<Category>(categoryFromDb);

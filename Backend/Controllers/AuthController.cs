@@ -76,7 +76,7 @@ namespace Virta.Api.Controllers
 
         private IActionResult GetToken(User user)
         {
-            string token = _tokenService.CreateToken(user);
+            string token = _tokenService.Create(user);
 
             Dictionary<string, string> response = new Dictionary<string, string>();
 

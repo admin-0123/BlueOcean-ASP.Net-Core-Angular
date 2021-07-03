@@ -5,6 +5,6 @@ namespace Virta.Services.Interfaces
 {
     public interface IProductService
     {
-        Task<bool> UpsertProduct(ProductUpsert product);
+        Task<bool> Upsert(ProductUpsert product);
     }
 }

@@ -12,10 +12,10 @@ namespace Virta.Entities
         public string Title { get; set; }
         [Required]
         public decimal Price { get; set; }
-        #nullable enable
+#nullable enable
         public string? Description { get; set; }
         public string? SKU { get; set; }
-        #nullable disable
+#nullable disable
         [Required]
         public ProductTypes Type { get; set; }
         [Required]
@@ -27,8 +27,8 @@ namespace Virta.Entities
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public enum ProductTypes
         {

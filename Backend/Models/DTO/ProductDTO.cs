@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace Virta.Models
+namespace Virta.Api.DTO
 {
-    public class ProductUpsert
+    public class ProductDTO
     {
 #nullable enable
         public Guid? Id { get; set; }
         public string? Description { get; set; }
         public string? SKU { get; set; }
-        public List<ProductAttributeUpsert>? ProductAttributes { get; set; }
+        public virtual List<ProductAttributesDTO>? ProductAttributes { get; set; }
         public List<Guid>? AssociatedProducts { get; set; }
 #nullable disable
         public string Title { get; set; }

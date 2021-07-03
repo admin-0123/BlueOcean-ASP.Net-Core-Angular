@@ -8,7 +8,7 @@ namespace Virta.Entities
         public int Id { get; set; }
         [Required]
         public string Value { get; set; }
-        public string Priority { get; set; }
+        public int Priority { get; set; }
 
         public virtual Attribute Attribute { get; set; }
         public virtual Product Product { get; set; }

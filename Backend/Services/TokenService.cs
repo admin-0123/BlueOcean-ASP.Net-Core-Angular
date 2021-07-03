@@ -24,7 +24,7 @@ namespace Virta.Api.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
         }
 
-        public string CreateToken(User user)
+        public string Create(User user)
         {
             var claims = new List<Claim>
             {

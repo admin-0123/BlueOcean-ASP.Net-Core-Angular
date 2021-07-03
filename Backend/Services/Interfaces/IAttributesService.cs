@@ -5,6 +5,6 @@ namespace Virta.Services.Interfaces
 {
     public interface IAttributesService
     {
-        Task<bool> UpsertAttribute(AttributeUpsert attribute);
+        Task<bool> Upsert(AttributeUpsert attribute);
     }
 }

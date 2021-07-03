@@ -29,7 +29,7 @@ namespace Virta.Services
             _userManager = userManager;
         }
 
-        public async Task<bool> UpsertOrder(OrderUpsert order)
+        public async Task<bool> Upsert(OrderUpsert order)
         {
             var orderProducts = new List<OrderProduct>();
 

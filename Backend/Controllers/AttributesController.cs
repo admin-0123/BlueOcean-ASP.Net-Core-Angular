@@ -47,7 +47,7 @@ namespace Virta.Api.Controllers
         {
             var attribute = _mapper.Map<AttributeUpsert>(attributeDTO);
 
-            if (await _attributesService.UpsertAttribute(attribute))
+            if (await _attributesService.Upsert(attribute))
                 return Ok();
 
             return BadRequest();

@@ -135,7 +135,7 @@ namespace Virta.MVC.Controllers
         {
             var product = _mapper.Map<ProductUpsert>(productVM);
 
-            if (await _productService.UpsertProduct(product))
+            if (await _productService.Upsert(product))
                 return RedirectToAction("Index");
 
             return RedirectToAction("GetProduct");

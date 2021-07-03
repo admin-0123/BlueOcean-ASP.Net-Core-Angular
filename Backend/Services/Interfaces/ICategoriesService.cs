@@ -5,6 +5,6 @@ namespace Virta.Services.Interfaces
 {
     public interface ICategoriesService
     {
-        Task<bool> UpsertCategory(CategoryUpsert category);
+        Task<bool> Upsert(CategoryUpsert category);
     }
 }

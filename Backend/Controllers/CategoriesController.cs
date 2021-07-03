@@ -46,7 +46,7 @@ namespace Virta.Api.Controllers
         public async Task<IActionResult> Upset(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<CategoryUpsert>(categoryDTO);
-            if (await _categoriesService.UpsertCategory(category))
+            if (await _categoriesService.Upsert(category))
                 return Ok();
 
             return BadRequest();
@@ -55,11 +55,11 @@ namespace Virta.Api.Controllers
         [HttpGet("seed")]
         public async Task<IActionResult> Seed()
         {
-            var categoriesRaw = await System.IO.File.ReadAllTextAsync("bsData/categories.json");
-            var categories = JsonSerializer.Deserialize<IEnumerable<CategoryUpsert>>(categoriesRaw);
+            var rawData = await System.IO.File.ReadAllTextAsync("bsData/categories.json");
+            var categories = JsonSerializer.Deserialize<IEnumerable<CategoryDTO>>(rawData);
 
             foreach (var category in categories)
-                await _categoriesService.UpsertCategory(category);
+                await Upset(category);
 
             return Ok();
         }

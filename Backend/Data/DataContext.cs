@@ -72,6 +72,17 @@ namespace Virta.Data
                 .WithOne(p => p.Product)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<Product>()
+                .Property(p => p.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
+
+            builder.Entity<Product>()
+                .Property(p => p.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
+                .IsConcurrencyToken();
+
 
             // Product Attributes
             builder.Entity<ProductAttribute>()
@@ -81,6 +92,7 @@ namespace Virta.Data
             builder.Entity<ProductAttribute>()
                 .Property(o => o.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
                 .IsConcurrencyToken();
 
 
@@ -100,11 +112,13 @@ namespace Virta.Data
 
             builder.Entity<Attribute>()
                 .Property(a => a.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
 
             builder.Entity<Attribute>()
                 .Property(a  => a.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
                 .IsConcurrencyToken();
 
 
@@ -120,11 +134,13 @@ namespace Virta.Data
 
             builder.Entity<Order>()
                 .Property(o => o.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
 
             builder.Entity<Order>()
                 .Property(o => o.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
                 .IsConcurrencyToken();
 
 
@@ -146,12 +162,23 @@ namespace Virta.Data
 
             // Addresses
             builder.Entity<Address>()
-                .Property(A => A.Country)
+                .Property(a => a.Country)
                 .HasDefaultValue("Georgia");
 
             builder.Entity<Address>()
-                .Property(A => A.Primary)
+                .Property(a => a.Primary)
                 .HasDefaultValue(false);
+
+            builder.Entity<Address>()
+                .Property(a => a.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired();
+
+            builder.Entity<Address>()
+                .Property(a => a.UpdatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .IsRequired()
+                .IsConcurrencyToken();
         }
     }
 }

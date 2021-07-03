@@ -47,6 +47,27 @@ namespace Virta.Helpers
                 );
 
 
+            /* Product */
+            CreateMap<ProductDTO, ProductUpsert>();
+            CreateMap<ProductUpsert, Product>();
+
+            CreateMap<string, Category>()
+                .ForMember(
+                    dest => dest.Name,
+                    opt => opt.MapFrom(src => src)
+                );
+
+            CreateMap<System.Guid, Product>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(src => src)
+                );
+
+
+            /* Product Attributes */
+            CreateMap<ProductAttributesDTO, ProductAttributeUpsert>();
+            CreateMap<ProductAttributeUpsert, ProductAttribute>();
+
 
 
 
@@ -76,22 +97,19 @@ namespace Virta.Helpers
             //         )
             //     );
 
-            CreateMap<Product, ProductUpsertVM>();
+            // CreateMap<Product, ProductUpsertVM>();
 
             /* To Product Entity*/
             // CreateMap<ProductUpsert.ProductAttributes, ProductAttributes>();
-            CreateMap<ProductUpsert.Category, Category>();
-            CreateMap<ProductUpsert, Product>();
-
-            /* TO Product Upsert */
-            //API
-            CreateMap<ProductAttributesDTO, ProductUpsert.ProductAttributes>();
-            CreateMap<CategoryDTO, ProductUpsert.Category>();
-            CreateMap<ProductPDP, ProductUpsert>();
-            //MVC
-            CreateMap<ProductAttributesVM, ProductUpsert.ProductAttributes>();
-            CreateMap<SelectListItem, ProductUpsert.Category>();
-            CreateMap<ProductUpsertVM, ProductUpsert>();
+            // CreateMap<ProductUpsert.Category, Category>();
+            // /* TO Product Upsert */
+            // //API
+            // CreateMap<CategoryDTO, ProductUpsert.Category>();
+            // CreateMap<ProductPDP, ProductUpsert>();
+            // //MVC
+            // CreateMap<ProductAttributesVM, ProductUpsert.ProductAttributes>();
+            // CreateMap<SelectListItem, ProductUpsert.Category>();
+            // CreateMap<ProductUpsertVM, ProductUpsert>();
 
             /* From Product Attributes Entity */
             // CreateMap<ProductAttributes, ProductAttributesDTO>();

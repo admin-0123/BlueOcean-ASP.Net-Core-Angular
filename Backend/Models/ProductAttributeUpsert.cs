@@ -1,11 +1,13 @@
-namespace Virta.Api.DTO
+using System;
+using System.Collections.Generic;
+
+namespace Virta.Models
 {
-    public class ProductAttributesDTO
+    public class ProductAttributeUpsert
     {
         public int? Id { get; set; }
         public string Name { get; set; }
         public string Value { get; set; }
         public int Priority { get; set; }
-
     }
 }

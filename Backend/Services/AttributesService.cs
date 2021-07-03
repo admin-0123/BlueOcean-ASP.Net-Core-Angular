@@ -21,7 +21,7 @@ namespace Virta.Services
             _attributesRepository = attributesRepository;
         }
 
-        public async Task<bool> UpsertAttribute(AttributeUpsert attribute)
+        public async Task<bool> Upsert(AttributeUpsert attribute)
         {
             var attributeToSave = _mapper.Map<Attribute>(attribute);
 
