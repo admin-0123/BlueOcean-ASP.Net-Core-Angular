@@ -21,7 +21,8 @@ namespace Virta.Extensions
             );
 
             services.AddDbContext<DataContext>(
-                options => {
+                options =>
+                {
                     options.UseLazyLoadingProxies();
                     options.UseNpgsql(configuration.GetConnectionString("PostgreSql"));
                 }

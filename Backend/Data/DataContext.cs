@@ -6,7 +6,7 @@ namespace Virta.Data
 {
     public class DataContext : IdentityDbContext<User, Role, string>
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options){}
+        public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
@@ -116,7 +116,7 @@ namespace Virta.Data
                 .IsRequired();
 
             builder.Entity<Attribute>()
-                .Property(a  => a.UpdatedAt)
+                .Property(a => a.UpdatedAt)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .IsRequired()
                 .IsConcurrencyToken();

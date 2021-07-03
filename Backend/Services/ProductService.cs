@@ -42,9 +42,12 @@ namespace Virta.Services
             if (product.AssociatedProducts.Count > 0)
                 productToSave.AssociatedProducts = await SetAssociatedProducts(product.AssociatedProducts);
 
-            if (productToSave.Id == Guid.Empty) {
+            if (productToSave.Id == Guid.Empty)
+            {
                 _productsRepository.Add<Product>(productToSave);
-            } else {
+            }
+            else
+            {
                 var productFromDb = await _productsRepository.GetProduct(productToSave.Id);
                 _mapper.Map<Product, Product>(productToSave, productFromDb);
                 _productsRepository.Update<Product>(productFromDb);

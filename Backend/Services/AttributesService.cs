@@ -25,11 +25,14 @@ namespace Virta.Services
         {
             var attributeToSave = _mapper.Map<Attribute>(attribute);
 
-            if (attributeToSave.Id != 0) {
+            if (attributeToSave.Id != 0)
+            {
                 var attributeFromDb = await _attributesRepository.GetAttribute(attributeToSave.Id);
                 _mapper.Map<Attribute, Attribute>(attributeToSave, attributeFromDb);
                 _attributesRepository.Update<Attribute>(attributeFromDb);
-            } else {
+            }
+            else
+            {
                 _attributesRepository.Add<Attribute>(attributeToSave);
             }
 

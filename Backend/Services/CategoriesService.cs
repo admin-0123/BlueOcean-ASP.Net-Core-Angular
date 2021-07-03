@@ -25,11 +25,14 @@ namespace Virta.Services
         {
             var categoryToSave = _mapper.Map<Category>(category);
 
-            if(categoryToSave.Id != 0) {
+            if (categoryToSave.Id != 0)
+            {
                 var categoryFromDb = await _categoriesRepository.GetCategory(categoryToSave.Id);
                 _mapper.Map<Category, Category>(categoryToSave, categoryFromDb);
                 _categoriesRepository.Update<Category>(categoryFromDb);
-            } else {
+            }
+            else
+            {
                 _categoriesRepository.Add<Category>(categoryToSave);
             }
 

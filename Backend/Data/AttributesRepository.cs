@@ -28,7 +28,7 @@ namespace Virta.Data
 
         public async Task<List<Attribute>> GetAttributes(string order = "ASC", int amount = 10)
         {
-            if(order == "ASC")
+            if (order == "ASC")
                 return await _context.Attributes.OrderBy(a => a.Name).Take(amount).ToListAsync();
 
             return await _context.Attributes.OrderByDescending(a => a.Name).Take(amount).ToListAsync();

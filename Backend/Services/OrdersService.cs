@@ -38,7 +38,8 @@ namespace Virta.Services
                 var productFromDb = await _productRepo.GetProduct(product.id);
 
                 orderProducts.Add(
-                    new OrderProduct {
+                    new OrderProduct
+                    {
                         Product = productFromDb,
                         Price = product.Price,
                         Quantity = product.Quantity
@@ -48,20 +49,24 @@ namespace Virta.Services
 
             var user = await _userManager.FindByNameAsync(order.UserEmail);
 
-            if(user == null)
+            if (user == null)
                 return false;
 
-            var orderToSave = new Order {
+            var orderToSave = new Order
+            {
                 ShippingCost = order.ShippingCost,
                 User = user,
                 OrderProduct = orderProducts
             };
 
-            if(order.Id != 0) {
+            if (order.Id != 0)
+            {
                 var orderFromDb = await _ordersRepo.GetOrder(order.Id);
                 _mapper.Map<Order, Order>(orderToSave, orderFromDb);
                 _ordersRepo.Update<Order>(orderFromDb);
-            } else {
+            }
+            else
+            {
                 _ordersRepo.Add<Order>(orderToSave);
             }
 

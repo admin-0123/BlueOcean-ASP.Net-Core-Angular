@@ -70,8 +70,9 @@ namespace Virta
             app.UseStaticFiles();
             app.UseSession();
 
-            app.UseStaticFiles(new StaticFileOptions() {
-                FileProvider =  new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Views/Static")),
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Views/Static")),
                 RequestPath = new PathString("/admin")
             });
 
