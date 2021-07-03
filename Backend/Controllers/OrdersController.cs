@@ -59,7 +59,7 @@ namespace Virta.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpsertOrder(OrderIncoming orderIncoming)
+        public async Task<IActionResult> Upsert(OrderIncoming orderIncoming)
         {
             var order = _mapper.Map<OrderUpsert>(orderIncoming);
 

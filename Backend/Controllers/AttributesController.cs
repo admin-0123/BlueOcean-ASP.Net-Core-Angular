@@ -43,7 +43,7 @@ namespace Virta.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upset(AttributeDTO attributeDTO)
+        public async Task<IActionResult> Upsert(AttributeDTO attributeDTO)
         {
             var attribute = _mapper.Map<AttributeUpsert>(attributeDTO);
 
@@ -60,7 +60,7 @@ namespace Virta.Api.Controllers
             var attributes = JsonSerializer.Deserialize<IEnumerable<AttributeDTO>>(rawData);
 
             foreach (var attribute in attributes)
-                await Upset(attribute);
+                await Upsert(attribute);
 
             return Ok();
         }

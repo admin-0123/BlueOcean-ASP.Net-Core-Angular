@@ -43,7 +43,7 @@ namespace Virta.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upset(CategoryDTO categoryDTO)
+        public async Task<IActionResult> Upsert(CategoryDTO categoryDTO)
         {
             var category = _mapper.Map<CategoryUpsert>(categoryDTO);
             if (await _categoriesService.Upsert(category))
@@ -59,7 +59,7 @@ namespace Virta.Api.Controllers
             var categories = JsonSerializer.Deserialize<IEnumerable<CategoryDTO>>(rawData);
 
             foreach (var category in categories)
-                await Upset(category);
+                await Upsert(category);
 
             return Ok();
         }
