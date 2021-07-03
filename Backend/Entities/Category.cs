@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Virta.Entities
 {
@@ -7,6 +8,7 @@ namespace Virta.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Product> Products { get; set; }
     }
 }

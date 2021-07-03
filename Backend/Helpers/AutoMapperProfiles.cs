@@ -50,6 +50,7 @@ namespace Virta.Helpers
             /* Product */
             CreateMap<ProductDTO, ProductUpsert>();
             CreateMap<ProductUpsert, Product>();
+            // CreateMap<Product, ProductDTO>();
 
             CreateMap<string, Category>()
                 .ForMember(

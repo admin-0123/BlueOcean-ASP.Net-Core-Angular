@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Virta.Entities
 {
@@ -22,7 +23,6 @@ namespace Virta.Entities
         public ProductVisibility Visible { get; set; }
         [Required]
         public bool Active { get; set; }
-
         public virtual ICollection<Product> AssociatedProducts { get; set; }
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

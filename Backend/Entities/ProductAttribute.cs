@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Virta.Entities
 {
@@ -11,6 +12,7 @@ namespace Virta.Entities
         public int Priority { get; set; }
 
         public virtual Attribute Attribute { get; set; }
+        [JsonIgnore]
         public virtual Product Product { get; set; }
 
         public DateTime UpdatedAt { get; set; }

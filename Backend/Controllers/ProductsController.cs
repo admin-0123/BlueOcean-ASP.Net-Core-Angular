@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Virta.Api.DTO;
 using Virta.Data.Interfaces;
-using Virta.Entities;
 using Virta.Models;
 using Virta.Services.Interfaces;
 
@@ -40,12 +38,9 @@ namespace Virta.Api.Controllers
             var products = await _repo.GetProducts();
 
             if (products == null)
-                return Ok("False");
+                return BadRequest();
 
-            var response = _mapper.Map<IEnumerable<ProductPLP>>(products);
-
-            return Ok(response);
-
+            return Ok(products);
         }
 
         // [HttpGet("categories")]
@@ -70,9 +65,7 @@ namespace Virta.Api.Controllers
             if (product == null)
                 return BadRequest();
 
-            var response = _mapper.Map<ProductPDP>(product);
-
-            return Ok(response);
+            return Ok(product);
         }
 
         [HttpPost]
