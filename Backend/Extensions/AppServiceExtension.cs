@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Virta.Data.Interfaces;
@@ -19,6 +20,9 @@ namespace Virta.Extensions
             services.AddSingleton<IMongoClient, MongoClient>(
                 sp => new MongoClient(configuration.GetConnectionString("MongoDb"))
             );
+
+            services.AddScoped(c =>
+		        c.GetService<IMongoClient>().StartSession());
 
             services.AddDbContext<DataContext>(
                 options =>

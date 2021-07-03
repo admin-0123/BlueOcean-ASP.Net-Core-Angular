@@ -4,7 +4,7 @@ using Virta.Entities;
 
 namespace Virta.Data.Interfaces
 {
-    public interface IOrdersRepository : IBaseRepository
+    public interface IOrdersRepository : IBaseRepository<Order>
     {
         Task<Order> GetOrder(int Id);
         Task<List<Order>> GetOrders();

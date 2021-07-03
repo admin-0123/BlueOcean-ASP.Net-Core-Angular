@@ -7,7 +7,7 @@ using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class CategoriesRepository : BaseRepository, ICategoriesRepository
+    public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository
     {
         private readonly DataContext _context;
         public CategoriesRepository(DataContext context) : base(context)

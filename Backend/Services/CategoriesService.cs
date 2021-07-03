@@ -29,11 +29,11 @@ namespace Virta.Services
             {
                 var categoryFromDb = await _categoriesRepository.GetCategory(categoryToSave.Id);
                 _mapper.Map<Category, Category>(categoryToSave, categoryFromDb);
-                _categoriesRepository.Update<Category>(categoryFromDb);
+                _categoriesRepository.Update(categoryFromDb);
             }
             else
             {
-                _categoriesRepository.Add<Category>(categoryToSave);
+                _categoriesRepository.Add(categoryToSave);
             }
 
             if (await _categoriesRepository.SaveAll())

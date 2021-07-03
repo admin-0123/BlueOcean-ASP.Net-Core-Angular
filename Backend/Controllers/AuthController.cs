@@ -78,11 +78,7 @@ namespace Virta.Api.Controllers
         {
             string token = _tokenService.Create(user);
 
-            Dictionary<string, string> response = new Dictionary<string, string>();
-
-            response.Add("token", token);
-
-            return Ok(response);
+            return Ok(new { Token = token });
         }
 
         [HttpGet("createAdmin")]

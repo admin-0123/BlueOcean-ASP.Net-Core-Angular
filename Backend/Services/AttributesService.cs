@@ -29,11 +29,11 @@ namespace Virta.Services
             {
                 var attributeFromDb = await _attributesRepository.GetAttribute(attributeToSave.Id);
                 _mapper.Map<Attribute, Attribute>(attributeToSave, attributeFromDb);
-                _attributesRepository.Update<Attribute>(attributeFromDb);
+                _attributesRepository.Update(attributeFromDb);
             }
             else
             {
-                _attributesRepository.Add<Attribute>(attributeToSave);
+                _attributesRepository.Add(attributeToSave);
             }
 
             if (await _attributesRepository.SaveAll())

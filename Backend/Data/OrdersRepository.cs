@@ -6,7 +6,7 @@ using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class OrdersRepository : BaseRepository, IOrdersRepository
+    public class OrdersRepository : BaseRepository<Order>, IOrdersRepository
     {
         private readonly DataContext _context;
 

@@ -7,7 +7,7 @@ using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class AttributesRepository : BaseRepository, IAttributesRepository
+    public class AttributesRepository : BaseRepository<Attribute>, IAttributesRepository
     {
         private readonly DataContext _context;
 

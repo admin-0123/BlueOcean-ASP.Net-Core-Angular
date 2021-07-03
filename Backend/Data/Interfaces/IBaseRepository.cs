@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 
 namespace Virta.Data.Interfaces
 {
-    public interface IBaseRepository
+    public interface IBaseRepository<T> where T : class
     {
-        void Add<T>(T entity) where T : class;
-        void Update<T>(T entity) where T : class;
-        void Remove<T>(T entity) where T : class;
+        void Add(T entity);
+        void Update(T entity);
+        void Remove(T entity);
         Task<bool> SaveAll();
     }
 }

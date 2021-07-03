@@ -8,7 +8,7 @@ using Virta.Entities;
 
 namespace Virta.Data
 {
-    public class ProductsRepository : BaseRepository, IProductsRepository
+    public class ProductsRepository : BaseRepository<Product>, IProductsRepository
     {
         private readonly DataContext _context;
 

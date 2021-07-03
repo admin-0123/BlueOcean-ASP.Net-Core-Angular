@@ -63,11 +63,11 @@ namespace Virta.Services
             {
                 var orderFromDb = await _ordersRepo.GetOrder(order.Id);
                 _mapper.Map<Order, Order>(orderToSave, orderFromDb);
-                _ordersRepo.Update<Order>(orderFromDb);
+                _ordersRepo.Update(orderFromDb);
             }
             else
             {
-                _ordersRepo.Add<Order>(orderToSave);
+                _ordersRepo.Add(orderToSave);
             }
 
             if (await _ordersRepo.SaveAll())

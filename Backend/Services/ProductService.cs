@@ -44,13 +44,13 @@ namespace Virta.Services
 
             if (productToSave.Id == Guid.Empty)
             {
-                _productsRepository.Add<Product>(productToSave);
+                _productsRepository.Add(productToSave);
             }
             else
             {
                 var productFromDb = await _productsRepository.GetProduct(productToSave.Id);
                 _mapper.Map<Product, Product>(productToSave, productFromDb);
-                _productsRepository.Update<Product>(productFromDb);
+                _productsRepository.Update(productFromDb);
             }
 
             if (await _productsRepository.SaveAll())
