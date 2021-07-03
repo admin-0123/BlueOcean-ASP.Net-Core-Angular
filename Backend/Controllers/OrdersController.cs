@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Virta.Api.DTO;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Virta.Api.DTO;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 using Virta.Services.Interfaces;

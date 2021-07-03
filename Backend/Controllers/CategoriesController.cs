@@ -1,12 +1,12 @@
-using System.Threading.Tasks;
-using Virta.Services.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Virta.Api.DTO;
 using Virta.Data.Interfaces;
 using Virta.Models;
-using System.Text.Json;
-using System.Collections.Generic;
+using Virta.Services.Interfaces;
 
 namespace Virta.Api.Controllers
 {

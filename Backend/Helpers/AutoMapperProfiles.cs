@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
 using Virta.Api.DTO;
 using Virta.Entities;
 using Virta.Models;

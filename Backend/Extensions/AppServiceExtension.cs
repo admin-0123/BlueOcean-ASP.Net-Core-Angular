@@ -1,15 +1,14 @@
-using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Virta.Data.Interfaces;
-using Virta.Data;
-using Virta.Helpers;
-using MongoDB.Driver;
 using Microsoft.EntityFrameworkCore;
-using Virta.Api.Services.Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using Virta.Api.Services;
-using Virta.Services.Interfaces;
+using Virta.Api.Services.Interfaces;
+using Virta.Data;
+using Virta.Data.Interfaces;
+using Virta.Helpers;
 using Virta.Services;
+using Virta.Services.Interfaces;
 
 namespace Virta.Extensions
 {

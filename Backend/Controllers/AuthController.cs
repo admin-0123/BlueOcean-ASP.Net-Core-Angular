@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Virta.Api.DTO;
 using Virta.Api.Services.Interfaces;
 using Virta.Entities;
+
 namespace Virta.Api.Controllers
 {
     [ApiController]

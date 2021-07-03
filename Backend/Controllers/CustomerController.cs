@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
