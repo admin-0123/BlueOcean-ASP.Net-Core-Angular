@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Virta.Controllers
@@ -20,6 +22,13 @@ namespace Virta.Controllers
         public IActionResult Get()
         {
             return Ok("True");
+        }
+
+        [Authorize]
+        [HttpGet("auth")]
+        public IActionResult Auth()
+        {
+            return Ok();
         }
     }
 }

@@ -8,6 +8,8 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Configuration;
 using Virta.Api.Services.Interfaces;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace Virta.Api.Services
 {
@@ -24,12 +26,17 @@ namespace Virta.Api.Services
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["TokenKey"]));
         }
 
-        public string Create(User user)
+        public async Task<string> CreateAsync(User user)
         {
             var claims = new List<Claim>
             {
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.UniqueName, user.Email)
             };
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha512Signature);
 

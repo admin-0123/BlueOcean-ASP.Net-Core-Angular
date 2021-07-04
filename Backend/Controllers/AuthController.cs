@@ -53,7 +53,7 @@ namespace Virta.Api.Controllers
                 );
 
             if (result.Succeeded)
-                return GetToken(user);
+                return await GetTokenAsync(user);
 
             return BadRequest(result.Errors);
         }
@@ -69,14 +69,14 @@ namespace Virta.Api.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, userToLogin.Password, false);
 
             if (result.Succeeded)
-                return GetToken(user);
+                return await GetTokenAsync(user);
 
             return BadRequest(INCORRECT_CREDENTIALS);
         }
 
-        private IActionResult GetToken(User user)
+        private async Task<IActionResult> GetTokenAsync(User user)
         {
-            string token = _tokenService.Create(user);
+            string token = await _tokenService.CreateAsync(user);
 
             return Ok(new { Token = token });
         }
@@ -92,20 +92,22 @@ namespace Virta.Api.Controllers
                             Name = "Admin"
                         }
                     );
+            }
 
-                var admin = new User
-                {
-                    UserName = "admin@admin.com",
-                    Email = "admin@admin.com"
-                };
+            var admin = new User
+            {
+                UserName = "admin@admin.com",
+                Firstname = "admin",
+                Lastname = "admin",
+                Email = "admin@admin.com"
+            };
 
-                IdentityResult User = await _userManager.CreateAsync(admin, "password");
+            IdentityResult User = await _userManager.CreateAsync(admin, "password");
 
-                if (User.Succeeded)
-                {
-                    var result1 = await _userManager.AddToRoleAsync(admin, "Admin");
-                    return Ok();
-                }
+            if (User.Succeeded)
+            {
+                var result = await _userManager.AddToRoleAsync(admin, "Admin");
+                return Ok();
             }
 
             return BadRequest();

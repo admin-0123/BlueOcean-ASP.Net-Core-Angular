@@ -39,7 +39,7 @@ namespace Virta.Data
 
         public async Task InsertAsync(T entity)
         {
-            entity.Id = ObjectId.GenerateNewId();
+            entity.Id = entity.Id ?? ObjectId.GenerateNewId();
             await Collection.InsertOneAsync(_clientSessionHandle, entity);
         }
 

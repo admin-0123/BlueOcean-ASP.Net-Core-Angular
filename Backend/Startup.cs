@@ -56,6 +56,20 @@ namespace Virta
 
             app.UseHttpsRedirection();
 
+            app.UseSession();
+            app.Use(async (context, next) =>
+            {
+                var token = context.Session.GetString("Token");
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Request.Headers.Add("Authorization", "Bearer " + token);
+                }
+                await next();
+            });
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseCors(
@@ -67,10 +81,6 @@ namespace Virta
 
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
