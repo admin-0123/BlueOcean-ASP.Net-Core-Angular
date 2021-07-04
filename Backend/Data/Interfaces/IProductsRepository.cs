@@ -9,6 +9,6 @@ namespace Virta.Data.Interfaces
     {
         Task<Product> GetProduct(Guid id);
         Task<List<Product>> GetProducts();
-        Task<List<Product>> GetProducts(List<string> categories);
+        Task<List<Product>> GetProducts(string[] categories);
     }
 }

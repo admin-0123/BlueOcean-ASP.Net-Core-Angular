@@ -12,9 +12,12 @@ using Virta.Services.Interfaces;
 
 namespace Virta.Extensions
 {
-    public static class AppServiceExtension
+    public static class AppServiceExtensions
     {
-        public static IServiceCollection AddAppServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddAppServices(
+            this IServiceCollection services,
+            IConfiguration configuration
+        )
         {
             services.AddSingleton<IMongoClient, MongoClient>(
                 sp => new MongoClient(configuration.GetConnectionString("MongoDb"))

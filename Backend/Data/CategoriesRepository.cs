@@ -1,7 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
@@ -10,6 +10,7 @@ namespace Virta.Data
     public class CategoriesRepository : BaseRepository<Category>, ICategoriesRepository
     {
         private readonly DataContext _context;
+
         public CategoriesRepository(DataContext context) : base(context)
         {
             _context = context;

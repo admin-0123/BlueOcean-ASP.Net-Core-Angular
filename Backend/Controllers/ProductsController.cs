@@ -15,27 +15,28 @@ namespace Virta.Api.Controllers
     [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductsRepository _repo;
-        private readonly ICategoriesRepository _categoriesRepo;
+        private readonly IProductsRepository _productsRepository;
+        private readonly ICategoriesRepository _categoriesRepository;
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
+
         public ProductsController(
             IMapper mapper,
-            IProductsRepository repo,
-            ICategoriesRepository categoriesRepo,
+            IProductsRepository productsRepository,
+            ICategoriesRepository categoriesRepository,
             IProductService productService
         )
         {
             _mapper = mapper;
-            _repo = repo;
-            _categoriesRepo = categoriesRepo;
+            _productsRepository = productsRepository;
+            _categoriesRepository = categoriesRepository;
             _productService = productService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var products = await _repo.GetProducts();
+            var products = await _productsRepository.GetProducts();
 
             if (products == null)
                 return BadRequest();
@@ -43,24 +44,21 @@ namespace Virta.Api.Controllers
             return Ok(products);
         }
 
-        // [HttpGet("categories")]
-        // public async Task<IActionResult> GetProducts([FromQuery(Name = "category")] List<string> categories)
-        // {
-        //     var products = await _repo.GetProducts(categories);
+        [HttpGet("categories")]
+        public async Task<IActionResult> GetProducts([FromQuery(Name = "category")] string[] categories)
+        {
+            var products = await _productsRepository.GetProducts(categories);
 
-        //     if (products == null)
-        //         return Ok("False");
+            if (products == null)
+                return BadRequest();
 
-        //     var response = _mapper.Map<IEnumerable<ProductPLP>>(products);
-
-        //     return Ok(response);
-
-        // }
+            return Ok(products);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var product = await _repo.GetProduct(id);
+            var product = await _productsRepository.GetProduct(id);
 
             if (product == null)
                 return BadRequest();

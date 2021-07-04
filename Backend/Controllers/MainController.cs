@@ -1,7 +1,7 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Virta.Extensions;
 
 namespace Virta.Controllers
 {
@@ -21,14 +21,14 @@ namespace Virta.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("True");
+            return Ok();
         }
 
         [Authorize]
         [HttpGet("auth")]
         public IActionResult Auth()
         {
-            return Ok();
+            return Ok(User.GetUserId());
         }
     }
 }

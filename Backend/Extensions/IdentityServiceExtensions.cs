@@ -5,13 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
-using System.Threading.Tasks;
 using Virta.Data;
 using Virta.Entities;
 
 namespace Virta.Extensions
 {
-    public static class IdentityServiceExtension
+    public static class IdentityServiceExtensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
         {

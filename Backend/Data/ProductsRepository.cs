@@ -1,8 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Virta.Data.Interfaces;
 using Virta.Entities;
 
@@ -27,9 +27,11 @@ namespace Virta.Data
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<List<Product>> GetProducts(List<string> categories)
+        public async Task<List<Product>> GetProducts(string[] categories)
         {
-            return await _context.Products.Where(p => p.Categories.Where(c => categories.Contains(c.Name)).Any()).ToListAsync();
+            return await _context.Products.Where(
+                    p => p.Categories.Where(c => categories.Contains(c.Name)).Any()
+                ).ToListAsync();
         }
     }
 }
