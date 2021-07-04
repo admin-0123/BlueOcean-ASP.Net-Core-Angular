@@ -58,10 +58,12 @@ namespace Virta
 
             app.UseRouting();
 
-            app.UseCors(x => x.AllowAnyHeader()
+            app.UseCors(
+                x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost:4200"));
+                .WithOrigins("http://localhost", "https://localhost")
+            );
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -69,12 +71,6 @@ namespace Virta
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSession();
-
-            app.UseStaticFiles(new StaticFileOptions()
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Views/Static")),
-                RequestPath = new PathString("/admin")
-            });
 
             app.UseEndpoints(endpoints =>
             {

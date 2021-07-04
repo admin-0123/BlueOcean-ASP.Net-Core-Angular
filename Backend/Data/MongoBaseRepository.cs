@@ -1,15 +1,13 @@
-using System;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+using Humanizer;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Threading.Tasks;
 using Virta.Data.Interfaces;
 using Virta.Entities;
-using Humanizer;
 
 namespace Virta.Data
 {
-    public class MongoBaseRepository<T> : IMongoBaseRepository<T> where T : MongoBaseDocument
+    public abstract class MongoBaseRepository<T> : IMongoBaseRepository<T> where T : MongoBaseDocument
     {
         private const string DATABASE = "Virta";
         private readonly IMongoClient _mongoClient;
