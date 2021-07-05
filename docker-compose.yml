@@ -23,6 +23,8 @@ services:
       - .env
     ports:
       - ${PGADMIN_PORT_HOST}:${PGADMIN_PORT}
+    expose:
+      - ${PGADMIN_PORT}
     networks:
       - default
 
@@ -65,23 +67,26 @@ services:
     networks:
       - default
 
-  # nginx:
-  #   image: nginx:${NGINX_VERSION}
-  #   container_name: virta_nginx
-  #   restart: on-failure:30
-  #   volumes:
-  #     - ./build/nginx/default.conf:/etc/nginx/conf.d/default.conf
-  #     - app-data:/var/www/public
-  #     - media-data:/var/www/public/pub/media
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - ${NGINX_BIND_PORT}:80
-  #   expose:
-  #     - 8090
-  #     - 80
-  #   networks:
-  #     - default
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    container_name: virta_nginx
+    restart: on-failure:30
+    volumes:
+    #   - ./build/nginx/:/etc/nginx/conf.d
+      # - ./build/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./build/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - app-data:/var/www/public
+      - media-data:/var/www/public/pub/media
+    env_file:
+      - .env
+    ports:
+      - 81:${NGINX_BIND_PORT}
+    #   - 443:443
+    # expose:
+    #   - 8080
+    #   - 5043
+    networks:
+      - default
 
   rabbitmq:
     image: rabbitmq:${RABBITMQ_VERSION}
@@ -109,6 +114,7 @@ services:
       args:
         NODE_VERSION: ${NODE_VERSION}
     container_name: virta_node
+    restart: on-failure:5
     volumes:
       - ./Node:/app
     ports:
