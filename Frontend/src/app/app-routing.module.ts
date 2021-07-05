@@ -8,15 +8,16 @@ import { ProductListResolver } from './_resolvers/product-list.resolver';
 import { ProductResolver } from './_resolvers/product.resolver';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent, resolve: { products: ProductListResolver }},
-  { path: 'product/:id', component: ProductPageComponent, resolve: { product: ProductResolver}, data: {animation: 'PDP'}},
-  { path: 'products/:category', component: ProductListPageComponent, resolve: { products: ProductListResolver }},
-  { path: 'checkout', component: CheckoutPageComponent },
-  { path: '**', redirectTo: ''}
+    { path: '', component: HomePageComponent, resolve: { products: ProductListResolver } },
+    { path: 'product/:id', component: ProductPageComponent, resolve: { product: ProductResolver }, data: { animation: 'PDP' } },
+    { path: 'products/:category', component: ProductListPageComponent, resolve: { products: ProductListResolver } },
+    { path: 'checkout', component: CheckoutPageComponent },
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

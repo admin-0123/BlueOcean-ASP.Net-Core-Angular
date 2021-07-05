@@ -5,16 +5,16 @@ import { Category } from '../_models/product';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AutoCompleteService {
-  private baseUrl = environment.apiUrl + 'autocomplete/';
+    private baseUrl = environment.apiUrl + 'autocomplete/';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
-  search(category: string): Observable<Category[]> {
-    return this.http.get<Category[]>(this.baseUrl + 'categories/' + category);
-  }
+    search(category: string): Observable<Category[]> {
+        return this.http.get<Category[]>(this.baseUrl + 'categories/' + category);
+    }
 }

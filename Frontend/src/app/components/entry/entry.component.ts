@@ -5,32 +5,32 @@ import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
-  selector: 'app-entry',
-  templateUrl: './entry.component.html',
-  styleUrls: ['./entry.component.scss']
+    selector: 'app-entry',
+    templateUrl: './entry.component.html',
+    styleUrls: ['./entry.component.scss']
 })
 export class EntryComponent implements OnInit {
-  user: User = {} as User;
-  newUser = false;
+    user: User = {} as User;
+    newUser = false;
 
-  constructor(
-    private authService: AuthService,
-    private toastr: ToastrService
-  ) { }
+    constructor(
+        private authService: AuthService,
+        private toastr: ToastrService
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  toggleForm(): void {
-    this.user.password = '';
-    this.newUser = !this.newUser;
-  }
+    toggleForm(): void {
+        this.user.password = '';
+        this.newUser = !this.newUser;
+    }
 
-  login(): void {
-    this.authService.login(this.user).subscribe();
-  }
+    login(): void {
+        this.authService.login(this.user).subscribe();
+    }
 
-  register(): void {
-    this.authService.register(this.user).subscribe();
-  }
+    register(): void {
+        this.authService.register(this.user).subscribe();
+    }
 }

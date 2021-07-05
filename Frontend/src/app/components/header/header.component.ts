@@ -8,55 +8,55 @@ import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  filteredCategories: Category[] = [];
-  searchInput = '';
-  category!: Category;
-  isLoading = false;
-  faUser = faUser;
+    filteredCategories: Category[] = [];
+    searchInput = '';
+    category!: Category;
+    isLoading = false;
+    faUser = faUser;
 
-  constructor(
-    private dialog: MatDialog,
-    private autoCompleteService: AutoCompleteService,
-    private router: Router
-  ) {
+    constructor(
+        private dialog: MatDialog,
+        private autoCompleteService: AutoCompleteService,
+        private router: Router
+    ) {
 
-   }
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  authDialog(): void {
-    const dialogRef = this.dialog.open(EntryComponent, {
-      height: '400px',
-      width: '600px',
-    });
-  }
-
-  onSearchChange(event: any): void {
-    const category = event.target?.value;
-    if (category && category.trim()) {
-      this.autoCompleteService.search(category)
-        .subscribe(response => {
-          console.log(response);
-          this.filteredCategories = response;
+    authDialog(): void {
+        const dialogRef = this.dialog.open(EntryComponent, {
+            height: '400px',
+            width: '600px',
         });
     }
-    this.filteredCategories = [];
-  }
 
-  selectOption(category: Category): void{
-    this.searchInput = category.title;
-    this.category = category;
-    this.filteredCategories = [];
-    this.search();
-  }
+    onSearchChange(event: any): void {
+        const category = event.target?.value;
+        if (category && category.trim()) {
+            this.autoCompleteService.search(category)
+                .subscribe(response => {
+                    console.log(response);
+                    this.filteredCategories = response;
+                });
+        }
+        this.filteredCategories = [];
+    }
 
-  search(): void {
-    this.router.navigate(['/products/' + this.category.value]);
-  }
+    selectOption(category: Category): void {
+        this.searchInput = category.title;
+        this.category = category;
+        this.filteredCategories = [];
+        this.search();
+    }
+
+    search(): void {
+        this.router.navigate(['/products/' + this.category.value]);
+    }
 }

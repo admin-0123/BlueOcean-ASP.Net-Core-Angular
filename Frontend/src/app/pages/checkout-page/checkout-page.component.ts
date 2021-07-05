@@ -6,48 +6,48 @@ import { CartService } from 'src/app/_services/cart.service';
 import { OrderService } from 'src/app/_services/order.service';
 
 @Component({
-  selector: 'app-checkout-page',
-  templateUrl: './checkout-page.component.html',
-  styleUrls: ['./checkout-page.component.scss']
+    selector: 'app-checkout-page',
+    templateUrl: './checkout-page.component.html',
+    styleUrls: ['./checkout-page.component.scss']
 })
 export class CheckoutPageComponent implements OnInit {
-  faPlusCircle = faPlusCircle;
-  faMinusCircle = faMinusCircle;
-  totalPrice = 0;
-  cart: ProductInCart[] = [];
+    faPlusCircle = faPlusCircle;
+    faMinusCircle = faMinusCircle;
+    totalPrice = 0;
+    cart: ProductInCart[] = [];
 
-  constructor(
-    private cartService: CartService,
-    private orderService: OrderService
-  ) {
-    this.cartService.watchStorage().subscribe(
-      () => {
-        this.cart = this.cartService.getCart();
-        this.totalPrice = this.cart.reduce(
-          (total, product) => total + product.price, 0
+    constructor(
+        private cartService: CartService,
+        private orderService: OrderService
+    ) {
+        this.cartService.watchStorage().subscribe(
+            () => {
+                this.cart = this.cartService.getCart();
+                this.totalPrice = this.cart.reduce(
+                    (total, product) => total + product.price, 0
+                );
+            }
         );
-      }
-    )
-  }
+    }
 
 
-  ngOnInit(): void {
-    this.cart = this.cartService.getCart();
+    ngOnInit(): void {
+        this.cart = this.cartService.getCart();
 
-    this.totalPrice = this.cart?.reduce(
-      (total, product) => total + product.price, 0
-    );
-  }
+        this.totalPrice = this.cart?.reduce(
+            (total, product) => total + product.price, 0
+        );
+    }
 
-  decreaseQuality(item: ProductInCart): void {
-    this.cartService.decreaseQuality(item)
-  }
+    decreaseQuality(item: ProductInCart): void {
+        this.cartService.decreaseQuality(item)
+    }
 
-  increaseQuantity(item: ProductInCart): void {
-    this.cartService.increaseQuantity(item)
-  }
+    increaseQuantity(item: ProductInCart): void {
+        this.cartService.increaseQuantity(item)
+    }
 
-  submit() {
-    this.orderService.placeOrder(this.cart, this.totalPrice).subscribe();
-  }
+    submit() {
+        this.orderService.placeOrder(this.cart, this.totalPrice).subscribe();
+    }
 }

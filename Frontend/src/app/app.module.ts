@@ -25,45 +25,45 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
 export function tokenGetter(): string | null {
-  return localStorage.getItem('token');
+    return localStorage.getItem('token');
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomePageComponent,
-    ProductsListComponent,
-    ProductCardComponent,
-    HeaderComponent,
-    FooterComponent,
-    ProductPageComponent,
-    EntryComponent,
-    ProductListPageComponent,
-    CartComponent,
-    CheckoutPageComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    FontAwesomeModule,
-    JwtModule.forRoot({
-      config: {
-         tokenGetter,
-         allowedDomains: ['localhost:5001'],
-         disallowedRoutes: ['localhost:5001/api/auth']
-      }
-    }),
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomePageComponent,
+        ProductsListComponent,
+        ProductCardComponent,
+        HeaderComponent,
+        FooterComponent,
+        ProductPageComponent,
+        EntryComponent,
+        ProductListPageComponent,
+        CartComponent,
+        CheckoutPageComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatFormFieldModule,
+        FontAwesomeModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter,
+                allowedDomains: ['localhost:5001'],
+                disallowedRoutes: ['localhost:5001/api/auth']
+            }
+        }),
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
