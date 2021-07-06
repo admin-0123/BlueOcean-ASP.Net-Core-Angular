@@ -39,12 +39,14 @@ namespace Virta.Extensions
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IAttributesRepository, AttributesRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<IWishlistRepository, WishlistRepository>();
 
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IAttributesService, AttributesService>();
+            services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 

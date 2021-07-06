@@ -1,12 +1,13 @@
+using System;
 using System.Security.Claims;
 
 namespace Virta.Extensions
 {
     public static class ClaimsPrincipalExtensions
     {
-        public static string GetUserId(this ClaimsPrincipal user)
+        public static Guid GetUserId(this ClaimsPrincipal user)
         {
-            return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            return Guid.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier));
         }
     }
 }

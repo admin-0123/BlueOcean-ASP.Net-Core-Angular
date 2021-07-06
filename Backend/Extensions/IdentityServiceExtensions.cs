@@ -41,7 +41,7 @@ namespace Virta.Extensions
 
             services.Configure<IdentityOptions>(options =>
             {
-                // Password settings TODO: Security!
+                //! Password settings TODO: Security!
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;

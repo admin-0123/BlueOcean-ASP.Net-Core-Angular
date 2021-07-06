@@ -16,5 +16,12 @@
 			"path": "Node"
 		},
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"Bson",
+			"Npgsql",
+			"Virta",
+			"toastr"
+		]
+	}
 }

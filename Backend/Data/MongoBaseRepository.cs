@@ -1,6 +1,6 @@
 using Humanizer;
-using MongoDB.Bson;
 using MongoDB.Driver;
+using System;
 using System.Threading.Tasks;
 using Virta.Data.Interfaces;
 using Virta.Entities;
@@ -31,23 +31,30 @@ namespace Virta.Data
         protected IMongoCollection<T> Collection =>
             _mongoClient.GetDatabase(DATABASE).GetCollection<T>(_collection);
 
-        public async Task<T> GetAsync(string Id)
+        public async Task<T> GetAsync(Guid id)
         {
-            var filter = Builders<T>.Filter.Eq(s => s.Id, ObjectId.Parse(Id));
-            return await Collection.Find(filter).FirstOrDefaultAsync();
+            return await Collection.Find(d => d.UserId == id).FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity)
+        public async Task UpsertAsync(T entity)
         {
-            entity.Id = entity.Id ?? ObjectId.GenerateNewId();
-            await Collection.InsertOneAsync(_clientSessionHandle, entity);
+            if (entity.UserId == Guid.Empty) {
+                throw new InvalidOperationException("UserId cannot be empty");
+            }
+
+            await Collection.ReplaceOneAsync(
+                _clientSessionHandle,
+                d => d.UserId == entity.UserId,
+                entity,
+                new ReplaceOptions { IsUpsert = true }
+            );
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Guid id)
         {
             await Collection.DeleteOneAsync(
                 _clientSessionHandle,
-                entity => entity.Id == ObjectId.Parse(id)
+                entity => entity.UserId == id
             );
         }
     }

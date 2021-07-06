@@ -4,10 +4,9 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Virta.Entities
 {
-    public abstract class MongoBaseDocument
+    public class Wishlist : MongoBaseDocument
     {
-        [BsonId]
         [BsonRepresentation(BsonType.String)]
-        public Guid UserId { get; set; }
+        public Guid[] ProductIds { get; set; }
     }
 }

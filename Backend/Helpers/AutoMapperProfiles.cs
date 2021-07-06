@@ -72,8 +72,20 @@ namespace Virta.Helpers
             CreateMap<ProductImageDTO, ProductImageUpsert>();
             CreateMap<ProductImageUpsert, ProductImage>();
 
+            /* Cart */
+            CreateMap<CartDTO, CartUpsert>();
+            CreateMap<CartDTO.CartItemDTO, CartUpsert.CartItemUpsert>();
 
+            CreateMap<CartUpsert, Cart>();
+            CreateMap<CartUpsert.CartItemUpsert, Cart.CartItem>();
 
+            CreateMap<Cart, CartDTO>();
+            CreateMap<Cart.CartItem, CartDTO.CartItemDTO>();
+
+            /* Wishlist */
+            CreateMap<WishlistDTO, WishlistUpsert>();
+            CreateMap<WishlistUpsert, Wishlist>();
+            CreateMap<Wishlist, WishlistDTO>();
 
 
             /* From Product Entity */
