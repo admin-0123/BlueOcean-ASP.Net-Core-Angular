@@ -3,13 +3,8 @@ export interface Product {
     title: string;
     price: number;
     images: string[];
-}
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ProductPLP extends Product {
-}
-export interface ProductPDP extends ProductPLP {
-    description: string;
-    attributes: ProductAttribute[];
+    description?: string;
+    attributes?: ProductAttribute[];
 }
 
 export interface ProductInCart extends Product {
@@ -23,6 +18,6 @@ export interface ProductAttribute {
 }
 
 export interface Category {
-    value: string;
+    name: string;
     title: string;
 }
