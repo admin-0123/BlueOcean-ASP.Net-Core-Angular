@@ -3,7 +3,7 @@
         <p>{{ product.title }}</p>
     </div>
     <div class="image">
-        <img src="{{ product.images[0] }}">
+        <img src="{{ product.images[0]?.url }}">
     </div>
     <div class="price">
         <p>{{ product.price }}$</p>

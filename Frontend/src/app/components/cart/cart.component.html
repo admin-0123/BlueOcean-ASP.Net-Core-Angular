@@ -7,7 +7,7 @@
     <div class="cart-overlay" *ngIf="isVisible">
         <div class="item" *ngFor="let item of cart">
             <div class="image">
-                <img src="{{ item.images[0] }}" alt="product image">
+                <img src="{{ item.images[0]?.url }}" alt="product image">
             </div>
             <div class="details">
                 <div class="title">{{ item.title }}</div>

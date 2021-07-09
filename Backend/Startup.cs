@@ -74,7 +74,7 @@ namespace Virta
                 x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost", "https://localhost")
+                .WithOrigins("http://localhost:4200", "https://localhost:4200")
             );
 
             app.UseAuthentication();

@@ -57,6 +57,6 @@ export class HeaderComponent implements OnInit {
     }
 
     search(): void {
-        this.router.navigate(['/products/' + this.category.value]);
+        this.router.navigate(['/products/' + this.category.name]);
     }
 }

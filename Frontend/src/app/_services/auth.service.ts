@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Authorized, User } from '../_models/user';
+import { AuthToken, User } from '../_models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class AuthService {
     ) { }
 
     login(user: User): Observable<void | null> {
-        return this.http.post<Authorized>(this.baseUrl + 'login', user)
+        return this.http.post<AuthToken>(this.baseUrl + 'login', user)
             .pipe(
                 map(
                     response => {
@@ -42,7 +42,7 @@ export class AuthService {
     }
 
     register(user: User): Observable<void | null> {
-        return this.http.post<Authorized>(this.baseUrl + 'register', user)
+        return this.http.post<AuthToken>(this.baseUrl + 'register', user)
             .pipe(
                 map(
                     response => {

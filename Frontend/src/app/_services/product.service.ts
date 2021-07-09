@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ProductPLP, ProductPDP } from '../_models/product';
+import { Product } from '../_models/product';
 
 @Injectable({
     providedIn: 'root'
@@ -12,14 +12,14 @@ export class ProductService {
 
     constructor(private http: HttpClient) { }
 
-    getProducts(category?: string | null): Observable<ProductPLP[]> {
+    getProducts(category?: string | null): Observable<Product[]> {
         if (category) {
-            return this.http.get<ProductPLP[]>(this.baseUrl + 'categories?category=' + category);
+            return this.http.get<Product[]>(this.baseUrl + 'categories?category=' + category);
         }
-        return this.http.get<ProductPLP[]>(this.baseUrl);
+        return this.http.get<Product[]>(this.baseUrl);
     }
 
-    getProduct(id: string): Observable<ProductPDP> {
-        return this.http.get<ProductPDP>(this.baseUrl + id);
+    getProduct(id: string): Observable<Product> {
+        return this.http.get<Product>(this.baseUrl + id);
     }
 }

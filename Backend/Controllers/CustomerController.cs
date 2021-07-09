@@ -10,6 +10,7 @@ using Virta.Models;
 
 namespace Virta.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerController : ControllerBase
@@ -32,7 +33,6 @@ namespace Virta.Api.Controllers
             _customerService = customerService;
         }
 
-        [Authorize]
         [HttpGet("cart")]
         public async Task<IActionResult> GetCart()
         {
@@ -44,7 +44,6 @@ namespace Virta.Api.Controllers
             return Ok(cart);
         }
 
-        [Authorize]
         [HttpPost("cart")]
         public async Task<IActionResult> UpsertCart(CartDTO cartDTO)
         {
@@ -56,7 +55,6 @@ namespace Virta.Api.Controllers
             return BadRequest();
         }
 
-        [Authorize]
         [HttpGet("wishlist")]
         public async Task<IActionResult> GetWishlist()
         {
@@ -68,7 +66,6 @@ namespace Virta.Api.Controllers
             return Ok(wishlist);
         }
 
-        [Authorize]
         [HttpPost("wishlist")]
         public async Task<IActionResult> UpsertWishlist(WishlistDTO wishlistDTO)
         {

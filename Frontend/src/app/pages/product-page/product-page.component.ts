@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductPDP } from 'src/app/_models/product';
+import { Product } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from 'src/app/_services/cart.service';
     styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
-    product!: ProductPDP;
+    product!: Product;
     quantity = 1;
     columnsToDisplay = ['name', 'value'];
 

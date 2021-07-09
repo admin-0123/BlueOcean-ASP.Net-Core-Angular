@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
-import { ProductPLP } from 'src/app/_models/product';
+import { Product } from 'src/app/_models/product';
 
 @Component({
     selector: 'app-product-card',
@@ -8,7 +8,7 @@ import { ProductPLP } from 'src/app/_models/product';
     styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-    @Input() product!: ProductPLP;
+    @Input() product!: Product;
 
     constructor() { }
 
