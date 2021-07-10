@@ -9,64 +9,62 @@ import { Product, ProductInCart } from '../_models/product';
 })
 export class CartService {
     private storageSub = new Subject<string>();
+    cart: ProductInCart[];
 
     constructor(
         private toastr: ToastrService
-    ) { }
-
-    addItem(item: ProductInCart): void {
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (!cart.find((i: Product) => i.id === item.id)) {
-            cart.push(item);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.toastr.success('Successfully added');
-            this.storageSub.next('changed');
-        } else {
-            this.increaseQuantity(item);
-        }
+    ) {
+        this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
     }
 
-    removeItem(item: ProductInCart): void {
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-        if (cart.find((i: ProductInCart) => i.id === item.id)) {
-            const newCart = cart.filter((i: ProductInCart) => i.id !== item.id);
-            localStorage.setItem('cart', JSON.stringify(newCart));
-            this.toastr.success('Successfully Removed');
-            this.storageSub.next('changed');
-        } else {
-            this.toastr.success('Error item isn\'t in cart');
+    addItem(item: ProductInCart): void {
+        if (!this.isItemInCart(item.id)) {
+            this.cart.push(item);
+            this.updateCart(this.cart)
+            this.toastr.success('Successfully added');
+            return;
         }
+
+        this.increaseQuantity(item);
+        this.storageSub.next('changed');
+    }
+
+    removeItem(id: string): void {
+        if (this.isItemInCart(id)) {
+            this.cart = this.cart.filter((i: ProductInCart) => i.id !== id);
+            this.updateCart(this.cart)
+            this.toastr.success('Successfully Removed');
+            return;
+        }
+
+        this.toastr.success('Error item isn\'t in cart');
     }
 
     increaseQuantity(item: ProductInCart): void {
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (cart === []) return;
+        if (this.cart === []) return;
 
-        const index = cart.findIndex((i: Product) => i.id === item.id);
+        const index = this.cart.findIndex((i: Product) => i.id === item.id);
+
         if (index !== -1) {
-            cart[index] = {
+            this.cart[index] = {
                 ...item,
-                quantity: item.quantity + (cart[index].quantity == item.quantity ? 1 : cart[index].quantity)
+                quantity: item.quantity + (this.cart[index].quantity == item.quantity ? 1 : this.cart[index].quantity)
             };
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.storageSub.next('changed');
+            this.updateCart(this.cart)
         }
     }
 
     decreaseQuality(item: ProductInCart): void {
-        const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (cart === []) return;
+        if (this.cart === []) return;
 
-        const index = cart.findIndex((i: Product) => i.id === item.id);
+        const index = this.cart.findIndex((i: Product) => i.id === item.id);
         if (index !== -1) {
-            if (cart[index].quantity == 1) {
-                this.removeItem(item);
+            if (this.cart[index].quantity == 1) {
+                this.removeItem(item.id);
                 return;
             }
-            cart[index] = { ...item, quantity: item.quantity - 1 };
-            localStorage.setItem('cart', JSON.stringify(cart));
-            this.storageSub.next('changed');
+            this.cart[index] = { ...item, quantity: item.quantity - 1 };
+            this.updateCart(this.cart)
         }
     }
 
@@ -76,5 +74,18 @@ export class CartService {
 
     watchStorage(): Observable<any> {
         return this.storageSub.asObservable();
+    }
+
+    isItemInCart(id: string): boolean {
+        if (this.cart.find((i: ProductInCart) => i.id === id)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    updateCart(newCart: ProductInCart[] | []): void {
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        this.storageSub.next('changed');
     }
 }

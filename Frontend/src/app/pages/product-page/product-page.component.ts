@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/_models/product';
+import { Product, ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { CartService } from 'src/app/_services/cart.service';
 })
 export class ProductPageComponent implements OnInit {
     product!: Product;
+    isInCart = false;
     quantity = 1;
     columnsToDisplay = ['name', 'value'];
 
@@ -24,9 +25,22 @@ export class ProductPageComponent implements OnInit {
                 this.product = data.product;
             }
         );
+
+        this.cart.watchStorage().subscribe(
+            () => {
+                this.isInCart = this.cart.isItemInCart(this.product.id);
+            }
+        );
+
+        this.isInCart = this.cart.isItemInCart(this.product.id);
     }
 
-    addToCart() {
-        this.cart.addItem({ ...this.product, quantity: +this.quantity });
+    CartAction(): void {
+        if(this.isInCart) {
+            this.cart.removeItem(this.product.id);
+            return;
+        }
+
+        this.cart.addItem({ ...this.product, quantity: this.quantity } as ProductInCart);
     }
 }

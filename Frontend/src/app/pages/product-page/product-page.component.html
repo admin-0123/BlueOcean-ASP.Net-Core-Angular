@@ -14,7 +14,7 @@
             <div class="actions">
                 <input type="text" name="quantity" id="quantity" [(ngModel)]="quantity">
                 <p>{{ product.price }}$</p>
-                <button (click)="addToCart()">Add To Cart</button>
+                <button (click)="CartAction()">{{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}</button>
             </div>
         </div>
     </div>
