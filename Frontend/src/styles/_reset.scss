@@ -35,16 +35,21 @@ img {
     width: 100%;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     color: $black;
     scroll-behavior: smooth;
     background-color: $bg-primary;
-    color: $white;
-    background-image: $noise;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
-    color: $white;
+    color: $black;
 
     &:hover {
         cursor: pointer;
@@ -53,7 +58,7 @@ a {
 
 hr {
     height: 1px;
-    background-color:$white;
+    background-color: $white;
 }
 
 input[type=text],
@@ -61,4 +66,12 @@ input[type=email],
 input[type=password] {
     padding: 12px 20px;
     box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
+
+.mat-dialog-container {
+    background-color: $bg-primary;
 }

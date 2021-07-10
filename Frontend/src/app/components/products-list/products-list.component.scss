@@ -1,12 +1,8 @@
 @import 'media';
 
 .list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-
-    @include mobile {
-        justify-content: center;
-    }
+    display: grid;
+    grid-template-columns: repeat(5, 225px);
+    justify-content: space-between;
+    gap: 40px 0;
 }

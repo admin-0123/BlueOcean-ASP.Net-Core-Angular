@@ -12,7 +12,7 @@
 .button:disabled,
 .button[disabled]{
     @extend .button;
-    background-color: $secondary;
+    background-color: $dark-blue;
 }
 
 input[type=submit],

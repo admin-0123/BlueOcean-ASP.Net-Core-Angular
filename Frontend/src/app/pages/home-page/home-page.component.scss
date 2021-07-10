@@ -1,4 +1,15 @@
+@import 'media', 'variables';
+
 .home {
+    .jumbotron {
+        height: 400px;
+        background-color: $bg-secondary;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 20px;
+    }
+
     h3 {
         margin-bottom: 20px;
         font-weight: 500;
