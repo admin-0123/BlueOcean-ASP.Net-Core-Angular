@@ -41,6 +41,12 @@ export class ProductPageComponent implements OnInit {
             return;
         }
 
-        this.cart.addItem({ ...this.product, quantity: this.quantity } as ProductInCart);
+        this.cart.addItem({
+            id: this.product.id,
+            title: this.product.title,
+            price: this.product.price,
+            images: this.product.images.map(i => i.url),
+            quantity: this.quantity
+        } as ProductInCart);
     }
 }

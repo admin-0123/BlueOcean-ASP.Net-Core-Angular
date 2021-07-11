@@ -42,6 +42,7 @@ services:
       - ${MONGO_PORT}
     networks:
       - default
+    # command: "--bind_ip_all --replSet ${MONGO_REPLICA_SET_NAME}"
 
   mongo-express:
     image: mongo-express:${MONGO_EXPRESS_VERSION}

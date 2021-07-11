@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Virta.Api.SignalR;
 using Virta.Extensions;
 
 namespace Virta
@@ -34,7 +35,10 @@ namespace Virta
             });
 
             services.AddControllers();
-            services.AddSignalR();
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -83,6 +87,7 @@ namespace Virta
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<CustomerHub>("hubs/customer");
             });
         }
     }

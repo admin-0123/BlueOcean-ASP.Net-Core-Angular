@@ -9,7 +9,7 @@ export interface Product {
 
 export interface ProductImage {
     id: number;
-    price: boolean;
+    primary: boolean;
     url: string;
 }
 
@@ -19,7 +19,11 @@ export interface ProductAttribute {
     value: string;
 }
 
-export interface ProductInCart extends Product {
+export interface ProductInCart {
+    id: string;
+    title: string;
+    price: number;
+    images: string[];
     quantity: number;
 }
 

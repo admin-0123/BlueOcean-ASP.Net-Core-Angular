@@ -6,6 +6,9 @@ using Virta.Entities;
 using Virta.Models;
 using Virta.Extensions;
 using System;
+using Microsoft.AspNetCore.SignalR;
+using Virta.Api.SignalR;
+using Microsoft.AspNetCore.Http;
 
 namespace Virta.Services
 {
@@ -14,17 +17,26 @@ namespace Virta.Services
         private readonly IMapper _mapper;
         private readonly ICartRepository _cartRepository;
         private readonly IWishlistRepository _wishlistRepository;
+        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IHubContext<CustomerHub, ICustomerClient> _hubContext;
 
         public CustomerService(
             IMapper mapper,
             ICartRepository cartRepository,
-            IWishlistRepository wishlistRepository
+            IWishlistRepository wishlistRepository,
+            IHttpContextAccessor contextAccessor,
+            IHubContext<CustomerHub, ICustomerClient> hubContext
         )
         {
             _mapper = mapper;
             _cartRepository = cartRepository;
             _wishlistRepository = wishlistRepository;
+            _contextAccessor = contextAccessor;
+            _hubContext = hubContext;
         }
+
+        protected HttpContext Context =>
+            _contextAccessor.HttpContext;
 
         public async Task<bool> UpsertCartAsync(CartUpsert cart, Guid userId)
         {
@@ -33,6 +45,8 @@ namespace Virta.Services
             cartToSave.UserId = userId;
 
             await _cartRepository.UpsertAsync(cartToSave);
+
+            BroadcastUpdate(userId);
 
             return true;
         }
@@ -45,7 +59,14 @@ namespace Virta.Services
 
             await _wishlistRepository.UpsertAsync(wishlistToSave);
 
+            BroadcastUpdate(userId);
+
             return true;
+        }
+
+        protected void BroadcastUpdate(Guid userId)
+        {
+            _hubContext.Clients.Clients(CustomerHub.ConnectedCustomers[userId]).OnCartUpdate();
         }
     }
 }

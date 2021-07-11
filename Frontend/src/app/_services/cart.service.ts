@@ -1,20 +1,71 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Product, ProductInCart } from '../_models/product';
+import { User } from '../_models/user';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService {
     private storageSub = new Subject<string>();
-    cart: ProductInCart[];
+    private hubConnection: HubConnection | undefined;
+    private baseUrl = environment.apiUrl + 'customer/cart/';
+    private hubUrl = environment.hubUrl + 'customer';
+    cart: ProductInCart[] = [];
 
     constructor(
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private http: HttpClient
     ) {
-        this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+        this.getRemoteCart().subscribe(
+            data => {
+                this.updateCart(data as ProductInCart[]);
+            },
+            error => {
+                this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                console.error(error);
+            }
+        );
+    }
+
+    createHubConnection() {
+        this.hubConnection = new HubConnectionBuilder()
+            .withUrl(this.hubUrl, {
+                accessTokenFactory: () => localStorage.getItem('token') || ''
+            })
+            .withAutomaticReconnect()
+            .build();
+
+        this.hubConnection.start()
+            .catch(
+                (error: any)  => console.error(error));
+
+        this.hubConnection.on('OnCartUpdate',
+            (data: any) => {
+                console.log('Triggered');
+                this.getRemoteCart().subscribe(
+                    data => {
+                        this.updateCart(data as ProductInCart[]);
+                    },
+                    error => {
+                        this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                        console.error(error);
+                    }
+                );
+            }
+        );
+    }
+
+    stopHubConnection() {
+        if (this.hubConnection) {
+            this.hubConnection.stop();
+        }
     }
 
     addItem(item: ProductInCart): void {
@@ -43,7 +94,7 @@ export class CartService {
     increaseQuantity(item: ProductInCart): void {
         if (this.cart === []) return;
 
-        const index = this.cart.findIndex((i: Product) => i.id === item.id);
+        const index = this.cart.findIndex((i: ProductInCart) => i.id === item.id);
 
         if (index !== -1) {
             this.cart[index] = {
@@ -57,7 +108,7 @@ export class CartService {
     decreaseQuality(item: ProductInCart): void {
         if (this.cart === []) return;
 
-        const index = this.cart.findIndex((i: Product) => i.id === item.id);
+        const index = this.cart.findIndex((i: ProductInCart) => i.id === item.id);
         if (index !== -1) {
             if (this.cart[index].quantity == 1) {
                 this.removeItem(item.id);
@@ -68,8 +119,13 @@ export class CartService {
         }
     }
 
-    getCart(): ProductInCart[] {
-        return JSON.parse(localStorage.getItem('cart') || '[]');
+    getRemoteCart(): Observable<ProductInCart[]> {
+        return this.http.get<{products: ProductInCart[]}>(this.baseUrl)
+            .pipe(
+                map(
+                    response => response.products
+                )
+            );
     }
 
     watchStorage(): Observable<any> {
@@ -85,7 +141,20 @@ export class CartService {
     }
 
     updateCart(newCart: ProductInCart[] | []): void {
+        this.cart = newCart;
         localStorage.setItem('cart', JSON.stringify(newCart));
         this.storageSub.next('changed');
+    }
+
+    SaveCart(): Observable<any> {
+        return this.http.post(this.baseUrl, { products: this.cart })
+            .pipe(
+                catchError(
+                    (error) => {
+                        console.error(error);
+                        return of(null)
+                    }
+                )
+            );
     }
 }

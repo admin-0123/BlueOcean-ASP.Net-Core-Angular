@@ -38,9 +38,8 @@ namespace Virta.Data
 
         public async Task UpsertAsync(T entity)
         {
-            if (entity.UserId == Guid.Empty) {
+            if (entity.UserId == Guid.Empty)
                 throw new InvalidOperationException("UserId cannot be empty");
-            }
 
             await Collection.ReplaceOneAsync(
                 _clientSessionHandle,

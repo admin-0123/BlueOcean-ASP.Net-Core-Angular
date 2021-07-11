@@ -22,7 +22,7 @@ export class CheckoutPageComponent implements OnInit {
     ) {
         this.cartService.watchStorage().subscribe(
             () => {
-                this.cart = this.cartService.getCart();
+                this.cart = this.cartService.cart;
                 this.totalPrice = this.cart.reduce(
                     (total, product) => total + product.price, 0
                 );
@@ -32,7 +32,7 @@ export class CheckoutPageComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.cart = this.cartService.getCart();
+        this.cart = this.cartService.cart;
 
         this.totalPrice = this.cart?.reduce(
             (total, product) => total + product.price, 0

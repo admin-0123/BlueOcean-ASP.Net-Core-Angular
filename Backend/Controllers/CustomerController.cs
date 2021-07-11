@@ -41,7 +41,9 @@ namespace Virta.Api.Controllers
             if (cart == null)
                 return BadRequest();
 
-            return Ok(cart);
+            var result = _mapper.Map<CartDTO>(cart);
+
+            return Ok(result);
         }
 
         [HttpPost("cart")]
