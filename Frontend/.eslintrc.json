@@ -13,7 +13,7 @@
           "tsconfig.json"
         ],
         "createDefaultProgram": true,
-        "tsconfigRootDir": "Frontend/"
+        "tsconfigRootDir": "Frontend"
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
@@ -35,7 +35,9 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "semi": [2, "always"],
+        "indent": ["error", 4]
       }
     },
     {

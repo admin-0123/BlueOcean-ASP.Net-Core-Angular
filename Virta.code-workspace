@@ -22,6 +22,7 @@
 			"Npgsql",
 			"Virta",
 			"toastr"
-		]
+		],
+		"eslint.nodePath": "Frontend/node_modules"
 	}
 }

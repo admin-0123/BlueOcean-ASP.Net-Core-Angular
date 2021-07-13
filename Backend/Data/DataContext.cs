@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Virta.Entities;
-
+#nullable disable
 namespace Virta.Data
 {
     public class DataContext : IdentityDbContext<User, Role, string>

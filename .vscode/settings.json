@@ -4,5 +4,6 @@
         "Npgsql",
         "Virta",
         "toastr"
-    ]
+    ],
+    "eslint.options": { "configFile": "Frontend/.eslintrc.json" }
 }

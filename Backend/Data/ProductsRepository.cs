@@ -22,16 +22,20 @@ namespace Virta.Data
             return await _context.Products.FindAsync(id);
         }
 
-        public async Task<List<Product>> GetProducts()
+        public async Task<List<Product>> GetProducts(int amount = 10)
         {
-            return await _context.Products.ToListAsync();
+            return await _context.Products
+                .OrderByDescending(p => p.CreatedAt).Take(amount).ToListAsync();
         }
 
-        public async Task<List<Product>> GetProducts(string[] categories)
+        public async Task<List<Product>> GetProducts(string[] categories, int amount = 10)
         {
-            return await _context.Products.Where(
-                    p => p.Categories.Where(c => categories.Contains(c.Name)).Any()
-                ).ToListAsync();
+            if (categories.Length > 0)
+                return await _context.Products.Where(
+                        p => p.Categories.Where(c => categories.Contains(c.Name)).Any()
+                    ).OrderByDescending(p => p.CreatedAt).Take(amount).ToListAsync();
+
+            return await GetProducts(amount);
         }
     }
 }

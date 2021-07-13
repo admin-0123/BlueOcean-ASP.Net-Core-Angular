@@ -24,7 +24,7 @@ namespace Virta.Extensions
             );
 
             services.AddScoped(c =>
-		        c.GetService<IMongoClient>().StartSession());
+                c.GetService<IMongoClient>().StartSession());
 
             services.AddDbContext<DataContext>(
                 options =>

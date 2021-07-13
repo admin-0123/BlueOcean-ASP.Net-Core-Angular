@@ -8,7 +8,7 @@ namespace Virta.Data.Interfaces
     public interface IProductsRepository : IBaseRepository<Product>
     {
         Task<Product> GetProduct(Guid id);
-        Task<List<Product>> GetProducts();
-        Task<List<Product>> GetProducts(string[] categories);
+        Task<List<Product>> GetProducts(int amount = 10);
+        Task<List<Product>> GetProducts(string[] categories, int amount = 10);
     }
 }

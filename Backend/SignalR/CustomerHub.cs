@@ -9,7 +9,8 @@ namespace Virta.Api.SignalR
 {
     public class CustomerHub : Hub<ICustomerClient>
     {
-        public static ConcurrentDictionary<Guid, List<string>> ConnectedCustomers = new ConcurrentDictionary<Guid, List<string>>();
+        public static ConcurrentDictionary<Guid, List<string>> ConnectedCustomers
+            = new ConcurrentDictionary<Guid, List<string>>();
 
         public override Task OnConnectedAsync()
         {
@@ -18,10 +19,8 @@ namespace Virta.Api.SignalR
             List<string> existingUserConnectionIds;
             ConnectedCustomers.TryGetValue(userName, out existingUserConnectionIds);
 
-            if(existingUserConnectionIds == null)
-            {
+            if (existingUserConnectionIds == null)
                 existingUserConnectionIds = new List<string>();
-            }
 
             existingUserConnectionIds.Add(Context.ConnectionId);
 
@@ -39,7 +38,7 @@ namespace Virta.Api.SignalR
 
             existingUserConnectionIds.Remove(Context.ConnectionId);
 
-            if(existingUserConnectionIds.Count == 0)
+            if (existingUserConnectionIds.Count == 0)
             {
                 List<string> garbage;
                 ConnectedCustomers.TryRemove(userName, out garbage);

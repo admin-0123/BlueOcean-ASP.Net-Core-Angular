@@ -6,8 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Product, ProductInCart } from '../_models/product';
-import { User } from '../_models/user';
+import { ProductInCart } from '../_models/product';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,20 +15,21 @@ import { User } from '../_models/user';
 export class CartService {
     private storageSub = new Subject<string>();
     private hubConnection: HubConnection | undefined;
-    private baseUrl = environment.apiUrl + 'customer/cart/';
-    private hubUrl = environment.hubUrl + 'customer';
+    baseUrl = environment.apiUrl + 'customer/cart/';
+    hubUrl = environment.hubUrl + 'customer';
     cart: ProductInCart[] = [];
 
     constructor(
         private toastr: ToastrService,
-        private http: HttpClient
+        private http: HttpClient,
+        private auth: AuthService
     ) {
         this.getRemoteCart().subscribe(
             data => {
                 this.updateCart(data as ProductInCart[]);
             },
             error => {
-                this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                this.cart = JSON.parse(this.getLocalCart());
                 console.error(error);
             }
         );
@@ -37,14 +38,13 @@ export class CartService {
     createHubConnection() {
         this.hubConnection = new HubConnectionBuilder()
             .withUrl(this.hubUrl, {
-                accessTokenFactory: () => localStorage.getItem('token') || ''
+                accessTokenFactory: () => this.auth.getLocalToken()
             })
             .withAutomaticReconnect()
             .build();
 
         this.hubConnection.start()
-            .catch(
-                (error: any)  => console.error(error));
+            .catch((error: any)  => console.error(error));
 
         this.hubConnection.on('OnCartUpdate',
             (data: any) => {
@@ -54,7 +54,6 @@ export class CartService {
                         this.updateCart(data as ProductInCart[]);
                     },
                     error => {
-                        this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
                         console.error(error);
                     }
                 );
@@ -88,7 +87,7 @@ export class CartService {
             return;
         }
 
-        this.toastr.success('Error item isn\'t in cart');
+        this.toastr.warning('Error item isn\'t in cart');
     }
 
     increaseQuantity(item: ProductInCart): void {
@@ -156,5 +155,9 @@ export class CartService {
                     }
                 )
             );
+    }
+
+    getLocalCart(): string {
+        return localStorage.getItem('cart') || '[]';
     }
 }

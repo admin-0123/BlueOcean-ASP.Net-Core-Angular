@@ -34,9 +34,12 @@ namespace Virta.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetProducts(
+            [FromQuery(Name = "category")] string[] categories,
+            [FromQuery(Name = "amount")] int amount = 10
+        )
         {
-            var products = await _productsRepository.GetProducts();
+            var products = await _productsRepository.GetProducts(categories, amount);
 
             if (products == null)
                 return BadRequest();
@@ -44,18 +47,7 @@ namespace Virta.Api.Controllers
             return Ok(products);
         }
 
-        [HttpGet("categories")]
-        public async Task<IActionResult> GetProducts([FromQuery(Name = "category")] string[] categories)
-        {
-            var products = await _productsRepository.GetProducts(categories);
-
-            if (products == null)
-                return BadRequest();
-
-            return Ok(products);
-        }
-
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> Get(Guid id)
         {
             var product = await _productsRepository.GetProduct(id);

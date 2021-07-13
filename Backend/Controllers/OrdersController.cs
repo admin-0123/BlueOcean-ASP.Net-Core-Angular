@@ -46,7 +46,7 @@ namespace Virta.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrder(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var ordersFromDb = await _ordersRepo.GetOrder(id);
 
