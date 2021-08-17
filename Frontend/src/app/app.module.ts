@@ -23,6 +23,7 @@ import { EntryComponent } from './components/entry/entry.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -40,7 +41,8 @@ export function tokenGetter(): string | null {
         EntryComponent,
         ProductListPageComponent,
         CartComponent,
-        CheckoutPageComponent
+        CheckoutPageComponent,
+        WishlistComponent
     ],
     imports: [
         BrowserModule,

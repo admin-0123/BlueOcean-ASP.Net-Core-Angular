@@ -1,11 +1,11 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Category } from 'src/app/_models/product';
-import { EntryComponent } from '../entry/entry.component';
-import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
 import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Category } from 'src/app/_models/product';
+import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
+import { EntryComponent } from '../entry/entry.component';
 
 @Component({
     selector: 'app-header',

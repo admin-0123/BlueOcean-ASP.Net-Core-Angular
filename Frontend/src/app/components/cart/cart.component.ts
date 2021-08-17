@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
-import { faShoppingCart, faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 
@@ -25,11 +25,11 @@ export class CartComponent implements OnInit {
 
         this.cartService.watchStorage().subscribe(
             () => {
-                this.cart = this.cartService.cart
+                this.cart = this.cartService.cart;
             }
-        )
+        );
 
-        this.cartService.createHubConnection()
+        this.cartService.createHubConnection();
     }
 
     cartToggle(): void {
@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
         if (this.isVisible) {
             this.cartService.getRemoteCart().subscribe(
                 data => {
-                    this.cart = data
+                    this.cart = data;
                 }
             );
         } else {
@@ -46,10 +46,10 @@ export class CartComponent implements OnInit {
     }
 
     decreaseQuality(item: ProductInCart): void {
-        this.cartService.decreaseQuality(item)
+        this.cartService.decreaseQuality(item);
     }
 
     increaseQuantity(item: ProductInCart): void {
-        this.cartService.increaseQuantity(item)
+        this.cartService.increaseQuantity(item);
     }
 }
