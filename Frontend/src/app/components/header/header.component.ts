@@ -3,7 +3,6 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/_models/product';
 import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
-import { EntryComponent } from '../entry/entry.component';
 
 @Component({
     selector: 'app-header',

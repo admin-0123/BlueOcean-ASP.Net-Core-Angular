@@ -1,27 +1,43 @@
 <div class="header">
-    <div [routerLink]="['']" class="logo" style="background-image: url('assets/logo.svg');">
+    <div class="header-top">
+        <div class="container">
+            <div>FAQ</div>
+            <div>About Us</div>
+            <div>Contact</div>
+        </div>
     </div>
-    <div class="search">
-        <form #searchForm="ngForm" (ngSubmit)="search()">
-            <input
-                type="text"
-                name="search"
-                id="search"
-                placeholder="categories"
-                [(ngModel)]="searchInput"
-                (input)="onSearchChange($event)"
-                autocomplete="off"
-            >
-            <div class="filtered" *ngIf="filteredCategories.length">
-                <div *ngFor="let category of filteredCategories" class="filtered-item" (click)="selectOption(category)">
-                    <span>{{ category.title }}</span>
+    <div class="header-middle">
+        <div [routerLink]="['']" class="logo" style="background-image: url('assets/logo.svg');">
+        </div>
+        <div class="search">
+            <form #searchForm="ngForm" (ngSubmit)="search()">
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="categories"
+                    [(ngModel)]="searchInput"
+                    (input)="onSearchChange($event)"
+                    autocomplete="off"
+                >
+                <div class="filtered" *ngIf="filteredCategories.length">
+                    <div *ngFor="let category of filteredCategories" class="filtered-item" (click)="selectOption(category)">
+                        <span>{{ category.title }}</span>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
+        <div class="action-bar" [ngClass]="{'shadow': applyShadows}">
+            <app-entry></app-entry>
+            <app-wishlist></app-wishlist>
+            <app-cart></app-cart>
+        </div>
     </div>
-    <div class="header-buttons" [ngClass]="{'shadow': applyShadows}">
-        <app-entry></app-entry>
-        <app-wishlist></app-wishlist>
-        <app-cart></app-cart>
+    <div class="header-bottom">
+        <div class="container">
+            <div>Category 1</div>
+            <div>Category 2</div>
+            <div>Category 3</div>
+        </div>
     </div>
 </div>
