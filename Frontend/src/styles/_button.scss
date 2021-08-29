@@ -1,22 +1,43 @@
-.button {
-    background-color: $primary;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
+.btn {
+    @include font-normal;
     cursor: pointer;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: $primary;
+
+    &.secondary {
+        background-color: $secondary;
+    }
+
+    &.dark {
+        background-color: $dark-blue;
+    }
+
+    &:disabled,
+    &[disabled] {
+        background-color: gray;
+    }
 }
 
-.button:disabled,
-.button[disabled]{
-    @extend .button;
-    background-color: $dark-blue;
+button {
+    @extend .btn;
 }
 
 input[type=submit],
 input[type=button] {
-    @extend .button;
+    @extend .btn;
 }
 
+input[type=text],
+input[type=password],
+input[type=number],
+input[type=email] {
+    @include font-small;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid $secondary;
+    border-radius: 5px;
+}

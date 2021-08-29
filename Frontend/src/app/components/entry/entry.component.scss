@@ -1,8 +1,37 @@
 @import 'variables';
 
+:host-context(.shadow) {
+    .entry {
+        &-button {
+            box-shadow: $main-shadow;
+            right: -140px;
+            top: 140px;
+        }
+    }
+}
+
 .entry {
-    padding: 0 20px;
-    background-color: $bg-primary;
+    &-button {
+        background-color: $bg-primary;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        top: 0;
+        right: 0;
+        transition: right 150ms linear, top 150ms linear;
+
+        .icon {
+            top: 10px;
+            right: -10px;
+        }
+    }
+
+    &-body {
+        padding: 0 20px;
+        background-color: $bg-primary;
+        display: none;
+    }
 
     &-toggle {
         background-color: $dark-blue;

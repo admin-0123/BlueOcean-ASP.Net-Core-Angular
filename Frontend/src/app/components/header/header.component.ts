@@ -1,8 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { Category } from 'src/app/_models/product';
 import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
 import { EntryComponent } from '../entry/entry.component';
@@ -17,10 +15,19 @@ export class HeaderComponent implements OnInit {
     searchInput = '';
     category!: Category;
     isLoading = false;
-    faUser = faUser;
+    applyShadows = false;
+
+    @HostListener('window:scroll', ['$event'])
+    onScroll() {
+        const verticalOffset = window.pageYOffset
+            || document.documentElement.scrollTop
+            || document.body.scrollTop
+            || 0;
+
+        this.applyShadows = verticalOffset >= 36;
+    }
 
     constructor(
-        private dialog: MatDialog,
         private autoCompleteService: AutoCompleteService,
         private router: Router
     ) {
@@ -28,13 +35,6 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit(): void {
-    }
-
-    authDialog(): void {
-        const dialogRef = this.dialog.open(EntryComponent, {
-            height: '400px',
-            width: '600px',
-        });
     }
 
     onSearchChange(event: any): void {

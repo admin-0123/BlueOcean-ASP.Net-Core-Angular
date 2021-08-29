@@ -1,8 +1,10 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-entry',
@@ -12,13 +14,18 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class EntryComponent implements OnInit {
     user: User = {} as User;
     newUser = false;
+    faUser = faUser;
 
     constructor(
         private authService: AuthService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private dialog: MatDialog,
     ) { }
 
     ngOnInit(): void {
+    }
+
+    authDialog(): void {
     }
 
     toggleForm(): void {

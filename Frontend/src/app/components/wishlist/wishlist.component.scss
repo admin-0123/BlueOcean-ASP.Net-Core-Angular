@@ -1,25 +1,30 @@
 @import 'variables';
 @import 'media';
 
-.wishlist {
-    position: fixed;
-    top: 24px;
-    right: 90px;
-    z-index: 10;
-    text-align: end;
+:host-context(.shadow) {
+    .wishlist {
+        &-button {
+            box-shadow: $main-shadow;
+            right: -70px;
+            top: 70px;
+        }
+    }
+}
 
+.wishlist {
     &-button {
         background-color: $bg-primary;
-        display: inline-block;
         border-radius: 50%;
-        margin-bottom: 10px;
+        cursor: pointer;
         height: 40px;
         width: 40px;
-        cursor: pointer;
+        top: 0;
+        right: 0;
+        transition: right 100ms linear, top 100ms linear;
 
         .icon {
-            top: 12px;
-            right: 8px;
+            top: 10px;
+            right: -9px;
         }
     }
 }

@@ -19,9 +19,9 @@
             </div>
         </form>
     </div>
-    <div class="entry">
-        <div (click)="authDialog()">
-            <fa-icon [icon]="faUser" size="lg"></fa-icon>
-        </div>
+    <div class="header-buttons" [ngClass]="{'shadow': applyShadows}">
+        <app-entry></app-entry>
+        <app-wishlist></app-wishlist>
+        <app-cart></app-cart>
     </div>
 </div>

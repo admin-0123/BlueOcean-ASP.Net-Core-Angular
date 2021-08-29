@@ -1,20 +1,26 @@
 <div class="product">
     <div class="main">
         <div class="image">
-            <img src="{{ product.images[0]?.url }}">
+            <img src="{{ product.images[0]?.url || 'http://via.placeholder.com/360x640' }}">
         </div>
         <div class="details">
             <div class="title">
-                <p>{{ product.title }}</p>
+                <h2>{{ product.title }}</h2>
                 <hr>
             </div>
             <div class="points">
 
             </div>
             <div class="actions">
-                <input type="text" name="quantity" id="quantity" [(ngModel)]="quantity">
+                <input type="number" name="quantity" id="quantity" [(ngModel)]="quantity">
                 <p>{{ product.price }}$</p>
-                <button (click)="CartAction()">{{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}</button>
+                <button
+                    class="btn"
+                    [ngClass]="{'secondary': isInCart}"
+                    (click)="CartAction()"
+                >
+                        {{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}
+                </button>
             </div>
         </div>
     </div>
