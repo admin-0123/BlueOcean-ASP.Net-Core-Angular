@@ -15,6 +15,7 @@ export class EntryComponent implements OnInit {
     user: User = {} as User;
     newUser = false;
     faUser = faUser;
+    isVisible = false;
 
     constructor(
         private authService: AuthService,
@@ -25,7 +26,8 @@ export class EntryComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    authDialog(): void {
+    entryToggle(): void {
+        this.isVisible = !this.isVisible;
     }
 
     toggleForm(): void {
