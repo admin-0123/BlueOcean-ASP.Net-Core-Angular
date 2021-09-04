@@ -1,10 +1,10 @@
 import {
-    trigger,
-    style,
     animate,
-    transition,
+    group,
     query,
-    group
+    style,
+    transition,
+    trigger
 } from '@angular/animations';
 
 export const slider =
@@ -34,6 +34,6 @@ function slideTo(direction: string) {
             query(':enter', [
                 animate('600ms ease', style({ [direction]: '0%' }))
             ])
-        ]),
+        ])
     ];
 }

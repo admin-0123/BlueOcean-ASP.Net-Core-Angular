@@ -1,4 +1,4 @@
-<div class="wishlist">
+<div class="wishlist" appClickOutside (clickOutside)="isVisible = false">
     <div class="wishlist-button" (click)="onWishlistClick()">
         <div class="icon">
             <fa-icon [icon]="faHeart" size="lg"></fa-icon>
