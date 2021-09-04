@@ -1,10 +1,12 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/user';
 import { AuthService } from 'src/app/_services/auth.service';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-entry',
@@ -16,14 +18,15 @@ export class EntryComponent implements OnInit {
     newUser = false;
     faUser = faUser;
     isVisible = false;
+    isLoggedIn = false;
 
     constructor(
         private authService: AuthService,
-        private toastr: ToastrService,
-        private dialog: MatDialog,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit(): void {
+        this.authService.isLoggedInSub.subscribe(v => this.isLoggedIn = v);
     }
 
     entryToggle(): void {
@@ -41,5 +44,9 @@ export class EntryComponent implements OnInit {
 
     register(): void {
         this.authService.register(this.user).subscribe();
+    }
+
+    logOut(): void {
+        this.authService.logOut();
     }
 }

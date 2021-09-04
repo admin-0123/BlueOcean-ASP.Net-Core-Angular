@@ -1,8 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {
+    BehaviorSubject,
+    Observable,
+    of
+} from 'rxjs';
+import {
+    catchError,
+    map
+} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductInWishlist } from '../_models/product';
 
@@ -47,11 +54,7 @@ export class WishlistService {
     }
 
     isItemInWishlist(id: string): boolean {
-        if (this.wishlistSub.getValue().find((i) => i.id === id)) {
-            return true;
-        }
-
-        return false;
+        return !!this.wishlistSub.getValue().find((i) => i.id === id);
     }
 
     updateWishlist(wishlist: ProductInWishlist[] | []): void {

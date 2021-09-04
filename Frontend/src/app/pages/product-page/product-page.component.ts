@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
@@ -18,7 +21,7 @@ export class ProductPageComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private cart: CartService,
+        private cartService: CartService,
         private wishlistService: WishlistService
     ) { }
 
@@ -29,29 +32,30 @@ export class ProductPageComponent implements OnInit {
             }
         );
 
-        this.cart.watchStorage().subscribe(
+        this.cartService.watchStorage().subscribe(
             () => {
-                this.isInCart = this.cart.isItemInCart(this.product.id);
+                this.isInCart = this.cartService.isItemInCart(this.product.id);
             }
         );
 
-        this.isInCart = this.cart.isItemInCart(this.product.id);
-        this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
+        this.isInCart = this.cartService.isItemInCart(this.product.id);
 
         this.wishlistService.wishlistSub.subscribe(
             () => {
                 this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
             }
         );
+
+        this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
     }
 
     CartAction(): void {
         if (this.isInCart) {
-            this.cart.removeItem(this.product.id);
+            this.cartService.removeItem(this.product.id);
             return;
         }
 
-        this.cart.addItem({
+        this.cartService.addItem({
             id: this.product.id,
             title: this.product.title,
             price: this.product.price,

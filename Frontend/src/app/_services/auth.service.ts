@@ -1,25 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { of } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
-import { catchError, map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { AuthToken, User } from '../_models/user';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { ToastrService } from 'ngx-toastr';
+import {
+    BehaviorSubject,
+    of
+} from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import {
+    catchError,
+    map
+} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import {
+    AuthToken,
+    User
+} from '../_models/user';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     baseUrl = environment.apiUrl + 'auth/';
+    isLoggedInSub = new BehaviorSubject<boolean>(false);
     jwtHelper = new JwtHelperService();
     decodedToken: any;
 
     constructor(
         private http: HttpClient,
         private toastr: ToastrService
-    ) { }
+    ) {
+        const localToken = this.getLocalTokenString();
+        if (localToken) {
+            this.decodedToken = this.jwtHelper.decodeToken(localToken);
+            this.isLoggedInSub.next(true);
+        }
+    }
 
     login(user: User): Observable<void | null> {
         return this.http.post<AuthToken>(this.baseUrl + 'login', user)
@@ -30,6 +46,7 @@ export class AuthService {
                         console.log(response);
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
+                        this.isLoggedInSub.next(true);
                     }
                 ),
                 catchError(error => {
@@ -49,22 +66,19 @@ export class AuthService {
                         console.log(response);
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
+                        this.isLoggedInSub.next(true);
                     }
                 ),
                 catchError(error => {
-                    this.toastr.error(error.error);
+                    error.error.forEach((e: any) => this.toastr.error(e.description));
                     console.error(error);
                     return of(null);
                 })
             );
     }
 
-    isLoggedIn(): boolean {
-        const token = localStorage.getItem('token') || '';
-        return !this.jwtHelper.isTokenExpired(token);
-    }
-
     logOut(): void {
+        this.isLoggedInSub.next(false);
         localStorage.removeItem('token');
     }
 
@@ -73,7 +87,7 @@ export class AuthService {
         return JSON.parse(atob(token.split('.')[1]));
     }
 
-    getLocalToken(): string {
+    getLocalTokenString(): string {
         return localStorage.getItem('token') || '';
     }
 }

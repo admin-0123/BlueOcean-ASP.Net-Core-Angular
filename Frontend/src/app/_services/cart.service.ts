@@ -1,9 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import {
+    HubConnection,
+    HubConnectionBuilder
+} from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, of, Subject } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import {
+    Observable,
+    of,
+    Subject
+} from 'rxjs';
+import {
+    catchError,
+    map
+} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductInCart } from '../_models/product';
 import { AuthService } from './auth.service';
@@ -37,7 +47,7 @@ export class CartService {
     createHubConnection() {
         this.hubConnection = new HubConnectionBuilder()
             .withUrl(this.hubUrl, {
-                accessTokenFactory: () => this.auth.getLocalToken()
+                accessTokenFactory: () => this.auth.getLocalTokenString()
             })
             .withAutomaticReconnect()
             .build();

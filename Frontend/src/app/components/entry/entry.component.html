@@ -5,45 +5,50 @@
         </div>
     </div>
     <div class="entry-overlay" *ngIf="isVisible">
-        <div class="buttons">
-            <button (click)="toggleForm()" class="primary entry-toggle">{{ newUser ? 'Login' : 'Register' }}</button>
-            <label class="button" for="{{ !newUser ? 'login' : 'register' }}">{{ !newUser ? 'Login' : 'Register' }}</label>
+        <div *ngIf="isLoggedIn">
+            <button (click)="logOut()" class="primary entry-toggle">{{ 'Log Out' }}</button>
         </div>
-        <div *ngIf="!newUser">
-            <form #loginForm="ngForm" (ngSubmit)="login()">
-                <div class="input">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
-                </div>
-                <div class="input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
-                </div>
-                <div class="input">
-                    <input [disabled]="!loginForm.valid" type="submit" id="login" style="display: none;" >
-                </div>
-            </form>
-        </div>
-        <div *ngIf="newUser">
-            <form #registerForm="ngForm" (ngSubmit)="register()">
-                <div class="input">
-                    <label for="firstName">First name</label>
-                    <input type="text" name="firstName" id="firstName" placeholder="example@example.com" required [(ngModel)]="user.firstName">
-                </div>
-                <div class="input">
-                    <label for="lastName">Last name</label>
-                    <input type="text" name="lastName" id="lastName" placeholder="example@example.com" required [(ngModel)]="user.lastName">
-                </div>
-                <div class="input">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
-                </div>
-                <div class="input">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
-                </div>
-                <input [disabled]="!registerForm.valid" type="submit" id="register" style="display: none;">
-            </form>
+        <div *ngIf="!isLoggedIn">
+            <div class="buttons">
+                <button (click)="toggleForm()" class="primary entry-toggle">{{ newUser ? 'Login' : 'Register' }}</button>
+                <label class="button" for="{{ !newUser ? 'login' : 'register' }}">{{ !newUser ? 'Login' : 'Register' }}</label>
+            </div>
+            <div *ngIf="!newUser">
+                <form #loginForm="ngForm" (ngSubmit)="login()">
+                    <div class="input">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
+                    </div>
+                    <div class="input">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
+                    </div>
+                    <div class="input">
+                        <input [disabled]="!loginForm.valid" type="submit" id="login" style="display: none;" >
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="newUser">
+                <form #registerForm="ngForm" (ngSubmit)="register()">
+                    <div class="input">
+                        <label for="firstName">First name</label>
+                        <input type="text" name="firstName" id="firstName" placeholder="example@example.com" required [(ngModel)]="user.firstName">
+                    </div>
+                    <div class="input">
+                        <label for="lastName">Last name</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="example@example.com" required [(ngModel)]="user.lastName">
+                    </div>
+                    <div class="input">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="example@example.com" required [(ngModel)]="user.email">
+                    </div>
+                    <div class="input">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
+                    </div>
+                    <input [disabled]="!registerForm.valid" type="submit" id="register" style="display: none;">
+                </form>
+            </div>
         </div>
     </div>
 </div>
