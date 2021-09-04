@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 import { OrderService } from 'src/app/_services/order.service';
@@ -40,11 +39,11 @@ export class CheckoutPageComponent implements OnInit {
     }
 
     decreaseQuality(item: ProductInCart): void {
-        this.cartService.decreaseQuality(item)
+        this.cartService.decreaseQuality(item);
     }
 
     increaseQuantity(item: ProductInCart): void {
-        this.cartService.increaseQuantity(item)
+        this.cartService.increaseQuantity(item);
     }
 
     submit() {

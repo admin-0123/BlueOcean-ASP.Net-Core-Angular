@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product, ProductInCart } from 'src/app/_models/product';
+import { Product } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
+import { WishlistService } from 'src/app/_services/wishlist.service';
 
 @Component({
     selector: 'app-product-page',
@@ -11,12 +12,14 @@ import { CartService } from 'src/app/_services/cart.service';
 export class ProductPageComponent implements OnInit {
     product!: Product;
     isInCart = false;
+    isInWishlist = false;
     quantity = 1;
     columnsToDisplay = ['name', 'value'];
 
     constructor(
         private route: ActivatedRoute,
-        private cart: CartService
+        private cart: CartService,
+        private wishlistService: WishlistService
     ) { }
 
     ngOnInit(): void {
@@ -33,10 +36,17 @@ export class ProductPageComponent implements OnInit {
         );
 
         this.isInCart = this.cart.isItemInCart(this.product.id);
+        this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
+
+        this.wishlistService.wishlistSub.subscribe(
+            () => {
+                this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
+            }
+        );
     }
 
     CartAction(): void {
-        if(this.isInCart) {
+        if (this.isInCart) {
             this.cart.removeItem(this.product.id);
             return;
         }
@@ -47,6 +57,20 @@ export class ProductPageComponent implements OnInit {
             price: this.product.price,
             images: this.product.images.map(i => i.url),
             quantity: this.quantity
-        } as ProductInCart);
+        });
+    }
+
+    WishlistAction(): void {
+        if (this.isInWishlist) {
+            this.wishlistService.removeItem(this.product.id);
+            return;
+        }
+
+        this.wishlistService.addItem({
+            id: this.product.id,
+            title: this.product.title,
+            price: this.product.price,
+            images: this.product.images.map(i => i.url)
+        });
     }
 }

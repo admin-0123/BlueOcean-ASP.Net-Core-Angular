@@ -1,6 +1,9 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { Component, OnInit } from '@angular/core';
 import { faMinusCircle, faPlusCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { AppStore } from 'src/app/store/app.store';
+import { decrement, increment, reset } from 'src/app/store/general/general.actions';
+import { selectNumber } from 'src/app/store/general/general.selectors';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 
@@ -15,10 +18,13 @@ export class CartComponent implements OnInit {
     faMinusCircle = faMinusCircle;
     isVisible = false;
     cart: ProductInCart[] = [];
+    count$ = this.store.select(selectNumber);
 
     constructor(
-        private cartService: CartService
-    ) { }
+        private cartService: CartService,
+        private store: Store<AppStore>
+    ) {
+    }
 
     ngOnInit(): void {
         this.cart = this.cartService.cart;
@@ -51,5 +57,17 @@ export class CartComponent implements OnInit {
 
     increaseQuantity(item: ProductInCart): void {
         this.cartService.increaseQuantity(item);
+    }
+
+    increment() {
+        this.store.dispatch(increment());
+    }
+
+    decrement() {
+        this.store.dispatch(decrement());
+    }
+
+    reset() {
+        this.store.dispatch(reset());
     }
 }

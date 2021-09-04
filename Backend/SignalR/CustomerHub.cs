@@ -28,9 +28,10 @@ namespace Virta.Api.SignalR
 
             return base.OnConnectedAsync();
         }
-
+#nullable enable
         public override Task OnDisconnectedAsync(Exception? exception)
         {
+#nullable disable
             var userName = Context.User.GetUserId();
 
             List<string> existingUserConnectionIds;

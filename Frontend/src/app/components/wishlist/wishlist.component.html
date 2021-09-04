@@ -4,4 +4,15 @@
             <fa-icon [icon]="faHeart" size="lg"></fa-icon>
         </div>
     </div>
+    <div class="wishlist-overlay" *ngIf="isVisible">
+        <div class="item" *ngFor="let item of wishlist">
+            <div class="image">
+                <img src="{{ item.images[0] }}" alt="product image">
+            </div>
+            <div class="details">
+                <div class="title">{{ item.title }}</div>
+                <div class="price">{{ item.price }}$</div>
+            </div>
+        </div>
+    </div>
 </div>

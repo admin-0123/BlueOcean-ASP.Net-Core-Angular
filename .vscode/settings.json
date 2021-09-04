@@ -5,5 +5,9 @@
         "Virta",
         "toastr"
     ],
-    "eslint.options": { "configFile": "Frontend/.eslintrc.json" }
+    "eslint.options": { "configFile": "Frontend/.eslintrc.json" },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+    },
 }

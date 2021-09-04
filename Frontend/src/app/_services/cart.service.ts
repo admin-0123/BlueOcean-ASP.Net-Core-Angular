@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
@@ -70,7 +69,7 @@ export class CartService {
     addItem(item: ProductInCart): void {
         if (!this.isItemInCart(item.id)) {
             this.cart.push(item);
-            this.updateCart(this.cart)
+            this.updateCart(this.cart);
             this.toastr.success('Successfully added');
             return;
         }
@@ -82,7 +81,7 @@ export class CartService {
     removeItem(id: string): void {
         if (this.isItemInCart(id)) {
             this.cart = this.cart.filter((i: ProductInCart) => i.id !== id);
-            this.updateCart(this.cart)
+            this.updateCart(this.cart);
             this.toastr.success('Successfully Removed');
             return;
         }
@@ -100,7 +99,7 @@ export class CartService {
                 ...item,
                 quantity: item.quantity + (this.cart[index].quantity == item.quantity ? 1 : this.cart[index].quantity)
             };
-            this.updateCart(this.cart)
+            this.updateCart(this.cart);
         }
     }
 
@@ -114,7 +113,7 @@ export class CartService {
                 return;
             }
             this.cart[index] = { ...item, quantity: item.quantity - 1 };
-            this.updateCart(this.cart)
+            this.updateCart(this.cart);
         }
     }
 
@@ -151,7 +150,7 @@ export class CartService {
                 catchError(
                     (error) => {
                         console.error(error);
-                        return of(null)
+                        return of(null);
                     }
                 )
             );

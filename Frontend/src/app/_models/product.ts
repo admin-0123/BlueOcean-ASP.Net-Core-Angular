@@ -31,3 +31,10 @@ export interface Category {
     name: string;
     title: string;
 }
+
+export interface ProductInWishlist {
+    id: string;
+    title: string;
+    price: number;
+    images: string[];
+}

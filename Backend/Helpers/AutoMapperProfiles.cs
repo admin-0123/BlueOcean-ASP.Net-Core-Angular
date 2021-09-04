@@ -84,8 +84,13 @@ namespace Virta.Helpers
 
             /* Wishlist */
             CreateMap<WishlistDTO, WishlistUpsert>();
+            CreateMap<WishlistDTO.WishlistItemDTO, WishlistUpsert.WishlistItemUpsert>();
+
             CreateMap<WishlistUpsert, Wishlist>();
+            CreateMap<WishlistUpsert.WishlistItemUpsert, Wishlist.WishlistItem>();
+
             CreateMap<Wishlist, WishlistDTO>();
+            CreateMap<Wishlist.WishlistItem, WishlistDTO.WishlistItemDTO>();
 
 
             /* From Product Entity */

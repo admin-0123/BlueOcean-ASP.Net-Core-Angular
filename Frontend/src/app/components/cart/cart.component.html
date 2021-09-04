@@ -5,6 +5,13 @@
         </div>
     </div>
     <div class="cart-overlay" *ngIf="isVisible">
+        <!-- <button (click)="increment()">Increment</button>
+
+        <div>Current Count: {{ count$ | async }}</div>
+
+        <button (click)="decrement()">Decrement</button>
+
+        <button (click)="reset()">Reset Counter</button> -->
         <div class="item" *ngFor="let item of cart">
             <div class="image">
                 <img src="{{ item.images[0] }}" alt="product image">

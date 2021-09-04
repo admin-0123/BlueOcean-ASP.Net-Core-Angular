@@ -21,6 +21,13 @@
                 >
                         {{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}
                 </button>
+                <button
+                    class="btn"
+                    [ngClass]="{'secondary': isInWishlist}"
+                    (click)="WishlistAction()"
+                >
+                        {{ isInWishlist ? 'Remove From Wishlist' : 'Add To Wishlist' }}
+                </button>
             </div>
         </div>
     </div>

@@ -27,4 +27,45 @@
             right: -9px;
         }
     }
+
+    &-overlay {
+        position: absolute;
+        right: 0;
+        min-height: 200px;
+        text-align: start;
+        background-color: $white;
+        color: black;
+        width: 300px;
+        padding: 10px 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
+
+        .item {
+            display: flex;
+            gap: 20px;
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            .image {
+                width: 80px;
+            }
+
+            .number {
+                margin: 0 10px;
+            }
+        }
+
+        .details > div:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .actions {
+            bottom: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+    }
 }
