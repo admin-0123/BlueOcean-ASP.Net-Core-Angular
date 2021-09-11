@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Category } from '../_models/product';
 
@@ -16,6 +15,6 @@ export class CategoryService {
     ) { }
 
     getCategories(length: number = 5): Observable<Category[]> {
-        return this.http.get<Category[]>(this.baseUrl).pipe(map(d => d.slice(0, length)));
+        return this.http.get<Category[]>(this.baseUrl + length);
     }
 }

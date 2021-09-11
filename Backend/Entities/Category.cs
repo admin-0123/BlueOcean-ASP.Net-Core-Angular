@@ -13,6 +13,9 @@ namespace Virta.Entities
         [Required]
         [MaxLength(100)]
         public string Title { get; set; }
+        public bool Visible { get; set; }
+        public int Priority { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<Product> Products { get; set; }
     }

@@ -26,7 +26,12 @@ namespace Virta.Data
             return await _context.Categories.FindAsync(id);
         }
 
-        public async Task<List<Category>> GetCategories(string order = "ASC", int amount = 10)
+        public async Task<List<Category>> GetCategories(int amount = 10)
+        {
+            return await _context.Categories.OrderByDescending(a => a.Priority).Take(amount).ToListAsync();
+        }
+
+        public async Task<List<Category>> GetCategoriesByName(string order = "ASC", int amount = 10)
         {
             if (order == "ASC")
                 return await _context.Categories.OrderBy(a => a.Name).Take(amount).ToListAsync();

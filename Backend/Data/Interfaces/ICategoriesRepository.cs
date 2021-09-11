@@ -8,6 +8,7 @@ namespace Virta.Data.Interfaces
     {
         Task<Category> GetCategory(int id);
         Task<Category> GetCategory(string category);
-        Task<List<Category>> GetCategories(string order = "ASC", int amount = 10);
+        Task<List<Category>> GetCategories(int amount = 10);
+        Task<List<Category>> GetCategoriesByName(string order = "ASC", int amount = 10);
     }
 }

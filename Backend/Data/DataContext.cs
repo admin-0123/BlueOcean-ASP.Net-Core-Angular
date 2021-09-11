@@ -37,6 +37,13 @@ namespace Virta.Data
                 .HasIndex(c => c.Title)
                 .IsUnique();
 
+            builder.Entity<Category>()
+                .Property(c => c.Visible)
+                .HasDefaultValue(false);
+
+            builder.Entity<Category>()
+                .Property(c => c.Priority)
+                .HasDefaultValue(0);
 
             // Product
             builder.Entity<Product>()

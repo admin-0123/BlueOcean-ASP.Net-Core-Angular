@@ -66,7 +66,9 @@ namespace Virta.Services
 
         protected void BroadcastUpdate(Guid userId)
         {
-            _hubContext.Clients.Clients(CustomerHub.ConnectedCustomers[userId]).OnCartUpdate();
+            if (CustomerHub.ConnectedCustomers.ContainsKey(userId)) {
+                _hubContext.Clients.Clients(CustomerHub.ConnectedCustomers[userId]).OnCartUpdate();
+            }
         }
     }
 }

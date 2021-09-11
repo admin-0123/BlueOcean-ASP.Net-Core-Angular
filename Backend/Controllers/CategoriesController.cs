@@ -29,10 +29,10 @@ namespace Virta.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("{amount:int?}")]// TODO: Make swagger optional
+        public async Task<IActionResult> Get(int amount = 10)
         {
-            var categories = await _categoriesRepository.GetCategories();
+            var categories = await _categoriesRepository.GetCategories(amount);
 
             if (categories == null)
                 return BadRequest();
