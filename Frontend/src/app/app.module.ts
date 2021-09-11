@@ -32,6 +32,7 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
 import { ClickOutsideDirective } from './_directives/click-outside.directive';
+import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 
 
 export function tokenGetter(): string | null {
@@ -52,7 +53,8 @@ export function tokenGetter(): string | null {
         CartComponent,
         CheckoutPageComponent,
         WishlistComponent,
-        ClickOutsideDirective
+        ClickOutsideDirective,
+        ProductFilterComponent
     ],
     imports: [
         BrowserModule,

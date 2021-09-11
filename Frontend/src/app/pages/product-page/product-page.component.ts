@@ -3,6 +3,8 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { Product } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 import { WishlistService } from 'src/app/_services/wishlist.service';
@@ -13,6 +15,8 @@ import { WishlistService } from 'src/app/_services/wishlist.service';
     styleUrls: ['./product-page.component.scss']
 })
 export class ProductPageComponent implements OnInit {
+    fasHeart = fasHeart;
+    farHeart = farHeart;
     product!: Product;
     isInCart = false;
     isInWishlist = false;

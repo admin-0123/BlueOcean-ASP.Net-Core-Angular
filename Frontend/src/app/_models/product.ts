@@ -15,8 +15,9 @@ export interface ProductImage {
 
 export interface ProductAttribute {
     id: number;
-    name: string;
+    title: string;
     value: string;
+    priority: number;
 }
 
 export interface ProductInCart {

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApiHelper } from '../_helper/api.service';
 import { Product } from '../_models/product';
@@ -31,6 +32,14 @@ export class ProductService {
     }
 
     getProduct(id: string): Observable<Product> {
-        return this.http.get<Product>(this.baseUrl + id);
+        return this.http.get<Product>(this.baseUrl + id)
+            .pipe(
+                map(
+                    response => ({
+                        ...response,
+                        attributes: response.attributes?.sort((a, b) => b.priority - a.priority)
+                    })
+                )
+            );
     }
 }

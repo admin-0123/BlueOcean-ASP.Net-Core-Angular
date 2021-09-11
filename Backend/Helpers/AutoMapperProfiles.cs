@@ -49,7 +49,13 @@ namespace Virta.Helpers
             /* Product */
             CreateMap<ProductDTO, ProductUpsert>();
             CreateMap<ProductUpsert, Product>();
-            // CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDTO>()
+                .ForMember(
+                    dest => dest.Attributes,
+                    opt => opt.MapFrom(
+                        src => src.ProductAttributes
+                    )
+                );
 
             CreateMap<string, Category>()
                 .ForMember(
@@ -65,8 +71,13 @@ namespace Virta.Helpers
 
 
             /* Product Attributes */
-            CreateMap<ProductAttributesDTO, ProductAttributeUpsert>();
+            CreateMap<ProductAttributeDTO, ProductAttributeUpsert>();
             CreateMap<ProductAttributeUpsert, ProductAttribute>();
+            CreateMap<ProductAttribute, ProductAttributeDTO>()
+                .ForMember(
+                    dest => dest.Title,
+                    opt => opt.MapFrom(src => src.Attribute.Title)
+                );
 
             /* Product Images*/
             CreateMap<ProductImageDTO, ProductImageUpsert>();

@@ -9,11 +9,10 @@
                 <hr>
             </div>
             <div class="points">
-
+                <div>Price: {{ product.price }}$</div>
             </div>
             <div class="actions">
                 <input type="number" name="quantity" id="quantity" [(ngModel)]="quantity">
-                <p>{{ product.price }}$</p>
                 <button
                     class="btn"
                     [ngClass]="{'secondary': isInCart}"
@@ -21,13 +20,11 @@
                 >
                         {{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}
                 </button>
-                <button
-                    class="btn"
-                    [ngClass]="{'secondary': isInWishlist}"
+                <fa-icon
                     (click)="WishlistAction()"
-                >
-                        {{ isInWishlist ? 'Remove From Wishlist' : 'Add To Wishlist' }}
-                </button>
+                    [icon]="isInWishlist ? fasHeart : farHeart"
+                    size="lg"
+                ></fa-icon>
             </div>
         </div>
     </div>
@@ -38,22 +35,10 @@
         <div *ngIf="product.attributes" class="attributes">
             <table>
                 <tr *ngFor="let attribute of product.attributes">
-                    <td>{{ attribute.name }}</td>
+                    <td>{{ attribute.title }}</td>
                     <td>{{ attribute.value }}</td>
                 </tr>
             </table>
         </div>
-        <!-- <table mat-table [dataSource]="product.attributes">
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let attributes"> {{attributes.name}} </td>
-            </ng-container>
-            <ng-container matColumnDef="value">
-                <th mat-header-cell *matHeaderCellDef> Value </th>
-                <td mat-cell *matCellDef="let attributes"> {{attributes.value}} </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-            <tr mat-row *matRowDef="let attributes; columns: columnsToDisplay"></tr>
-        </table> -->
     </div>
 </div>

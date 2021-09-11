@@ -9,7 +9,7 @@ namespace Virta.Api.DTO
         public Guid? Id { get; set; }
         public string? Description { get; set; }
         public string? SKU { get; set; }
-        public virtual List<ProductAttributesDTO>? ProductAttributes { get; set; }
+        public virtual List<ProductAttributeDTO>? Attributes { get; set; }
         public virtual List<ProductImageDTO>? Images { get; set; }
         public List<Guid>? AssociatedProducts { get; set; }
 #nullable disable
@@ -18,6 +18,6 @@ namespace Virta.Api.DTO
         public int Type { get; set; }
         public int Visible { get; set; }
         public bool Active { get; set; }
-        public string[] Categories { get; set; }
+        public virtual ICollection<CategoryDTO> Categories { get; set; }
     }
 }

@@ -17,8 +17,13 @@
             }
 
             .actions {
-                margin-bottom: 20px;
-                width: 200px;
+                display: flex;
+                align-items: baseline;
+                gap: 30px;
+
+                input[type=number] {
+                    width: 100px;
+                }
             }
         }
     }

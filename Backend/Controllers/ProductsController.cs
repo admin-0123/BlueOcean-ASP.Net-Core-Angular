@@ -33,7 +33,7 @@ namespace Virta.Api.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet]// TODO: Default filter for visible & active
         public async Task<IActionResult> GetProducts(
             [FromQuery(Name = "category")] string[] categories,
             [FromQuery(Name = "amount")] int amount = 10
@@ -55,7 +55,9 @@ namespace Virta.Api.Controllers
             if (product == null)
                 return BadRequest();
 
-            return Ok(product);
+            var response = _mapper.Map<ProductDTO>(product);
+
+            return Ok(response);
         }
 
         [HttpPost]
