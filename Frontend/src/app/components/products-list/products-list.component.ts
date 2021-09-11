@@ -1,4 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+    Component,
+    Input,
+    OnInit
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/_models/product';
 

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
-    Router, Resolve,
-    RouterStateSnapshot,
-    ActivatedRouteSnapshot
+    ActivatedRouteSnapshot,
+    Resolve,
+    RouterStateSnapshot
 } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';

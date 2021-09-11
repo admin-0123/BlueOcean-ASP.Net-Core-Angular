@@ -1,8 +1,12 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, HostListener, OnInit } from '@angular/core';
+import {
+    Component,
+    HostListener,
+    OnInit
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/_models/product';
-import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
+import { CategoryService } from 'src/app/_services/category.service';
 
 @Component({
     selector: 'app-header',
@@ -11,8 +15,9 @@ import { AutoCompleteService } from 'src/app/_services/auto-complete.service';
 })
 export class HeaderComponent implements OnInit {
     filteredCategories: Category[] = [];
-    searchInput = '';
     category!: Category;
+    categories: Category[] = [];
+    searchInput = '';
     isLoading = false;
     applyShadows = false;
 
@@ -27,35 +32,43 @@ export class HeaderComponent implements OnInit {
     }
 
     constructor(
-        private autoCompleteService: AutoCompleteService,
-        private router: Router
+        // private autoCompleteService: AutoCompleteService,
+        private router: Router,
+        private categoryService: CategoryService
     ) {
 
     }
 
     ngOnInit(): void {
+        this.categoryService.getCategories().subscribe(
+            categories => this.categories = categories
+        );
     }
 
     onSearchChange(event: any): void {
-        const category = event.target?.value;
-        if (category && category.trim()) {
-            this.autoCompleteService.search(category)
-                .subscribe(response => {
-                    console.log(response);
-                    this.filteredCategories = response;
-                });
-        }
-        this.filteredCategories = [];
+        // const category = event.target?.value;
+        // if (category && category.trim()) {
+        //     this.autoCompleteService.search(category)
+        //         .subscribe(response => {
+        //             console.log(response);
+        //             this.filteredCategories = response;
+        //         });
+        // }
+        // this.filteredCategories = [];
     }
 
     selectOption(category: Category): void {
-        this.searchInput = category.title;
-        this.category = category;
-        this.filteredCategories = [];
-        this.search();
+        // this.searchInput = category.title;
+        // this.category = category;
+        // this.filteredCategories = [];
+        // this.search();
     }
 
     search(): void {
-        this.router.navigate(['/products/' + this.category.name]);
+        // this.router.navigate(['/products/' + this.category.name]);
+    }
+
+    goToCategory(category: string = ''): void {
+        this.router.navigate(['/products/' + category]);
     }
 }

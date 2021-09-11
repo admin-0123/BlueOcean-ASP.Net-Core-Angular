@@ -35,9 +35,8 @@
     </div>
     <div class="header-bottom">
         <div class="container">
-            <div>Category 1</div>
-            <div>Category 2</div>
-            <div>Category 3</div>
+            <div class="category" *ngFor="let category of categories" (click)="goToCategory(category.name)">{{ category.title }}</div>
+            <div class="category" (click)="goToCategory()">All</div>
         </div>
     </div>
 </div>

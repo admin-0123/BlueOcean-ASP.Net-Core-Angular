@@ -76,6 +76,10 @@
         .container {
             display: flex;
             gap: 30px;
+
+            .category {
+                cursor: pointer;
+            }
         }
     }
 }

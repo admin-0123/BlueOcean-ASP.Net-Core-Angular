@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/_models/product';
 
 @Component({
     selector: 'app-product-list-page',
@@ -7,15 +11,16 @@ import { ActivatedRoute } from '@angular/router';
     styleUrls: ['./product-list-page.component.scss']
 })
 export class ProductListPageComponent implements OnInit {
+    products: Product[] = [];
 
     constructor(
         private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
-        this.route.params.subscribe(
+        this.route.data.subscribe(
             data => {
-                console.log(data.category);
+                this.products = data.products;
             }
         );
     }
