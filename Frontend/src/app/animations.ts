@@ -1,15 +1,16 @@
 import {
     animate,
+    group,
     query,
     style,
     transition,
     trigger
 } from '@angular/animations';
 
-const openUp = [
-    query(':leave', [
+const openUpPLP = [
+    query(':leave > div', [
         style({
-            zIndex: -1
+            opacity: 1
         })
     ]),
     query(':enter', [
@@ -20,27 +21,42 @@ const openUp = [
             left: '{{ left }}',
             width: '225px',
             maxHeight: '300px',
-            zIndex: 10,
-            backgroundColor: 'white'
+            zIndex: 10
         }),
-        animate('50ms ease',
+        query('.image img', [
             style({
-                top: '{{ top2 }}',
-                left: '{{ left2 }}',
-                padding: '{{ padding }}',
-                width: '285px',
-                maxHeight: '360px'
+                width: '225px',
+                height: '300px'
             })
-        ),
-        animate('400ms ease',
-            style({
-                maxHeight: '1000px',
-                width: '100%',
-                top: 0,
-                left: 0,
-                padding: '0'
-            })
-        )
+        ])
+    ]),
+    group([
+        query(':leave > div', [
+            animate('550ms ease',
+                style({
+                    opacity: 0
+                })
+            )
+        ]),
+        query(':enter', [
+            animate('400ms ease',
+                style({
+                    maxHeight: '1000px',
+                    width: '100%',
+                    top: 0,
+                    left: 0,
+                    padding: '0'
+                })
+            )
+        ]),
+        query(':enter .image img', [
+            animate('400ms ease',
+                style({
+                    width: '*',
+                    height: '*'
+                })
+            )
+        ])
     ])
 ];
 
@@ -59,28 +75,32 @@ const closeUp = [
             zIndex: 10,
             left: 0,
             top: 0
-        }),
-        animate('400ms ease',
-            style({
-                width: '225px',
-                maxHeight: '300px',
-                top: '{{ top }}',
-                left: '{{ left }}'
-            })
-        ),
-        animate('50ms',
-            style({
-                width: '225px',
-                maxHeight: '300px',
-                top: '{{ top }}',
-                left: '{{ left }}'
-            })
-        )
+        })
+    ]),
+    group([
+        query(':leave', [
+            animate('400ms ease',
+                style({
+                    width: '225px',
+                    maxHeight: '300px',
+                    top: '{{ top }}',
+                    left: '{{ left }}'
+                })
+            )
+        ]),
+        query(':leave .image img', [
+            animate('400ms ease',
+                style({
+                    width: '225px',
+                    height: '300px'
+                })
+            )
+        ])
     ])
 ];
 
 export const slider =
     trigger('routeAnimations', [
-        transition('* => PDP', openUp, { params: { top: '0px', left: '200px' } }),
+        transition('* => PDP', openUpPLP, { params: { top: '0px', left: '200px' } }),
         transition('PDP => *', closeUp, { params: { top: '0px', left: '200px' } })
     ]);

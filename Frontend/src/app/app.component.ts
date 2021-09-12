@@ -40,10 +40,7 @@ export class AppComponent {
                 const left = d.offsetLeft;
                 this.location = {
                     top: `${top}px`,
-                    left: `${left - 232}px`,
-                    top2: top ? `${d.offsetTop - 229}px` : `${top}px`,
-                    left2: `${left - 262}px`,
-                    padding: `${ top ? '30px' : '0'} 30px`
+                    left: `${left - 232}px`
                 };
             }
         );
