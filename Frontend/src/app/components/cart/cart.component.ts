@@ -1,8 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { faMinusCircle, faPlusCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
+import {
+    faMinusCircle,
+    faPlusCircle,
+    faShoppingCart
+} from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { AppStore } from 'src/app/store/app.store';
-import { decrement, increment, reset } from 'src/app/store/general/general.actions';
+import {
+    decrement, reset
+} from 'src/app/store/general/general.actions';
 import { selectNumber } from 'src/app/store/general/general.selectors';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
@@ -59,9 +68,9 @@ export class CartComponent implements OnInit {
         this.cartService.increaseQuantity(item);
     }
 
-    increment() {
-        this.store.dispatch(increment());
-    }
+    // increment() {
+    //     this.store.dispatch(increment());
+    // }
 
     decrement() {
         this.store.dispatch(decrement());

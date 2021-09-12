@@ -1,9 +1,9 @@
-<div class="card" [routerLink]="['/product/' + product.id]">
+<div class="card" (click)="onClick($event)" [routerLink]="['/product/' + product.id]">
     <div class="promo">
         <p>{{ product.title }}</p>
     </div>
     <div class="image">
-        <img src="{{ product.images[0]?.url || 'http://via.placeholder.com/360x640' }}">
+        <img src="{{ product.images[0]?.url || 'https://loremflickr.com/225/300' }}">
     </div>
     <div class="price">
         <p>{{ product.price }}$</p>

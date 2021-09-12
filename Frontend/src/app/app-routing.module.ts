@@ -14,8 +14,8 @@ import { ProductResolver } from './_resolvers/product.resolver';
 const routes: Routes = [
     { path: '', component: HomePageComponent, resolve: { products: HomePageResolver } },
     { path: 'product/:id', component: ProductPageComponent, resolve: { product: ProductResolver }, data: { animation: 'PDP' } },
-    { path: 'products', component: ProductListPageComponent, resolve: { products: ProductListResolver } },
-    { path: 'products/:category', component: ProductListPageComponent, resolve: { products: ProductListResolver } },
+    { path: 'products', component: ProductListPageComponent, resolve: { products: ProductListResolver }, data: { animation: 'PLP' }  },
+    { path: 'products/:category', component: ProductListPageComponent, resolve: { products: ProductListResolver }, data: { animation: 'PLP' }  },
     { path: 'checkout', component: CheckoutPageComponent },
     { path: '**', redirectTo: '' }
 ];

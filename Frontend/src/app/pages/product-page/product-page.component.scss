@@ -1,9 +1,21 @@
+@import 'variables';
+
 .product {
+    background-color: $bg-primary;
+    min-height: 100vh;
+
     .main {
-        display: grid;
-        grid-template-columns: 200px 1fr;
-        column-gap: 30px;
+        display: flex;
         margin-bottom: 30px;
+
+        .image {
+            margin-right: 30px;
+
+            img {
+                height: 300px;
+                width: 225px;
+            }
+        }
 
         .details {
             display: flex;
