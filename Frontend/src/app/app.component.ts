@@ -2,7 +2,14 @@ import {
     Component,
     ViewEncapsulation
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {
+    ActivationStart,
+    NavigationEnd,
+    NavigationError,
+    NavigationStart,
+    Router,
+    RouterOutlet
+} from '@angular/router';
 import { Store } from '@ngrx/store';
 import { slider } from './animations';
 import { AppStore } from './store/app.store';
@@ -20,25 +27,45 @@ import { selectLocation } from './store/general/general.selectors';
 export class AppComponent {
     title = 'Virta';
     location$ = this.store.select(selectLocation);
-    location: object|null = { top: '0px', left: '200px', top2: '-30px', left2: '170px', padding: '30px 30px' };
+    location: object|null = null;
 
 
     constructor(
-        private store: Store<AppStore>
+        private store: Store<AppStore>,
+        private router: Router
     ){
         this.location$.subscribe(
             d => {
-                if (d.y) {
-                    const top = d.y - 199;
-                    this.location = {
-                        top: `${top}px`,
-                        left: `${d.x - 232}px`,
-                        top2: top ? `${d.y - 229}px` : `${top}px`,
-                        left2: `${d.x - 262}px`,
-                        padding: `${ top ? '30px' : '0'} 30px`
-                    };
-                } else {
-                    this.location = null;
+                const left = d.x + 200;
+                const top = d.y;
+                this.location = {
+                    top: `${top}px`,
+                    left: `${left}px`,
+                    top2: `${top ? top - 30 : top}px`,
+                    left2: `${left - 30}px`,
+                    padding: `${top ? '30px' : '0'} 30px`
+                };
+            }
+        );
+
+        this.router.events.subscribe(
+            event => {
+                if (event instanceof ActivationStart) {
+                    if (event.snapshot.data.animation === 'PDP') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+
+                if (event instanceof NavigationStart) {
+                    // Start
+                }
+
+                if (event instanceof NavigationEnd) {
+                    // End
+                }
+
+                if (event instanceof NavigationError) {
+                    // Error
                 }
             }
         );
@@ -46,6 +73,7 @@ export class AppComponent {
 
     prepareRoute(outlet: RouterOutlet) {
         if (!this.location) return false;
+
         return {
             value: outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation,
             params: this.location

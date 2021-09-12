@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
 import {
     ActivatedRouteSnapshot,
-    Resolve
+    Resolve,
+    RouterStateSnapshot
 } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import {
-    Observable
+    forkJoin,
+    Observable,
+    of
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Product } from '../_models/product';
-import { ProductService } from '../_services/product.service';
+import { Filters } from '../_models/filters';
+import { CategoryService } from '../_services/category.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProductListResolver implements Resolve<Product[]> {
+export class FiltersResolver implements Resolve<Filters> {
     constructor(
-        private productService: ProductService,
+        private categoryService: CategoryService,
         private toastr: ToastrService
-    ) { }
+    ){}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
-        return this.productService.getProducts(route.params?.category, 20)
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Filters> {
+        const categories = this.categoryService.getCategories(10)
             .pipe(
                 catchError(
                     error => {
@@ -31,5 +34,12 @@ export class ProductListResolver implements Resolve<Product[]> {
                     }
                 )
             );
+
+        const attributes = of([]);
+
+        return forkJoin({
+            categories: categories,
+            attributes: attributes
+        });
     }
 }

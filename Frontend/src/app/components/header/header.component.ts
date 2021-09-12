@@ -5,7 +5,7 @@ import {
     OnInit
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Category } from 'src/app/_models/product';
+import { Category } from 'src/app/_models/filters';
 import { CategoryService } from 'src/app/_services/category.service';
 
 @Component({

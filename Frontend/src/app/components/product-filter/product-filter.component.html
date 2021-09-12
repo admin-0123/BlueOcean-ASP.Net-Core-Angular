@@ -1,1 +1,4 @@
-<p>product-filter works!</p>
+<div class="filters">
+    <div class="category" *ngFor="let category of filters.categories" [routerLink]="['/products/' + category.name]">{{ category.title }}</div>
+    <div class="category" [routerLink]="['/products']">All</div>
+</div>

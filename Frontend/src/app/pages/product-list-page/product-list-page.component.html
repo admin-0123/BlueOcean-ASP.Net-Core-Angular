@@ -1,5 +1,7 @@
 <div class="product-list-page">
-    <app-product-filter></app-product-filter>
+    <app-product-filter
+        [filters]="filters"
+    ></app-product-filter>
     <app-products-list
         [products]="products"
     ></app-products-list>

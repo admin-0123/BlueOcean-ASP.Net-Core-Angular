@@ -1,0 +1,11 @@
+@import 'variables';
+
+.filters {
+    box-shadow: $main-shadow;
+    padding: 30px 20px;
+
+    .category {
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+}

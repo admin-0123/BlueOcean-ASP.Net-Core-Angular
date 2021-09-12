@@ -3,6 +3,7 @@ import {
     OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Filters } from 'src/app/_models/filters';
 import { Product } from 'src/app/_models/product';
 
 @Component({
@@ -12,6 +13,7 @@ import { Product } from 'src/app/_models/product';
 })
 export class ProductListPageComponent implements OnInit {
     products: Product[] = [];
+    filters: Filters = { categories: [], attributes: [] };
 
     constructor(
         private route: ActivatedRoute
@@ -21,6 +23,7 @@ export class ProductListPageComponent implements OnInit {
         this.route.data.subscribe(
             data => {
                 this.products = data.products;
+                this.filters = data.filters;
             }
         );
     }

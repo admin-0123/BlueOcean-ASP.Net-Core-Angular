@@ -28,11 +28,6 @@ export interface ProductInCart {
     quantity: number;
 }
 
-export interface Category {
-    name: string;
-    title: string;
-}
-
 export interface ProductInWishlist {
     id: string;
     title: string;

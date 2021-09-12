@@ -6,8 +6,8 @@ import {
 import { GeneralState } from './general';
 import {
     decrement,
-    increment,
-    reset
+    reset,
+    setProductCardLocation
 } from './general.actions';
 
 export const initialState: GeneralState = {
@@ -20,7 +20,7 @@ export const initialState: GeneralState = {
 
 export const reducer = createReducer(
     initialState,
-    on(increment, (state, action) => ({ ...state, location: action.location })),
+    on(setProductCardLocation, (state, action) => ({ ...state, location: action.location })),
     on(decrement, (state) => ({ ...state, number: state.number - 1 })),
     on(reset, (state) => ({ ...state, number: 0 }))
 );

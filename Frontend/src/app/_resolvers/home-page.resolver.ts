@@ -21,7 +21,7 @@ export class HomePageResolver implements Resolve<Product[]> {
     ) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product[]> {
-        return this.productService.getProducts(null, 5)
+        return this.productService.getProducts(null, 10)
             .pipe(
                 catchError(error => {
                     this.toastr.error('Problem retrieving data');
