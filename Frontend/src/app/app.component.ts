@@ -36,14 +36,14 @@ export class AppComponent {
     ){
         this.location$.subscribe(
             d => {
-                const left = d.x + 200;
-                const top = d.y;
+                const top = d.offsetTop - 199;
+                const left = d.offsetLeft;
                 this.location = {
                     top: `${top}px`,
-                    left: `${left}px`,
-                    top2: `${top ? top - 30 : top}px`,
-                    left2: `${left - 30}px`,
-                    padding: `${top ? '30px' : '0'} 30px`
+                    left: `${left - 232}px`,
+                    top2: top ? `${d.offsetTop - 229}px` : `${top}px`,
+                    left2: `${left - 262}px`,
+                    padding: `${ top ? '30px' : '0'} 30px`
                 };
             }
         );

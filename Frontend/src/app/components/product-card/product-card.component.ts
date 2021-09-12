@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import {
     Component,
     ElementRef,
@@ -19,6 +18,7 @@ import { Product } from 'src/app/_models/product';
 export class ProductCardComponent implements OnInit {
     @Input() product!: Product;
     location$ = this.store.select(selectLocation);
+    text: any = [];
 
     constructor(
         private store: Store<AppStore>,
@@ -28,30 +28,15 @@ export class ProductCardComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    onClick(event: any): void {
-        console.log(event.target);
-        console.log(this.getPosition(this.elementRef));
-        this.store.dispatch(setProductCardLocation({ location:
-            {
-                // x: this.elementRef.nativeElement.offsetLeft,
-                // y: this.elementRef.nativeElement.offsetTop
-                x: this.getPosition(this.elementRef).offsetLeft,
-                y: this.getPosition(this.elementRef).offsetTop
-            }
+    onClick(): void {
+        const rect = this.elementRef.nativeElement.getBoundingClientRect();
+        this.store.dispatch(setProductCardLocation({
+            location:
+                {
+                    offsetLeft: rect.left + window.pageXOffset,
+                    offsetTop: rect.top + window.pageYOffset
+                }
         }));
     }
-
-    getPosition(event: any){
-        let offsetLeft = 0;
-        let offsetTop = 0;
-
-        let el = event.nativeElement;
-
-        while (el){
-            offsetLeft += el.offsetLeft;
-            offsetTop += el.offsetTop;
-            el = el.parentElement;
-        }
-        return { offsetTop:offsetTop, offsetLeft:offsetLeft };
-    }
 }
+

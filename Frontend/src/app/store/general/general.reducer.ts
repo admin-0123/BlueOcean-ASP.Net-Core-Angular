@@ -13,8 +13,8 @@ import {
 export const initialState: GeneralState = {
     number: 0,
     location: {
-        x: 0,
-        y: 0
+        offsetLeft: 0,
+        offsetTop: 0
     }
 };
 

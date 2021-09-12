@@ -8,6 +8,6 @@ export const selectNumber = createSelector(
 
 export const selectLocation = createSelector(
     (state: AppStore) => state.general.location,
-    (location: { x: number, y: number}) => location
+    (location: { offsetLeft: number, offsetTop: number}) => location
 );
 
