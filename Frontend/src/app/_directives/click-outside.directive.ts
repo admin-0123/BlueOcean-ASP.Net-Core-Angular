@@ -13,12 +13,18 @@ export class ClickOutsideDirective {
     @Output() clickOutside: EventEmitter<any> = new EventEmitter();
 
     constructor(
-      private _elementRef: ElementRef
+        private elementRef: ElementRef
     ) { }
 
-    @HostListener('document:click', ['$event.target']) onMouseEnter(targetElement: any) {
-        if (!this._elementRef.nativeElement.contains(targetElement)) {
-            this.clickOutside.emit(null);
+    @HostListener('document:click', ['$event.target'])
+    onClickOutside(targetElement: any) {
+        if (!this.elementRef.nativeElement.contains(targetElement)) {
+            this.clickOutside.emit(false);
         }
+    }
+
+    @HostListener('click', ['$event.target'])
+    onClickInside(targetElement: any) {
+        this.clickOutside.emit(true);
     }
 }

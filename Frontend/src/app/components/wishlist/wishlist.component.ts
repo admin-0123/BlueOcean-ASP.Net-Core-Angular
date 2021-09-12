@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,
+    OnInit } from '@angular/core';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { ProductInWishlist } from 'src/app/_models/product';
 import { WishlistService } from 'src/app/_services/wishlist.service';

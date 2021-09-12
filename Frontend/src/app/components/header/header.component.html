@@ -35,8 +35,13 @@
     </div>
     <div class="header-bottom">
         <div class="container">
-            <div class="category" *ngFor="let category of categories" (click)="goToCategory(category.name)">{{ category.title }}</div>
-            <div class="category" (click)="goToCategory()">All</div>
+            <div
+                class="category"
+                *ngFor="let category of categories"
+                [routerLink]="['/products']"
+                [queryParams]="{ category: category.name }"
+            >{{ category.title }}</div>
+            <div class="category" [routerLink]="['/products']">All</div>
         </div>
     </div>
 </div>

@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit {
     filteredCategories: Category[] = [];
     category!: Category;
     categories: Category[] = [];
-    searchInput = '';
     isLoading = false;
     applyShadows = false;
+    searchInput: string = '';
 
     @HostListener('window:scroll', ['$event'])
     onScroll() {
@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onSearchChange(event: any): void {
-        // const category = event.target?.value;
+        this.searchInput = event.target?.value;
         // if (category && category.trim()) {
         //     this.autoCompleteService.search(category)
         //         .subscribe(response => {
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     }
 
     search(): void {
-        // this.router.navigate(['/products/' + this.category.name]);
+        this.router.navigate(['/products'], { queryParams: { title: this.searchInput } });
     }
 
     goToCategory(category: string = ''): void {

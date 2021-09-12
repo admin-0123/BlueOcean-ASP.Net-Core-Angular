@@ -10,5 +10,7 @@ namespace Virta.Data.Interfaces
         Task<Product> GetProduct(Guid id);
         Task<List<Product>> GetProducts(int amount = 10);
         Task<List<Product>> GetProducts(string[] categories, int amount = 10);
+        Task<List<Product>> GetProducts(string title, int amount = 10);
+        Task<List<Product>> GetProducts(string[] categories, string title, int amount = 10);
     }
 }

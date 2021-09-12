@@ -24,18 +24,34 @@ namespace Virta.Data
 
         public async Task<List<Product>> GetProducts(int amount = 10)
         {
-            return await _context.Products
-                .OrderByDescending(p => p.CreatedAt).Take(amount).ToListAsync();
+            return await GetProducts(null, null, amount);
         }
 
         public async Task<List<Product>> GetProducts(string[] categories, int amount = 10)
         {
-            if (categories.Length > 0)
-                return await _context.Products.Where(
-                        p => p.Categories.Where(c => categories.Contains(c.Name)).Any()
-                    ).OrderByDescending(p => p.CreatedAt).Take(amount).ToListAsync();
+            return await GetProducts(categories, null, amount);
+        }
 
-            return await GetProducts(amount);
+        public async Task<List<Product>> GetProducts(string title, int amount = 10)
+        {
+            return await GetProducts(new string[] { }, title, amount);
+        }
+
+        public async Task<List<Product>> GetProducts(string[] categories, string title, int amount = 10)
+        {
+            var result = _context.Products.AsQueryable();
+
+            if (categories != null && categories.Length > 0) {
+                result = result.Where(p => p.Categories.Where(c => categories.Contains(c.Name)).Any());
+            }
+
+            if (title != null && title != "") {
+                result = result.Where(p => p.Title.Contains(title)).OrderByDescending(p => p.Title);
+            } else {
+                result = result.OrderByDescending(p => p.CreatedAt);
+            }
+
+            return await result.Take(amount).ToListAsync();
         }
     }
 }

@@ -12,7 +12,7 @@ const openUpPLP = [
         style({
             opacity: 1
         })
-    ]),
+    ], { optional: true }),
     query(':enter', [
         style({
             position: 'absolute',
@@ -37,7 +37,7 @@ const openUpPLP = [
                     opacity: 0
                 })
             )
-        ]),
+        ], { optional: true }),
         query(':enter', [
             animate('400ms ease',
                 style({

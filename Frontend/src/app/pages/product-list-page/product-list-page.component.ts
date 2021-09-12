@@ -5,6 +5,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Filters } from 'src/app/_models/filters';
 import { Product } from 'src/app/_models/product';
+import { ProductService } from 'src/app/_services/product.service';
 
 @Component({
     selector: 'app-product-list-page',
@@ -16,10 +17,18 @@ export class ProductListPageComponent implements OnInit {
     filters: Filters = { categories: [], attributes: [] };
 
     constructor(
-        private route: ActivatedRoute
-    ) { }
+        private route: ActivatedRoute,
+        private productService: ProductService
+    ) {
+        this.route.queryParams.subscribe(
+            params => {
+                this.products = [];
+            }
+        );
+    }
 
     ngOnInit(): void {
+
         this.route.data.subscribe(
             data => {
                 this.products = data.products;

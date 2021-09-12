@@ -36,10 +36,11 @@ namespace Virta.Api.Controllers
         [HttpGet]// TODO: Default filter for visible & active
         public async Task<IActionResult> GetProducts(
             [FromQuery(Name = "category")] string[] categories,
+            [FromQuery(Name = "title")] string title,
             [FromQuery(Name = "amount")] int amount = 10
         )
         {
-            var products = await _productsRepository.GetProducts(categories, amount);
+            var products = await _productsRepository.GetProducts(categories, title, amount);
 
             if (products == null)
                 return BadRequest();

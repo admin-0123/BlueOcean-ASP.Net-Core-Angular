@@ -24,6 +24,7 @@ import { EntryComponent } from './components/entry/entry.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
@@ -32,7 +33,6 @@ import { ProductListPageComponent } from './pages/product-list-page/product-list
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
 import { ClickOutsideDirective } from './_directives/click-outside.directive';
-import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 
 
 export function tokenGetter(): string | null {

@@ -21,7 +21,7 @@ export class ProductListResolver implements Resolve<Product[]> {
     ) { }
 
     resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
-        return this.productService.getProducts(route.params?.category, 20)
+        return this.productService.getProducts(route.queryParams?.category, route.queryParams?.title, 20)
             .pipe(
                 catchError(
                     error => {

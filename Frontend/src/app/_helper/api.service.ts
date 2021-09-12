@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 interface ApiQueryObject {
     name: string;
@@ -11,7 +11,7 @@ interface ApiQueryObject {
 export class ApiHelper {
     public static queryBuilder(query: ApiQueryObject[]): string {
         if (query.length < 0) return '';
-        let queryLength: number = query.length;
+        const queryLength: number = query.length;
         let result: string = '';
 
         query.forEach((param, index) => {
@@ -20,7 +20,7 @@ export class ApiHelper {
             if (param.value === null) return;
 
             if (Array.isArray(param.value)) {
-                let length = param.value.length;
+                const length = param.value.length;
 
                 result += param.value.reduce(
                     (prev, current, index, array) => {

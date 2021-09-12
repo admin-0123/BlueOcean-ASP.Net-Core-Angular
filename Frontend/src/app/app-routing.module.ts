@@ -31,16 +31,8 @@ const routes: Routes = [
             products: ProductListResolver,
             filters: FiltersResolver
         },
-        data: { animation: 'PLP' }
-    },
-    {
-        path: 'products/:category',
-        component: ProductListPageComponent,
-        resolve: {
-            products: ProductListResolver,
-            filters: FiltersResolver
-        },
-        data: { animation: 'PLP' }
+        data: { animation: 'PLP' },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange'
     },
     {
         path: 'checkout',

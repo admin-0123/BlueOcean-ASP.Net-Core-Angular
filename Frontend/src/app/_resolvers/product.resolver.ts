@@ -3,7 +3,8 @@ import {
     Resolve,
     ActivatedRouteSnapshot
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable,
+    of } from 'rxjs';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { catchError } from 'rxjs/operators';

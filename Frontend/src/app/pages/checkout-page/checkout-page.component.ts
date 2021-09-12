@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+    Component,
+    OnInit
+} from '@angular/core';
+import {
+    faMinusCircle,
+    faPlusCircle
+} from '@fortawesome/free-solid-svg-icons';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 import { OrderService } from 'src/app/_services/order.service';
@@ -19,9 +25,9 @@ export class CheckoutPageComponent implements OnInit {
         private cartService: CartService,
         private orderService: OrderService
     ) {
-        this.cartService.watchStorage().subscribe(
-            () => {
-                this.cart = this.cartService.cart;
+        this.cartService.cartSub.subscribe(
+            (cart) => {
+                this.cart = cart;
                 this.totalPrice = this.cart.reduce(
                     (total, product) => total + product.price, 0
                 );
@@ -31,8 +37,6 @@ export class CheckoutPageComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.cart = this.cartService.cart;
-
         this.totalPrice = this.cart?.reduce(
             (total, product) => total + product.price, 0
         );

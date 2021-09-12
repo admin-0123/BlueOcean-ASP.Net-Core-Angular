@@ -36,7 +36,7 @@ export class ProductPageComponent implements OnInit {
             }
         );
 
-        this.cartService.watchStorage().subscribe(
+        this.cartService.cartSub.subscribe(
             () => {
                 this.isInCart = this.cartService.isItemInCart(this.product.id);
             }

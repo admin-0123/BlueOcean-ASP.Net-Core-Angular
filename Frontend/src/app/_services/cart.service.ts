@@ -1,14 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-    HubConnection,
-    HubConnectionBuilder
-} from '@microsoft/signalr';
 import { ToastrService } from 'ngx-toastr';
 import {
+    BehaviorSubject,
     Observable,
-    of,
-    Subject
+    of
 } from 'rxjs';
 import {
     catchError,
@@ -22,140 +18,129 @@ import { AuthService } from './auth.service';
     providedIn: 'root'
 })
 export class CartService {
-    private storageSub = new Subject<string>();
-    private hubConnection: HubConnection | undefined;
+    // private hubConnection: HubConnection | undefined;
+    // hubUrl = environment.hubUrl + 'customer';
     baseUrl = environment.apiUrl + 'customer/cart/';
-    hubUrl = environment.hubUrl + 'customer';
-    cart: ProductInCart[] = [];
+    cartSub = new BehaviorSubject<ProductInCart[]>(JSON.parse(this.getLocalCart()));
 
     constructor(
         private toastr: ToastrService,
         private http: HttpClient,
         private auth: AuthService
     ) {
-        this.getRemoteCart().subscribe(
-            data => {
-                this.updateCart(data as ProductInCart[]);
-            },
-            error => {
-                this.cart = JSON.parse(this.getLocalCart());
-                console.error(error);
+        this.auth.isLoggedInSub.subscribe(
+            isLoggedIn => {
+                if (isLoggedIn) {
+                    this.getRemoteCart().subscribe(
+                        data => this.updateCart(data),
+                        error => console.error(error)
+                    );
+
+                    this.cartSub.subscribe(
+                        () => this.SaveCartToDb().subscribe()
+                    );
+                }
             }
         );
     }
 
-    createHubConnection() {
-        this.hubConnection = new HubConnectionBuilder()
-            .withUrl(this.hubUrl, {
-                accessTokenFactory: () => this.auth.getLocalTokenString()
-            })
-            .withAutomaticReconnect()
-            .build();
+    // createHubConnection() {
+    //     this.hubConnection = new HubConnectionBuilder()
+    //         .withUrl(this.hubUrl, {
+    //             accessTokenFactory: () => this.auth.getLocalTokenString()
+    //         })
+    //         .withAutomaticReconnect()
+    //         .build();
 
-        this.hubConnection.start()
-            .catch((error: any)  => console.error(error));
+    //     this.hubConnection.start()
+    //         .catch((error: any)  => console.error(error));
 
-        this.hubConnection.on('OnCartUpdate',
-            (data: any) => {
-                console.log('Triggered');
-                this.getRemoteCart().subscribe(
-                    data => {
-                        this.updateCart(data as ProductInCart[]);
-                    },
-                    error => {
-                        console.error(error);
-                    }
-                );
-            }
-        );
-    }
+    //     this.hubConnection.on('OnCartUpdate',
+    //         (data: any) => {
+    //             console.log('Triggered');
+    //             this.getRemoteCart().subscribe(
+    //                 data => {
+    //                     this.updateCart(data as ProductInCart[]);
+    //                 },
+    //                 error => {
+    //                     console.error(error);
+    //                 }
+    //             );
+    //         }
+    //     );
+    // }
 
-    stopHubConnection() {
-        if (this.hubConnection) {
-            this.hubConnection.stop();
-        }
+    // stopHubConnection() {
+    //     if (this.hubConnection) {
+    //         this.hubConnection.stop();
+    //     }
+    // }
+
+    watchStorage(): Observable<any> {
+        return this.cartSub.asObservable();
     }
 
     addItem(item: ProductInCart): void {
         if (!this.isItemInCart(item.id)) {
-            this.cart.push(item);
-            this.updateCart(this.cart);
+            const newCart = this.cartSub.getValue();
+            newCart.push(item);
+            this.updateCart(newCart);
             this.toastr.success('Successfully added');
             return;
         }
 
         this.increaseQuantity(item);
-        this.storageSub.next('changed');
     }
 
     removeItem(id: string): void {
-        if (this.isItemInCart(id)) {
-            this.cart = this.cart.filter((i: ProductInCart) => i.id !== id);
-            this.updateCart(this.cart);
-            this.toastr.success('Successfully Removed');
-            return;
-        }
-
-        this.toastr.warning('Error item isn\'t in cart');
+        this.updateCart(
+            this.cartSub.getValue().filter((i: ProductInCart) => i.id !== id)
+        );
     }
 
     increaseQuantity(item: ProductInCart): void {
-        if (this.cart === []) return;
-
-        const index = this.cart.findIndex((i: ProductInCart) => i.id === item.id);
+        const cart = this.cartSub.getValue();
+        const index = cart.findIndex((i: ProductInCart) => i.id === item.id);
 
         if (index !== -1) {
-            this.cart[index] = {
+            cart[index] = {
                 ...item,
-                quantity: item.quantity + (this.cart[index].quantity == item.quantity ? 1 : this.cart[index].quantity)
+                quantity: item.quantity + (cart[index].quantity === item.quantity ? 1 : cart[index].quantity)
             };
-            this.updateCart(this.cart);
+            this.updateCart(cart);
         }
     }
 
     decreaseQuality(item: ProductInCart): void {
-        if (this.cart === []) return;
+        const cart = this.cartSub.getValue();
+        const index = cart.findIndex((i: ProductInCart) => i.id === item.id);
 
-        const index = this.cart.findIndex((i: ProductInCart) => i.id === item.id);
         if (index !== -1) {
-            if (this.cart[index].quantity == 1) {
+            if (cart[index].quantity === 1) {
                 this.removeItem(item.id);
                 return;
             }
-            this.cart[index] = { ...item, quantity: item.quantity - 1 };
-            this.updateCart(this.cart);
+            cart[index] = { ...item, quantity: item.quantity - 1 };
+            this.updateCart(cart);
         }
     }
 
     getRemoteCart(): Observable<ProductInCart[]> {
         return this.http.get<{products: ProductInCart[]}>(this.baseUrl)
-            .pipe(
-                map(
-                    response => response.products
-                )
-            );
-    }
-
-    watchStorage(): Observable<any> {
-        return this.storageSub.asObservable();
+            .pipe(map(response => response.products));
     }
 
     isItemInCart(id: string): boolean {
-        if (this.cart.find((i: ProductInCart) => i.id === id)) {
-            return true;
-        }
-
-        return false;
+        return !!this.cartSub.getValue().find((i) => i.id === id);
     }
 
     updateCart(newCart: ProductInCart[] | []): void {
-        this.cart = newCart;
+        this.cartSub.next(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
-        this.storageSub.next('changed');
     }
 
-    SaveCart(): Observable<any> {
-        return this.http.post(this.baseUrl, { products: this.cart })
+    SaveCartToDb(): Observable<any> {
+        return this.http.post(this.baseUrl, { products: this.cartSub.getValue() })
             .pipe(
                 catchError(
                     (error) => {

@@ -1,4 +1,4 @@
-<div class="cart" appClickOutside (clickOutside)="isVisible = false">
+<div class="cart" appClickOutside (clickOutside)="isVisible = $event">
     <div class="cart-button" (click)="cartToggle()">
         <div class="icon">
             <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>

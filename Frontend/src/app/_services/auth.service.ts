@@ -43,7 +43,6 @@ export class AuthService {
                 map(
                     response => {
                         this.toastr.success('Successful Authentication');
-                        console.log(response);
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
                         this.isLoggedInSub.next(true);
@@ -63,7 +62,6 @@ export class AuthService {
                 map(
                     response => {
                         this.toastr.success('Successful Registration');
-                        console.log(response);
                         localStorage.setItem('token', response.token);
                         this.decodedToken = this.jwtHelper.decodeToken(response.token);
                         this.isLoggedInSub.next(true);

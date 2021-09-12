@@ -12,6 +12,7 @@ import {
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ProductInWishlist } from '../_models/product';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,19 +23,26 @@ export class WishlistService {
 
     constructor(
       private toastr: ToastrService,
-      private http: HttpClient
+      private http: HttpClient,
+      private auth: AuthService
     ) {
-        this.getRemoteCart().subscribe(
-            data => this.updateWishlist(data),
-            error => console.error(error)
-        );
+        this.auth.isLoggedInSub.subscribe(
+            isLoggedIn => {
+                if (isLoggedIn) {
+                    this.getRemoteWishlist().subscribe(
+                        data => this.updateWishlist(data),
+                        error => console.error(error)
+                    );
 
-        this.wishlistSub.subscribe(
-            () => this.SaveWishlistToDb().subscribe()
+                    this.wishlistSub.subscribe(
+                        () => this.SaveWishlistToDb().subscribe()
+                    );
+                }
+            }
         );
     }
 
-    getRemoteCart(): Observable<ProductInWishlist[]> {
+    getRemoteWishlist(): Observable<ProductInWishlist[]> {
         return this.http.get<{products: ProductInWishlist[]}>(this.baseUrl)
             .pipe(map(response => response.products));
     }
