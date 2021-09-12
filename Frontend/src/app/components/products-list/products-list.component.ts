@@ -13,6 +13,7 @@ import { Product } from 'src/app/_models/product';
 })
 export class ProductsListComponent implements OnInit {
     @Input() products: Product[] = [];
+    @Input() productsPerLine: number = 5;
 
     constructor(
         private route: ActivatedRoute

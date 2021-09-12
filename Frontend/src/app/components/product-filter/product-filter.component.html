@@ -1,4 +1,9 @@
 <div class="filters">
-    <div class="category" *ngFor="let category of filters.categories" [routerLink]="['/products/' + category.name]">{{ category.title }}</div>
-    <div class="category" [routerLink]="['/products']">All</div>
+    <div>
+        <div class="title">Categories:</div>
+        <div>
+            <div class="category" *ngFor="let category of filters.categories" [routerLink]="['/products/' + category.name]">{{ category.title }}</div>
+            <div class="category" [routerLink]="['/products']">All</div>
+        </div>
+    </div>
 </div>

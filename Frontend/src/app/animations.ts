@@ -82,5 +82,5 @@ const closeUp = [
 export const slider =
     trigger('routeAnimations', [
         transition('* => PDP', openUp, { params: { top: '0px', left: '200px' } }),
-        transition('PDP => PLP', closeUp, { params: { top: '0px', left: '200px' } })
+        transition('PDP => *', closeUp, { params: { top: '0px', left: '200px' } })
     ]);
