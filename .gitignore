@@ -1,3 +1,6 @@
 notes
 build/rabbitmq/data/*
 build/rabbitmq/logs/*
+.git
+.gitignore
+.vscode
