@@ -4,8 +4,11 @@ FROM node:${NODE_VERSION}
 
 WORKDIR /app
 
-COPY ./Frontend/ ./
+COPY ./Frontend/package.json package.json
+COPY ./Frontend/package-lock.json package-lock.json
 
 RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
 
-CMD ng serve --host 0.0.0.0
+EXPOSE 4200
+
+CMD ["npm", "start"]
