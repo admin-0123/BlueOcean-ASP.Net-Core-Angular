@@ -107,8 +107,13 @@ namespace Virta
                 x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                .WithOrigins(
+                    "http://localhost:4200",
+                    "https://localhost:4200",
+                    "https://blue-ocean-0896d250f.azurestaticapps.net"
+                )
             );
+
 
             app.UseAuthentication();
             app.UseAuthorization();

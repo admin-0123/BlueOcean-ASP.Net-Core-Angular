@@ -1,18 +1,41 @@
 version: '3'
 services:
-  frontend:
-    image: virta.azurecr.io/virta_frontend:latest
-    restart: on-failure:5
-    ports:
-      - "80:80"
-
   backend:
     image: virta.azurecr.io/virta_backend:latest
     container_name: virta_backend
     restart: on-failure:5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
     ports:
-      - "8080:8080"
+      - "80:80"
 
-networks:
-  default:
-    driver: bridge
+  postgres:
+    image: postgres:alpine
+    container_name: virta_postgres
+    restart: on-failure:5
+    environment:
+      - POSTGRES_PASSWORD=toor
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:latest
+    container_name: virta_mongo
+    restart: on-failure:5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
+    ports:
+      - "27017:27017"
+
+volumes:
+  postgres-data:
+  mongo-data:
+
+
+az role assignment create --assignee c5500dca-cf7e-42e7-b29c-b9e137f30e42 --scope /subscriptions/0ed7bdea-d3a2-4e92-a9ed-063610b7be48/resourceGroups/virtarg/providers/Microsoft.ContainerRegistry/registries/virta --role "AcrPull"
+
+az resource update --ids /subscriptions/0ed7bdea-d3a2-4e92-a9ed-063610b7be48/resourceGroups/virtarg/providers/Microsoft.Web/sites/virta/config/web --set properties.acrUseManagedIdentityCreds=True
+
+docker-compose up -d --no-deps --build frontend

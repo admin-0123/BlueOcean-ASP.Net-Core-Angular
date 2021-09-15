@@ -1,34 +1,27 @@
 version: '3.1'
 services:
   postgres:
-    image: postgres:${POSTGRES_VERSION}
+    image: postgres:alpine
     container_name: virta_postgres
     restart: on-failure:5
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_PASSWORD=toor
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - ${POSTGRES_PORT_HOST}:${POSTGRES_PORT}
-    expose:
-      - ${POSTGRES_PORT}
-    networks:
-      - default
+      - "5432:5432"
 
   mongo:
-    image: mongo:${MONGO_VERSION}
+    image: mongo:latest
     container_name: virta_mongo
     restart: on-failure:5
-    env_file:
-      - .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
     volumes:
       - mongo-data:/data/db
     ports:
-      - ${MONGO_PORT_HOST}:${MONGO_PORT}
-    expose:
-      - ${MONGO_PORT}
-    networks:
-      - default
+      - "27017:27017"
 
   frontend:
     build:
@@ -38,25 +31,23 @@ services:
         NODE_VERSION: ${NODE_VERSION}
     container_name: virta_frontend
     restart: on-failure:5
-    # volumes:
-    #   - ./Frontend:/app
+    volumes:
+      - ./Frontend:/app
     ports:
-      - 80:80
-      # - 4200:4200
-
+      - "80:80"
+2021-09-14T23:58:10.488816071Z
   backend:
     build:
       context: ./
       dockerfile: ./build/asp/Dockerfile
     container_name: virta_backend
     restart: on-failure:5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
     ports:
-        - 8080:8080
+      - "80:80"
 
 volumes:
   postgres-data:
   mongo-data:
-
-networks:
-  default:
-    driver: bridge

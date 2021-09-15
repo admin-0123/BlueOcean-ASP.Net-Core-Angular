@@ -1,0 +1,4 @@
+{
+    "http://localhost:8080": "http://virta_backend:8080",
+    "https://localhost:8080": "https://virta_backend:8080"
+}
