@@ -2,7 +2,6 @@ version: '3.1'
 services:
   postgres:
     image: postgres:alpine
-    container_name: virta_postgres
     restart: on-failure:5
     environment:
       - POSTGRES_PASSWORD=toor
@@ -13,7 +12,6 @@ services:
 
   mongo:
     image: mongo:latest
-    container_name: virta_mongo
     restart: on-failure:5
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
@@ -29,18 +27,16 @@ services:
       dockerfile: ./build/frontend/Dockerfile
       args:
         NODE_VERSION: ${NODE_VERSION}
-    container_name: virta_frontend
     restart: on-failure:5
     volumes:
       - ./Frontend:/app
     ports:
       - "80:80"
-2021-09-14T23:58:10.488816071Z
+
   backend:
     build:
       context: ./
       dockerfile: ./build/asp/Dockerfile
-    container_name: virta_backend
     restart: on-failure:5
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

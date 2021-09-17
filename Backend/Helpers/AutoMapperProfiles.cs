@@ -45,6 +45,9 @@ namespace Virta.Helpers
                     )
                 );
 
+            CreateMap<CategoryDTO, string>()
+                .ConvertUsing(src => src.Name);
+
 
             /* Product */
             CreateMap<ProductDTO, ProductUpsert>();
