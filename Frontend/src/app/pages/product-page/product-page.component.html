@@ -1,15 +1,38 @@
 <div class="product">
     <div class="main">
-        <div class="image">
-            <img src="{{ product.images[0]?.url || 'https://picsum.photos/450/600' }}">
+        <div class="images">
+            <div id="splide-thumbnail" class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li *ngFor="let slide of product.images" class="splide__slide">
+                            <div>
+                                <img src="{{ slide?.url }}">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="splide" class="splide">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li *ngFor="let slide of product.images" class="splide__slide">
+                            <img src="{{ slide?.url }}">
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="details">
             <div class="title">
                 <h2>{{ product.title }}</h2>
+                <div>
+                    <p class="sku">Sku#: {{ product.sku }}</p>
+                    <p class="stock">In Stock</p>
+                </div>
                 <hr>
             </div>
             <div class="points">
-                <div>Price: {{ product.price }}$</div>
+                <h2>Price: {{ product.price }}$</h2>
             </div>
             <div class="actions">
                 <input type="number" name="quantity" id="quantity" [(ngModel)]="quantity">
@@ -30,10 +53,18 @@
     </div>
     <div class="additional">
         <div class="description">
+            <h2>Description</h2>
+            <hr>
             <p>{{ product.description }}</p>
         </div>
         <div *ngIf="product.attributes" class="attributes">
+            <h2>Attributes</h2>
+            <hr>
             <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
                 <tr *ngFor="let attribute of product.attributes">
                     <td>{{ attribute.title }}</td>
                     <td>{{ attribute.value }}</td>

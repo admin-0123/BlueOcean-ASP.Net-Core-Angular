@@ -35,10 +35,10 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+                "src/styles.scss",
+                "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+                "node_modules/@splidejs/splide/dist/css/splide.min.css"
             ],
-            "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src/styles"

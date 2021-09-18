@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     Component,
     OnInit
 } from '@angular/core';
@@ -6,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import Splide from '@splidejs/splide';
 import { AppStore } from 'src/app/store/app.store';
 import { setLoadingScreen } from 'src/app/store/general/general.actions';
 import { Product } from 'src/app/_models/product';
@@ -17,14 +19,15 @@ import { WishlistService } from 'src/app/_services/wishlist.service';
     templateUrl: './product-page.component.html',
     styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent implements OnInit {
+export class ProductPageComponent implements OnInit, AfterViewInit {
     fasHeart = fasHeart;
     farHeart = farHeart;
     product!: Product;
     isInCart = false;
     isInWishlist = false;
     quantity = 1;
-    columnsToDisplay = ['name', 'value'];
+    splied: any = null;
+    spliedThumbnail: any = null;
 
     constructor(
         private route: ActivatedRoute,
@@ -33,7 +36,30 @@ export class ProductPageComponent implements OnInit {
         private store: Store<AppStore>
     ) { }
 
+    ngAfterViewInit(): void {
+        this.splied = new Splide('#splide', {
+            pagination : false,
+            autoHeight: true,
+            type: 'loop',
+            arrows: false,
+            gap: '30px'
+        } );
+
+        this.spliedThumbnail = new Splide('#splide-thumbnail', {
+            arrows: false,
+            pagination : false,
+            perPage: 3,
+            direction: 'ttb',
+            gap: '20px',
+            height: '600px',
+            autoHeight: true,
+            focus: 'center'
+        } ).mount();
+
+        this.splied.sync(this.spliedThumbnail).mount();
+    }
     ngOnInit(): void {
+
         this.route.data.subscribe(
             data => {
                 this.product = data.product;
@@ -47,15 +73,11 @@ export class ProductPageComponent implements OnInit {
             }
         );
 
-        this.isInCart = this.cartService.isItemInCart(this.product.id);
-
         this.wishlistService.wishlistSub.subscribe(
             () => {
                 this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
             }
         );
-
-        this.isInWishlist = this.wishlistService.isItemInWishlist(this.product.id);
     }
 
     CartAction(): void {

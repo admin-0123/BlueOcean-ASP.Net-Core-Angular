@@ -30,6 +30,7 @@
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
+    "@splidejs/splide": "^2.4.21",
     "ngx-toastr": "^14.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

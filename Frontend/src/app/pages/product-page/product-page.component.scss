@@ -5,26 +5,55 @@
     min-height: 100vh;
 
     .main {
-        display: flex;
+        display: grid;
+        grid-template-columns: 630px 1fr;
+        gap: 30px;
         margin-bottom: 30px;
 
-        .image {
-            margin-right: 30px;
-
-            img {
-                width: 450px;
-                height: 600px;
-            }
+        .images {
+            display: grid;
+            grid-template-columns: 150px 450px;
+            gap: 30px;
         }
 
         .details {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
 
             .title {
-                p {
-                    margin-left: 10px;
+                margin-bottom: 100px;
+
+                h2 {
+                    font-size: 38px;
+                    font-weight: normal;
+                    margin-bottom: 10px;
+                }
+
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+
+                    p {
+                        text-transform: uppercase;
+                    }
+
+                    .sku {
+                        color: $gray-3;
+                    }
+
+                    .stock {
+                        font-weight: bold;
+                        color: $green;
+                    }
+                }
+            }
+
+            .points {
+                margin-bottom: 100px;
+
+                h2 {
+                    font-weight: normal;
                 }
             }
 
@@ -41,13 +70,31 @@
     }
 
     .additional {
+        .description {
+            h2 {
+                font-weight: normal;
+                margin-bottom: 5px;
+            }
+
+            hr {
+                margin-bottom: 10px;
+            }
+        }
+
         .attributes {
-            margin-top: 20px;
+            margin-top: 30px;
+
+            h2 {
+                font-weight: normal;
+                margin-bottom: 5px;
+            }
+
+            hr {
+                margin-bottom: 10px;
+            }
 
             table {
-                width: 100%;
-                border-collapse: separate;
-                border-spacing: 20px 0;
+                margin: 20px 0;
             }
         }
     }

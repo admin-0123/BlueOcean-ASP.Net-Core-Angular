@@ -10,13 +10,21 @@ import {
 } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApiHelper } from '../_helper/api.service';
-import { Product } from '../_models/product';
+import {
+    Product,
+    ProductImage
+} from '../_models/product';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
     private baseUrl = environment.apiUrl + 'products/';
+    private defaultImage: ProductImage = {
+        id: 0,
+        primary: true,
+        url: 'https://picsum.photos/450/600'
+    }
 
     constructor(
         private http: HttpClient
@@ -55,7 +63,16 @@ export class ProductService {
                 map(
                     response => ({
                         ...response,
-                        attributes: response.attributes?.sort((a, b) => b.priority - a.priority)
+                        attributes: response.attributes?.sort((a, b) => b.priority - a.priority),
+                        images: response.images.length > 0 ? response.images : [
+                            this.defaultImage,
+                            this.defaultImage,
+                            this.defaultImage,
+                            this.defaultImage,
+                            this.defaultImage,
+                            this.defaultImage,
+                            this.defaultImage
+                        ]
                     })
                 ),
                 catchError(

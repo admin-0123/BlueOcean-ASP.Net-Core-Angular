@@ -12,8 +12,16 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
-            // "processId": "${command:pickProcess}"
-            "processName": "Virta"
+            "processId": "${command:pickProcess}"
+            // "processName": "Virta"
+        },
+        {
+            "name": "Launch .NET Core in Docker",
+            "type": "docker",
+            "request": "attach",
+            "netCore": {
+                "appProject": "${workspaceFolder}/Virta.csproj"
+            }
         },
         {
             "name": "Launch Chrome",

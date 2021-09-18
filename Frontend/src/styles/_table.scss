@@ -1,0 +1,29 @@
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+    td,
+    th {
+        border: 1px solid $gray-2;
+        padding: 8px;
+    }
+
+    tr {
+        &:nth-child(even) {
+            background-color: $gray-1;
+        }
+
+        &:hover {
+            background-color: $gray-2;
+        }
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: $primary;
+        color: $white;
+    }
+}
