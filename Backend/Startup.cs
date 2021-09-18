@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Virta.Api.SignalR;
+using Virta.Data;
 using Virta.Extensions;
 
 namespace Virta
@@ -83,6 +85,10 @@ namespace Virta
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VirtaApi v1"));
+                using (var scope =
+                    app.ApplicationServices.CreateScope())
+                using (var context = scope.ServiceProvider.GetService<DataContext>())
+                    context.Database.Migrate();
             }
 
             app.UseHttpsRedirection();
@@ -107,8 +113,13 @@ namespace Virta
                 x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("http://localhost:4200", "https://localhost:4200")
+                .WithOrigins(
+                    "http://localhost:4200",
+                    "https://localhost:4200",
+                    "https://blue-ocean-0896d250f.azurestaticapps.net"
+                )
             );
+
 
             app.UseAuthentication();
             app.UseAuthorization();

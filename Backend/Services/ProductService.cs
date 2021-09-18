@@ -36,10 +36,10 @@ namespace Virta.Services
             if (product.Categories.Length > 0)
                 productToSave.Categories = await SetCategories(product.Categories);
 
-            if (product.ProductAttributes.Count > 0)
+            if (product.ProductAttributes?.Count > 0)
                 productToSave.ProductAttributes = await SetProductAttributes(product.ProductAttributes);
 
-            if (product.AssociatedProducts.Count > 0)
+            if (product.AssociatedProducts?.Count > 0)
                 productToSave.AssociatedProducts = await SetAssociatedProducts(product.AssociatedProducts);
 
             if (productToSave.Id == Guid.Empty)

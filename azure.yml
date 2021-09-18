@@ -1,0 +1,68 @@
+version: '3'
+services:
+  nginx:
+    image: virta.azurecr.io/virta_nginx:latest
+    restart: on-failure:30
+    ports:
+      - "80:80"
+      - "443:443"
+
+  frontend:
+    image: virta.azurecr.io/virta_frontend:latest
+    restart: on-failure:5
+    ports:
+      - "4200:4200"
+
+  backend:
+    image: virta.azurecr.io/virta_backend:latest
+    restart: on-failure:5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+
+  postgres:
+    image: postgres:alpine
+    restart: on-failure:5
+    environment:
+      - POSTGRES_PASSWORD=toor
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:latest
+    restart: on-failure:5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
+    ports:
+      - "27017:27017"
+
+version: '3'
+services:
+  backend:
+    image: virta.azurecr.io/virta_backend:latest
+    restart: on-failure:5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80:80"
+
+  postgres:
+    image: postgres:alpine
+    restart: on-failure:5
+    environment:
+      - POSTGRES_PASSWORD=toor
+    ports:
+      - "5432:5432"
+
+  mongo:
+    image: mongo:latest
+    restart: on-failure:5
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=toor
+    ports:
+      - "27017:27017"

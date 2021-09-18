@@ -1,110 +1,164 @@
 [
     {
         "Name": "exercitation",
-        "Title": "Exercitation"
+        "Title": "Exercitation",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "eiusmod",
-        "Title": "Eiusmod"
+        "Title": "Eiusmod",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "occaecat",
-        "Title": "Occaecat"
+        "Title": "Occaecat",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "velit",
-        "Title": "Velit"
+        "Title": "Velit",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "cillum",
-        "Title": "Cillum"
+        "Title": "Cillum",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "magna",
-        "Title": "Magna"
+        "Title": "Magna",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "dolore",
-        "Title": "Dolore"
+        "Title": "Dolore",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "fugiat",
-        "Title": "Fugiat"
+        "Title": "Fugiat",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "adipisicing",
-        "Title": "Adipisicing"
+        "Title": "Adipisicing",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "incididunt",
-        "Title": "Incididunt"
+        "Title": "Incididunt",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "nostrud",
-        "Title": "Nostrud"
+        "Title": "Nostrud",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "proident",
-        "Title": "Proident"
+        "Title": "Proident",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "culpa",
-        "Title": "Culpa"
+        "Title": "Culpa",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "consectetur",
-        "Title": "Consectetur"
+        "Title": "Consectetur",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "laborum",
-        "Title": "Laborum"
+        "Title": "Laborum",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "Lorem",
-        "Title": "Lorem"
+        "Title": "Lorem",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "excepteur",
-        "Title": "Excepteur"
+        "Title": "Excepteur",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "ipsum",
-        "Title": "Ipsum"
+        "Title": "Ipsum",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "commodo",
-        "Title": "Commodo"
+        "Title": "Commodo",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "voluptate",
-        "Title": "Voluptate"
+        "Title": "Voluptate",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "labore",
-        "Title": "Labore"
+        "Title": "Labore",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "aliqua",
-        "Title": "Aliqua"
+        "Title": "Aliqua",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "nulla",
-        "Title": "Nulla"
+        "Title": "Nulla",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "veniam",
-        "Title": "Veniam"
+        "Title": "Veniam",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "aliquip",
-        "Title": "Aliquip"
+        "Title": "Aliquip",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "ullamco",
-        "Title": "Ullamco"
+        "Title": "Ullamco",
+        "Visible": true,
+        "Propriety": 1
     },
     {
         "Name": "laboris",
-        "Title": "Laboris"
+        "Title": "Laboris",
+        "Visible": true,
+        "Propriety": 1
     }
 ]
