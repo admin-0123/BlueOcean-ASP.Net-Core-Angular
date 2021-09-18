@@ -31,7 +31,7 @@ services:
     volumes:
       - ./Frontend:/app
     ports:
-      - "80:80"
+      - "4200:4200"
 
   backend:
     build:
@@ -40,9 +40,21 @@ services:
     restart: on-failure:5
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:5000
     ports:
-      - "80:80"
+      - "5000:5000"
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./build/nginx/Dockerfile
+      args:
+        NGINX_VERSION: ${NGINX_VERSION}
+    restart: on-failure:30
+    ports:
+      - 80:80
+      - 443:443
+
 
 volumes:
   postgres-data:

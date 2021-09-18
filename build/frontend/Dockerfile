@@ -8,4 +8,4 @@ COPY ./Frontend/ ./
 
 RUN npm install -g @angular/cli @angular-devkit/build-angular && npm install
 
-CMD ng serve --host 0.0.0.0 --port 80 --open --disable-host-check
+CMD ng serve --host 0.0.0.0 --port 4200 --open --disable-host-check
