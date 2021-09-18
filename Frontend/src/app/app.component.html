@@ -1,3 +1,4 @@
+<app-loading-screen *ngIf="loadingScreen$ | async" ></app-loading-screen>
 <app-header></app-header>
 
 <div class="page" [@routeAnimations]="prepareRoute(outlet)">

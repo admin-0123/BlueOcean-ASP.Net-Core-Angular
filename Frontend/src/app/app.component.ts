@@ -3,17 +3,19 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {
+    ActivationEnd,
     ActivationStart,
-    NavigationEnd,
-    NavigationError,
-    NavigationStart,
     Router,
     RouterOutlet
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { slider } from './animations';
 import { AppStore } from './store/app.store';
-import { selectLocation } from './store/general/general.selectors';
+import { setLoadingScreen } from './store/general/general.actions';
+import {
+    selectLoadingScreen,
+    selectLocation
+} from './store/general/general.selectors';
 
 @Component({
     selector: 'app-root',
@@ -27,8 +29,9 @@ import { selectLocation } from './store/general/general.selectors';
 export class AppComponent {
     title = 'Virta';
     location$ = this.store.select(selectLocation);
+    loadingScreen$ = this.store.select(selectLoadingScreen);
     location: object|null = null;
-
+    previousAnimation: string = '';
 
     constructor(
         private store: Store<AppStore>,
@@ -46,24 +49,24 @@ export class AppComponent {
         );
 
         this.router.events.subscribe(
-            event => {
+            (event: any) => {
                 if (event instanceof ActivationStart) {
-                    if (event.snapshot.data.animation === 'PDP') {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
+                    const isAnimated =
+                        (event.snapshot.data.animation === 'PDP' && this.previousAnimation === 'PLP')
+                        || (event.snapshot.data.animation === 'PLP' && this.previousAnimation === 'PDP');
+                    this.store.dispatch(setLoadingScreen({ loadingScreen: !isAnimated }));
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
 
-                if (event instanceof NavigationStart) {
-                    // Start
-                }
+                if (event instanceof ActivationEnd) {
+                    this.previousAnimation = event.snapshot.data.animation;
+                };
 
-                if (event instanceof NavigationEnd) {
-                    // End
-                }
+                // if (event instanceof NavigationStart) {
+                // }
 
-                if (event instanceof NavigationError) {
-                    // Error
-                }
+                // if (event instanceof NavigationEnd || event instanceof NavigationError) {
+                // }
             }
         );
     }

@@ -82,12 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Virta:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "Virta:build:production"
             },
             "development": {
-              "browserTarget": "Virta:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "Virta:build:development"
             }
           },
           "defaultConfiguration": "development"

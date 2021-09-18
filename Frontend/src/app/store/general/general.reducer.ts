@@ -5,13 +5,13 @@ import {
 } from '@ngrx/store';
 import { GeneralState } from './general';
 import {
-    decrement,
-    reset,
+    setLoadingScreen,
+    toggleLoadingScreen,
     setProductCardLocation
 } from './general.actions';
 
 export const initialState: GeneralState = {
-    number: 0,
+    loadingScreen: false,
     location: {
         offsetLeft: 0,
         offsetTop: 0
@@ -21,8 +21,8 @@ export const initialState: GeneralState = {
 export const reducer = createReducer(
     initialState,
     on(setProductCardLocation, (state, action) => ({ ...state, location: action.location })),
-    on(decrement, (state) => ({ ...state, number: state.number - 1 })),
-    on(reset, (state) => ({ ...state, number: 0 }))
+    on(setLoadingScreen, (state, action) => ({ ...state, loadingScreen: action.loadingScreen })),
+    on(toggleLoadingScreen, (state) => ({ ...state, loadingScreen: !state.loadingScreen }))
 );
 
 export function generalReducer(state: any, action: any) {

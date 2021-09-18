@@ -1,0 +1,15 @@
+{
+    "cSpell.words": [
+        "Bson",
+        "Npgsql",
+        "Virta",
+        "toastr"
+    ],
+    "eslint.options": { "configFile": "./.eslintrc.json" },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+    },
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+}

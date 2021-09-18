@@ -32,5 +32,10 @@ down:
 rebuild:
 	docker-compose up -d --force-recreate --build
 
-watch:
+watch-be:
 	cd ./Backend; dotnet watch build ./Virta.csproj
+
+watch-fe:
+	cd ./Frontend; ng build --watch
+
+

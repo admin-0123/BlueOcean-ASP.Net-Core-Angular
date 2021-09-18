@@ -1,5 +1,5 @@
 export interface GeneralState {
-    number: number;
+    loadingScreen: boolean;
     location: {
         offsetLeft: number;
         offsetTop: number;

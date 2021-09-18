@@ -16,7 +16,8 @@ const routes: Routes = [
     {
         path: '',
         component: HomePageComponent,
-        resolve: { products: HomePageResolver }
+        resolve: { products: HomePageResolver },
+        data: { animation: 'PLP' }
     },
     {
         path: 'product/:id',

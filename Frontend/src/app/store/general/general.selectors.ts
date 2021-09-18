@@ -1,9 +1,9 @@
 import { createSelector } from '@ngrx/store';
 import { AppStore } from '../app.store';
 
-export const selectNumber = createSelector(
-    (state: AppStore) => state.general.number,
-    (number: number) => number
+export const selectLoadingScreen = createSelector(
+    (state: AppStore) => state.general.loadingScreen,
+    (loading: boolean) => loading
 );
 
 export const selectLocation = createSelector(

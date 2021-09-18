@@ -5,6 +5,9 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { AppStore } from 'src/app/store/app.store';
+import { setLoadingScreen } from 'src/app/store/general/general.actions';
 import { Product } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 import { WishlistService } from 'src/app/_services/wishlist.service';
@@ -26,13 +29,15 @@ export class ProductPageComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private cartService: CartService,
-        private wishlistService: WishlistService
+        private wishlistService: WishlistService,
+        private store: Store<AppStore>
     ) { }
 
     ngOnInit(): void {
         this.route.data.subscribe(
             data => {
                 this.product = data.product;
+                this.store.dispatch(setLoadingScreen({ loadingScreen: false }));
             }
         );
 
