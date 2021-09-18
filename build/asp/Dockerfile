@@ -5,8 +5,8 @@ COPY ./Backend/ ./
 RUN dotnet restore ./Virta.csproj
 RUN dotnet publish ./Virta.csproj -c Release -o out
 
-RUN dotnet tool install -g dotnet-ef
-ENV PATH="${PATH}:/root/.dotnet/tools"
+# RUN dotnet tool install -g dotnet-ef
+# ENV PATH="${PATH}:/root/.dotnet/tools"
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app

@@ -85,13 +85,12 @@ namespace Virta
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "VirtaApi v1"));
-                using (var scope =
-                    app.ApplicationServices.CreateScope())
-                using (var context = scope.ServiceProvider.GetService<DataContext>())
-                    context.Database.Migrate();
+                using (var scope = app.ApplicationServices.CreateScope())
+                    using (var context = scope.ServiceProvider.GetService<DataContext>())
+                        context.Database.Migrate();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseSession();
             app.Use(async (context, next) =>

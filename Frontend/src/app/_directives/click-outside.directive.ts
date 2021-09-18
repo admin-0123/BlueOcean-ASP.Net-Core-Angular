@@ -22,9 +22,4 @@ export class ClickOutsideDirective {
             this.clickOutside.emit(false);
         }
     }
-
-    @HostListener('click', ['$event.target'])
-    onClickInside(targetElement: any) {
-        this.clickOutside.emit(true);
-    }
 }

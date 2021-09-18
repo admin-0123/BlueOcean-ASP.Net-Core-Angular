@@ -8,7 +8,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - 5432:5432
 
   mongo:
     image: mongo:latest
@@ -19,7 +19,7 @@ services:
     volumes:
       - mongo-data:/data/db
     ports:
-      - "27017:27017"
+      - 27017:27017
 
   frontend:
     build:
@@ -31,18 +31,20 @@ services:
     volumes:
       - ./Frontend:/app
     ports:
-      - "4200:4200"
+      - 4200:4200
 
   backend:
     build:
       context: ./
       dockerfile: ./build/asp/Dockerfile
     restart: on-failure:5
+    volumes:
+      - ./Backend/bin/Debug/net5.0:/app
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5000
     ports:
-      - "5000:5000"
+      - 5000:5000
 
   nginx:
     build:
