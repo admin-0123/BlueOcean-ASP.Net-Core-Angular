@@ -3,7 +3,10 @@ import {
     Component,
     OnInit
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {
+    ActivatedRoute,
+    Router
+} from '@angular/router';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
@@ -33,7 +36,8 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
         private route: ActivatedRoute,
         private cartService: CartService,
         private wishlistService: WishlistService,
-        private store: Store<AppStore>
+        private store: Store<AppStore>,
+        private router: Router
     ) { }
 
     ngAfterViewInit(): void {
@@ -58,8 +62,8 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
 
         this.splied.sync(this.spliedThumbnail).mount();
     }
-    ngOnInit(): void {
 
+    ngOnInit(): void {
         this.route.data.subscribe(
             data => {
                 this.product = data.product;
@@ -90,12 +94,14 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
             id: this.product.id,
             title: this.product.title,
             price: this.product.price,
-            images: this.product.images.map(i => i.url),
-            quantity: this.quantity
+            images: [ this.product.images.map(i => i.url)[0] ],
+            quantity: this.quantity,
+            url: this.router.url
         });
     }
 
     WishlistAction(): void {
+        console.log(this.router.url);
         if (this.isInWishlist) {
             this.wishlistService.removeItem(this.product.id);
             return;
@@ -105,7 +111,8 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
             id: this.product.id,
             title: this.product.title,
             price: this.product.price,
-            images: this.product.images.map(i => i.url)
+            images: [ this.product.images.map(i => i.url)[0] ],
+            url: this.router.url
         });
     }
 }

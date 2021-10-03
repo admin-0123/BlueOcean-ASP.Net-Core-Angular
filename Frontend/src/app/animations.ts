@@ -23,7 +23,7 @@ const openUpPLP = [
             maxHeight: '300px',
             zIndex: 10
         }),
-        query('.image img', [
+        query('#splide img', [
             style({
                 width: '225px',
                 height: '300px'
@@ -49,7 +49,7 @@ const openUpPLP = [
                 })
             )
         ]),
-        query(':enter .image img', [
+        query(':enter #splide img', [
             animate('400ms ease',
                 style({
                     width: '*',
@@ -77,6 +77,19 @@ const closeUp = [
             top: 0
         })
     ]),
+    query(':leave #splide', [
+        style({
+            position: 'absolute',
+            left: 0,
+            top: 0
+        })
+    ]),
+    query(':leave #splide .is-active img', [
+        style({
+            width: '450px',
+            height: '600px'
+        })
+    ]),
     group([
         query(':leave', [
             animate('400ms ease',
@@ -88,7 +101,7 @@ const closeUp = [
                 })
             )
         ]),
-        query(':leave .image img', [
+        query(':leave #splide .is-active img', [
             animate('400ms ease',
                 style({
                     width: '225px',
@@ -102,5 +115,5 @@ const closeUp = [
 export const slider =
     trigger('routeAnimations', [
         transition('* => PDP', openUpPLP, { params: { top: '0px', left: '200px' } }),
-        transition('PDP => *', closeUp, { params: { top: '0px', left: '200px' } })
+        transition('PDP => PLP', closeUp, { params: { top: '0px', left: '200px' } })
     ]);

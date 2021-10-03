@@ -3,6 +3,7 @@ import {
     RouterModule,
     Routes
 } from '@angular/router';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
     {
         path: 'checkout',
         component: CheckoutPageComponent
+    },
+    {
+        path: 'my-account',
+        component: AccountPageComponent
     },
     { path: '**', redirectTo: '' }
 ];

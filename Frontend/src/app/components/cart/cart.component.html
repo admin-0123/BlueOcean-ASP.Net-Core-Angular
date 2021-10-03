@@ -3,21 +3,23 @@
         <div class="icon">
             <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
         </div>
+        <div class="bubble" *ngIf="cart.length > 0">
+            <div class="bubble-content">
+                <span>{{ cart.length }}</span>
+            </div>
+        </div>
     </div>
     <div class="cart-overlay" *ngIf="isVisible">
-        <!-- <button (click)="increment()">Increment</button>
-
-        <div>Current Count: {{ count$ | async }}</div>
-
-        <button (click)="decrement()">Decrement</button>
-
-        <button (click)="reset()">Reset Counter</button> -->
         <div class="item" *ngFor="let item of cart">
             <div class="image">
-                <img src="{{ item.images[0] }}" alt="product image">
+                <a href="{{ item.url }}">
+                    <img src="{{ item.images[0] }}" alt="product image">
+                </a>
             </div>
             <div class="details">
-                <div class="title">{{ item.title }}</div>
+                <a href="{{ item.url }}">
+                    <div class="title">{{ item.title }}</div>
+                </a>
                 <div class="price">{{ item.price }}$</div>
                 <div class="quantity">
                     <fa-icon [icon]="faMinusCircle" (click)="decreaseQuality(item)"></fa-icon>
@@ -26,8 +28,10 @@
                 </div>
             </div>
         </div>
+        <div class="empty" *ngIf="cart.length === 0">
+            Empty cart
+        </div>
         <div class="actions">
-            <button class="button">See Cart</button>
             <button class="button" [routerLink]="['checkout']">Checkout</button>
         </div>
     </div>

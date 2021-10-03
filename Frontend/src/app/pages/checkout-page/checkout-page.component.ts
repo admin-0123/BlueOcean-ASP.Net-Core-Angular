@@ -2,10 +2,14 @@ import {
     Component,
     OnInit
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {
     faMinusCircle,
     faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { AppStore } from 'src/app/store/app.store';
+import { setLoadingScreen } from 'src/app/store/general/general.actions';
 import { ProductInCart } from 'src/app/_models/product';
 import { CartService } from 'src/app/_services/cart.service';
 import { OrderService } from 'src/app/_services/order.service';
@@ -23,8 +27,18 @@ export class CheckoutPageComponent implements OnInit {
 
     constructor(
         private cartService: CartService,
-        private orderService: OrderService
-    ) {
+        private orderService: OrderService,
+        private route: ActivatedRoute,
+        private store: Store<AppStore>
+    ) { }
+
+    ngOnInit(): void {
+        this.route.data.subscribe(
+            data => {
+                this.store.dispatch(setLoadingScreen({ loadingScreen: false }));
+            }
+        );
+
         this.cartService.cartSub.subscribe(
             (cart) => {
                 this.cart = cart;
@@ -33,10 +47,7 @@ export class CheckoutPageComponent implements OnInit {
                 );
             }
         );
-    }
 
-
-    ngOnInit(): void {
         this.totalPrice = this.cart?.reduce(
             (total, product) => total + product.price, 0
         );

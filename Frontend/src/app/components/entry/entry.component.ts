@@ -1,8 +1,8 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import {
     Component,
     OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/user';
@@ -22,15 +22,27 @@ export class EntryComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private toastr: ToastrService
+        private toastr: ToastrService,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
-        this.authService.isLoggedInSub.subscribe(v => this.isLoggedIn = v);
+        this.authService.isLoggedInSub.subscribe(
+            v => {
+                this.isLoggedIn = v;
+                if (this.isLoggedIn) {
+                    this.isVisible = false;
+                }
+            }
+        );
     }
 
     entryToggle(): void {
-        this.isVisible = !this.isVisible;
+        if (!this.isLoggedIn) {
+            this.isVisible = !this.isVisible;
+        } else {
+            this.router.navigate(['/my-account/']);
+        }
     }
 
     toggleForm(): void {

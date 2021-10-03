@@ -27,6 +27,7 @@ export interface ProductInCart {
     price: number;
     images: string[];
     quantity: number;
+    url: string;
 }
 
 export interface ProductInWishlist {
@@ -34,4 +35,5 @@ export interface ProductInWishlist {
     title: string;
     price: number;
     images: string[];
+    url: string;
 }

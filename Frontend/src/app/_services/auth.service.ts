@@ -81,8 +81,7 @@ export class AuthService {
     }
 
     getDecodedToken() {
-        const token = localStorage.getItem('token') || '';
-        return JSON.parse(atob(token.split('.')[1]));
+        return JSON.parse(atob(this.getLocalTokenString().split('.')[1]));
     }
 
     getLocalTokenString(): string {

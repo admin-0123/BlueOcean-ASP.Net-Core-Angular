@@ -14,4 +14,4 @@
 </div>
 <hr>
 <p>{{ totalPrice }}$</p>
-<button (click)="submit()">Place Order</button>
+<button (click)="submit()" disabled="{{ cart.length > 0 }}">Place Order</button>

@@ -3,14 +3,23 @@
         <div class="icon">
             <fa-icon [icon]="faHeart" size="lg"></fa-icon>
         </div>
+        <div class="bubble" *ngIf="wishlist.length > 0">
+            <div class="bubble-content">
+                <span>{{ wishlist.length }}</span>
+            </div>
+        </div>
     </div>
     <div class="wishlist-overlay" *ngIf="isVisible">
         <div class="item" *ngFor="let item of wishlist">
             <div class="image">
-                <img src="{{ item.images[0] }}" alt="product image">
+                <a href="{{ item.url }}">
+                    <img src="{{ item.images[0] }}" alt="product image">
+                </a>
             </div>
             <div class="details">
-                <div class="title">{{ item.title }}</div>
+                <a href="{{ item.url }}">
+                    <div class="title">{{ item.title }}</div>
+                </a>
                 <div class="price">{{ item.price }}$</div>
             </div>
         </div>

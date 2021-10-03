@@ -43,16 +43,10 @@
         border-radius: 5px;
         box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
 
-        &-toggle {
-            background-color: $dark-blue;
-        }
-
-        .buttons {
-            float: right;
-            z-index: 10;
+        .toggle {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row-reverse;
+            margin-bottom: 20px;
         }
 
         .input:not(:first-child) {

@@ -28,14 +28,13 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductFilterComponent } from './components/product-filter/product-filter.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductListPageComponent } from './pages/product-list-page/product-list-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { Reducers } from './store/app.store';
 import { ClickOutsideDirective } from './_directives/click-outside.directive';
-
-
 
 export function tokenGetter(): string | null {
     return localStorage.getItem('token');
@@ -57,7 +56,8 @@ export function tokenGetter(): string | null {
         WishlistComponent,
         ClickOutsideDirective,
         ProductFilterComponent,
-        LoadingScreenComponent
+        LoadingScreenComponent,
+        AccountPageComponent
     ],
     imports: [
         BrowserModule,
@@ -75,8 +75,8 @@ export function tokenGetter(): string | null {
         JwtModule.forRoot({
             config: {
                 tokenGetter,
-                allowedDomains: ['localhost:5001'],
-                disallowedRoutes: ['localhost:5001/api/auth']
+                allowedDomains: [ environment.baseUrl ],
+                disallowedRoutes: [ environment.baseUrl + '/api/auth' ]
             }
         }),
         StoreModule.forRoot(Reducers, {}),

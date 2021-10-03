@@ -1,18 +1,14 @@
 <div class="entry" appClickOutside (clickOutside)="isVisible = false">
     <div class="entry-button" (click)="entryToggle()">
         <div class="icon">
-            <fa-icon [icon]="faUser" size="lg"></fa-icon>
+            <fa-icon [icon]="faUser" size="lg" [ngStyle]="{ color: isLoggedIn && '#1EBF53' }"></fa-icon>
         </div>
     </div>
-    <div class="entry-overlay" *ngIf="isVisible">
-        <div *ngIf="isLoggedIn">
-            <button (click)="logOut()" class="primary entry-toggle">{{ 'Log Out' }}</button>
+    <div class="entry-overlay" *ngIf="isVisible && !isLoggedIn">
+        <div class="toggle">
+            <button (click)="toggleForm()" class="btn secondary">{{ newUser ? 'Login' : 'Register' }}</button>
         </div>
-        <div *ngIf="!isLoggedIn">
-            <div class="buttons">
-                <button (click)="toggleForm()" class="primary entry-toggle">{{ newUser ? 'Login' : 'Register' }}</button>
-                <label class="button" for="{{ !newUser ? 'login' : 'register' }}">{{ !newUser ? 'Login' : 'Register' }}</label>
-            </div>
+        <div class="body">
             <div *ngIf="!newUser">
                 <form #loginForm="ngForm" (ngSubmit)="login()">
                     <div class="input">
@@ -24,7 +20,7 @@
                         <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
                     </div>
                     <div class="input">
-                        <input [disabled]="!loginForm.valid" type="submit" id="login" style="display: none;" >
+                        <input [disabled]="!loginForm.valid" type="submit" id="login">
                     </div>
                 </form>
             </div>
@@ -46,9 +42,10 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="******" required [(ngModel)]="user.password">
                     </div>
-                    <input [disabled]="!registerForm.valid" type="submit" id="register" style="display: none;">
+                    <input [disabled]="!registerForm.valid" type="submit" id="register">
                 </form>
             </div>
         </div>
+
     </div>
 </div>
