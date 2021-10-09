@@ -32,6 +32,9 @@ down:
 rebuild:
 	docker-compose up -d --force-recreate --build
 
+build-be:
+	docker-compose up -d --no-deps --build backend
+
 watch-be:
 	cd ./Backend; dotnet watch build ./Virta.csproj
 

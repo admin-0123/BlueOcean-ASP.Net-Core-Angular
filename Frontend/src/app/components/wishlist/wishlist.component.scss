@@ -61,7 +61,7 @@
     &-overlay {
         position: absolute;
         right: 0;
-        min-height: 200px;
+        min-height: 100px;
         text-align: start;
         background-color: $white;
         color: black;
@@ -72,15 +72,27 @@
         box-shadow: 5px 5px 35px rgba(0, 0, 0, .5);
 
         .item {
+            position: relative;
             display: flex;
-            gap: 20px;
+            gap: 10px;
 
             &:not(:last-child) {
                 margin-bottom: 20px;
             }
 
+            .remove {
+                position: absolute;
+                z-index: 10;
+                right: 0;
+                top: -5px;
+                cursor: pointer;
+            }
+
             .image {
-                width: 80px;
+                img {
+                    width: 75px;
+                    height: 100px;
+                }
             }
 
             .number {
@@ -92,14 +104,23 @@
             }
         }
 
-        .details > div:not(:last-child) {
-            margin-bottom: 10px;
+        .details {
+            padding-right: 15px;
+
+            > div:not(:last-child) {
+                margin-bottom: 10px;
+            }
         }
 
         .actions {
             bottom: 0;
             display: flex;
             justify-content: space-around;
+        }
+
+        .empty {
+            text-align: center;
+            margin-top: 20px;
         }
     }
 }

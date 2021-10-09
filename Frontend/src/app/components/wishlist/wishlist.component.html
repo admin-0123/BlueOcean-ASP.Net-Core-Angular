@@ -1,4 +1,4 @@
-<div class="wishlist" appClickOutside (clickOutside)="isVisible = false">
+<div class="wishlist">
     <div class="wishlist-button" (click)="onWishlistClick()">
         <div class="icon">
             <fa-icon [icon]="faHeart" size="lg"></fa-icon>
@@ -11,6 +11,9 @@
     </div>
     <div class="wishlist-overlay" *ngIf="isVisible">
         <div class="item" *ngFor="let item of wishlist">
+            <div class="remove">
+                <fa-icon [icon]="faTimes" (click)="removeFromWishlist(item.id)" ></fa-icon>
+            </div>
             <div class="image">
                 <a href="{{ item.url }}">
                     <img src="{{ item.images[0] }}" alt="product image">
@@ -22,6 +25,9 @@
                 </a>
                 <div class="price">{{ item.price }}$</div>
             </div>
+        </div>
+        <div class="empty" *ngIf="wishlist.length === 0">
+            Wishlist is empty.
         </div>
     </div>
 </div>

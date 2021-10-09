@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate,
-    Router } from '@angular/router';
+import {
+    CanActivate,
+    Router
+} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../_services/auth.service';
 
@@ -15,7 +17,7 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(): boolean {
-        if (this.authService.isLoggedIn()) {
+        if (this.authService.isLoggedInSub.value) {
             return true;
         }
 

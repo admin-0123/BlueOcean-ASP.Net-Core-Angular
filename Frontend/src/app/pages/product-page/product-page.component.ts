@@ -47,7 +47,7 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
             type: 'loop',
             arrows: false,
             gap: '30px'
-        } );
+        });
 
         this.spliedThumbnail = new Splide('#splide-thumbnail', {
             arrows: false,
@@ -58,7 +58,7 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
             height: '600px',
             autoHeight: true,
             focus: 'center'
-        } ).mount();
+        }).mount();
 
         this.splied.sync(this.spliedThumbnail).mount();
     }
@@ -101,7 +101,6 @@ export class ProductPageComponent implements OnInit, AfterViewInit {
     }
 
     WishlistAction(): void {
-        console.log(this.router.url);
         if (this.isInWishlist) {
             this.wishlistService.removeItem(this.product.id);
             return;

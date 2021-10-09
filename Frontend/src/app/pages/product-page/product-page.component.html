@@ -43,11 +43,13 @@
                 >
                     {{ isInCart ? 'Remove From Cart' : 'Add To Cart' }}
                 </button>
-                <fa-icon
-                    (click)="WishlistAction()"
-                    [icon]="isInWishlist ? fasHeart : farHeart"
-                    size="lg"
-                ></fa-icon>
+                <div class="wishlist">
+                    <fa-icon
+                        (click)="WishlistAction()"
+                        [icon]="isInWishlist ? fasHeart : farHeart"
+                        size="lg"
+                    ></fa-icon>
+                </div>
             </div>
         </div>
     </div>

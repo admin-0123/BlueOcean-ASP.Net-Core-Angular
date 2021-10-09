@@ -15,11 +15,15 @@ import {
 })
 export class ProductFilterComponent implements OnInit {
     @Input() filters: Filters = { categories: [], attributes: [] };
+    activeCategory: string = '';
 
     constructor(
         private route: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
+        this.route.queryParams.subscribe(
+            params => this.activeCategory = params.category || ''
+        );
     }
 }

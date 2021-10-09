@@ -1,4 +1,4 @@
-<div class="cart" appClickOutside (clickOutside)="isVisible = $event">
+<div class="cart">
     <div class="cart-button" (click)="cartToggle()">
         <div class="icon">
             <fa-icon [icon]="faShoppingCart" size="lg"></fa-icon>
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="empty" *ngIf="cart.length === 0">
-            Empty cart
+            Cart is empty.
         </div>
         <div class="actions">
             <button class="button" [routerLink]="['checkout']">Checkout</button>
